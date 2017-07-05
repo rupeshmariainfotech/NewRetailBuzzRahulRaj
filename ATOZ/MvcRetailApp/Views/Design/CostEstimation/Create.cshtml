@@ -1,0 +1,1063 @@
+﻿@model CodeFirstEntities.CostEstimationOfArticle
+@{
+    ViewBag.Title = "Create";
+}
+<style type="text/css">
+body{
+	background:#474F57;  
+	margin:0; 
+}
+a:link{
+	 		 font-family: 'Open Sans', sans-serif;
+			 font-size: 13px;
+			  color: #888;
+			  text-decoration:none;
+			  
+}
+a:hover.set1{
+	 		font-family: 'Open Sans', sans-serif;
+			font-size: 13px;
+			color:#FFF;
+			text-decoration:none;
+			 
+}
+a:hover.set2{
+	 		font-family: 'Open Sans', sans-serif;
+			font-size: 13px;
+			color:#000;
+			text-decoration:none;
+			 
+}
+a:active{
+	 		font-family: 'Open Sans', sans-serif;
+			font-size: 13px;
+			color:#fff;
+			text-decoration:none;	 
+}
+a:visited{
+	 		font-family: 'Open Sans', sans-serif;
+			font-size: 13px;
+			color: #888;
+			text-decoration:none;
+			 
+}
+	
+#header{
+		position:absolute;
+		border-top: 1px solid #ccc;
+		padding: 0px;
+		margin-top:0px;
+		
+		background:#474F57; 
+		height:50px;
+		width:100%;
+	   border-bottom: 0px solid #ddd;
+		-webkit-box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.19);
+		box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.19);
+		
+	}
+	.HeaderTab{
+				float:right;
+				font-family: 'Open Sans', sans-serif;
+				font-size: 13px;
+				color:#fff;
+				padding:20px 20px 20px 20px; 
+	}
+	.content{
+				position:absolute;
+				margin:50px 0 0 0;
+			 -webkit-font-smoothing: antialiased;
+			  box-sizing: border-box;
+			 color: rgb(102, 102, 102);
+			 display: block;
+		     font-family: 'Open Sans', sans-serif;
+			 font-size: 13px;
+             height: 100%;
+			 line-height: 22px;
+			 width: 1585px;
+			 
+			
+		}
+	.sidebar {
+				width: 230px;
+				float: left;
+				display: block;
+				color: #777;
+				position: relative;
+			}
+	.sidebar #nav {
+					display: block;
+					width: 100%;
+					margin: 0 auto;
+					position: relative;
+					z-index: 60;
+					}
+		.sidebar ul {
+						padding: 0px;
+						
+					}
+		.sidebar li {
+					
+						background:#474f57;
+						border-bottom: 1px solid #3C434A;
+						border-top: 1px solid #4F5861;
+						height:35px;
+						padding-top:5px;
+						padding-left:5px;	
+						text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6);
+						color:#b7bebe;
+					}
+	   .mainbar {
+					position: relative;
+					margin-left: 230px;
+					margin-right: 0px;
+					width: auto;
+					overflow: hidden;
+					background: #EEEFF2;
+					border-left: 1px solid #ccc;
+					z-index: 50;
+					min-height: 800px;
+				}
+				.mainbar .matter {
+									border-top: 1px solid #ddd;
+									padding: 15px 15px 15px 15px;
+								 }
+				.mainbar .container {
+										max-width: 100% !important;
+										width: 100% !important;
+									}
+				.mainbar .page-head {
+									padding: 8px 20px;
+									background: #f3f3f3;
+									border-bottom: 1px solid #fff;
+									-webkit-box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.19);
+									box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.19);
+									font-family: 'Open Sans', sans-serif;
+									font-size:16px;
+									}
+				.mainbar .bread-crumb {
+										padding-top: 3px;
+										border-top: 1px solid #ddd;
+										font-size: 12px;
+										margin-top: 10px;
+										color: #aaa;
+										}
+				.FormDetails {
+							border: 1px solid #c9c9c9;
+							position: relative;
+							border-radius: 3px;
+							margin-top: 10px;
+							margin-bottom: 20px;
+							min-height: 50px;
+							box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+							background: #F4F2F5;
+						}
+				.FormDetails .FormDetails-head {
+background-color: #f8f8f8;
+background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f2f2f2));
+background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
+background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
+background: -ms-linear-gradient(top, #f8f8f8, #f2f2f2);
+background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
+background: linear-gradient(top, #f8f8f8, #f2f2f2);
+border-top-right-radius: 3px;
+border-top-left-radius: 3px;
+text-shadow: 0px 1px #fff;
+border-bottom: 1px solid #ccc;
+border-top: 1px solid #fff;
+color: #2B3856;
+font-size: 14px;
+font-weight: bold;
+padding: 8px 15px;
+}
+*, *:before, *:after {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+label { display: inline-block;; width: 150px; padding-left:-3px;font-weight:bold;		 }
+
+.textbox_style{
+background-color: #fff;
+color: #555;
+border: 1px solid #ccc;
+border-radius: 2px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.btn {
+display: inline-block;
+padding: 6px 12px;
+margin-bottom: 0;
+font-size: 14px;
+font-weight: normal;
+line-height: 1.428571429;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+cursor: pointer;
+border: 1px solid transparent;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+color: #fff;
+background-color: #000000;
+border-color: #adadad;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+}
+footer{
+  background-color: #333;
+	padding:10px 0px;
+	color: #777;
+	font-size: 12px;
+	border-top: 1px solid #333;
+}
+</style>
+@*<h2>Create</h2>
+<style>
+    .setwidth {
+        width: 153px;
+    }
+
+    #right_header {
+        position: absolute;
+        margin-top: 0;
+        margin-left: 0px;
+        width: 599px;
+        height: 25px;
+        font-family: calibri;
+        font-weight: bold;
+        font-size: 18px;
+        color: #000;
+        float: right;
+        background: #cccc99;
+        border-top: 2px solid;
+        border-top-color: #6687ad;
+    }
+    .Company_name{
+			 position:absolute;
+			 margin-top:80px;
+			 margin-left:350px;
+		}
+    .button_example {
+        width: 70px;
+        margin-left: 250px;
+        border: 1px solid #7d99ca;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        font-family: arial, helvetica, sans-serif;
+        padding: 10px 10px 10px 10px;
+        text-decoration: none;
+        display: inline-block;
+        text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+        font-weight: bold;
+        color: #000000;
+        background-color: #a5b8da;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#9c9c5f), to(#cccc99));
+        background-image: -webkit-linear-gradient(top, #9c9c5f, #cccc99);
+        background-image: -moz-linear-gradient(top, #9c9c5f, #cccc99);
+        background-image: -ms-linear-gradient(top, #9c9c5f, #cccc99);
+        background-image: -o-linear-gradient(top, #9c9c5f, #cccc99);
+        background-image: linear-gradient(to bottom, #9c9c5f, #cccc99);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#9c9c5f, endColorstr=#cccc99);
+    }
+
+        .button_example:hover {
+            border: 1px solid #5d7fbc;
+            background-color: #819bcb;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(#cccc99), to(#7f7f46));
+            background-image: -webkit-linear-gradient(top, #cccc99, #7f7f46);
+            background-image: -moz-linear-gradient(top, #cccc99, #7f7f46);
+            background-image: -ms-linear-gradient(top, #cccc99, #7f7f46);
+            background-image: -o-linear-gradient(top, #cccc99, #7f7f46);
+            background-image: linear-gradient(to bottom, #cccc99, #7f7f46);
+            filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#cccc99, endColorstr=#7f7f46);
+        }
+</style>*@
+
+<link rel="stylesheet" type="text/css" href="~/Content/themes/base/minified/calendar.css" title="calendar" />
+<script type="text/javascript" src="~/Scripts/calendar.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+       
+     
+        $("#ddlCategory").change(function () {
+            var catmodel = $(this).val();
+
+            alert(catmodel);
+            
+            $("#item").attr("disabled", false);
+            //$("#item").attr("disabled", false);
+            //$("#quantity").attr("disabled", false);
+
+            //  alert(catmodel);
+
+
+            if (catmodel == "") {
+
+            }
+
+            else {
+
+                $.getJSON("/CostEstimation/getSize", { code: catmodel },
+                           function (stateData) {
+                               var select = $("#item");
+                               select.empty();
+                               select.append($('<option/>', {
+                                   value: "",
+                                   text: "Select a ItemCode"
+                               }));
+                               $.each(stateData, function (index, itemData) {
+                                   select.append($('<option/>', {
+                                       value: itemData.Value,
+                                       text: itemData.Text
+
+                                   }));
+                               });
+                           });
+            }
+        });
+
+
+    });
+
+
+
+    $(document).ready(function () {
+        $("#item").change(function () {
+            var item = $(this).val();
+            // alert(item);
+            if (item == "") {
+
+                $("#ItemWeight").attr("disabled", true);
+               // $("#unit").attr("disabled", true);
+                $("#BarcodeName").attr("disabled", true);
+                $("#ItemPrice").attr("disabled", true);
+                $("#BarcodeDescription").attr("disabled", true);
+            }
+            else {
+
+                $("#ItemWeight").attr("disabled", false);
+               // $("#unit").attr("disabled", false);
+                $("#BarcodeName").attr("disabled", false);
+                $("#ItemPrice").attr("disabled", false);
+                $("#BarcodeDescription").attr("disabled", false);
+            }
+
+        });
+    });
+
+</script>
+<script type="text/javascript">
+
+    //$(document).ready(function () {
+    //    $("#amount").change(function () {
+
+    //        var amt=$("#amount").val();
+    //        var advance=$("#advance").val();
+    //        var a=0;
+    //        var b=0;
+
+    //        if(amt== null || amt=="")
+    //        {a=0;
+    //        }
+    //        else
+    //        {
+    //            a=parseInt(amt);
+
+
+    //        }
+    //        if(advance== null || advance=="")
+    //        {b=0;
+    //        }
+    //        else
+    //        {
+    //            b=parseInt(advance);
+
+
+    //        }
+
+    //        var total=a+b;
+
+    //        $("#balamount").val(total);
+    //        $("#balamount").attr('disabled','disabled');
+    //    });
+    //});
+
+
+    </script>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#amount").change(function () {
+
+            var amt=$("#amount").val();
+            var advance=$("#advance").val();
+            var a=0;
+            var b=0;
+
+            if(amt== null || amt=="")
+            {
+                a = 0;
+            }
+            else
+            {
+                a=parseInt(amt);
+
+
+            }
+            if(advance== null || advance=="")
+            {
+               b = 0;
+            }
+            else
+            {
+                b=parseInt(advance);
+
+
+            }
+
+            var total=a-b;
+
+            document.getElementById("balanceAmt").value = total;
+            document.getElementById("balanceAmt").disabled = true;
+            $("#balamount").val(total);
+        });
+    });
+
+
+    </script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#advance").change(function () {
+
+            var amt=$("#amount").val();
+            var advance=$("#advance").val();
+            var a=0;
+            var b=0;
+
+            if(amt== null || amt=="")
+            {
+                a = 0;
+            }
+            else
+            {
+                a=parseInt(amt);
+
+
+            }
+            if(advance== null || advance=="")
+            {
+                b = 0;
+            }
+            else
+            {
+                b=parseInt(advance);
+
+
+            }
+
+            var total=a-b;
+
+            document.getElementById("balanceAmt").value = total;
+            document.getElementById("balanceAmt").disabled = true;
+            $("#balamount").val(total);
+        });
+    });
+
+
+    </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //$("#item").attr("disabled", true);
+        $("#ItemWeight").attr("disabled", true);
+       // $("#unit").attr("disabled", true);
+        $("#BarcodeName").attr("disabled", true);
+        $("#ItemPrice").attr("disabled", true);
+        $("#BarcodeDescription").attr("disabled", true);
+
+        $("#item").change(function () {
+            var catmodel = $(this).val();
+            alert(catmodel);
+            $("#item").attr("disabled", false);
+            //$("#item").attr("disabled", false);
+            //$("#quantity").attr("disabled", false);
+
+            //  alert(catmodel);
+
+
+            if (catmodel == "") {
+
+                //$("#item").attr("disabled", true);
+                //$("#quantity").attr("disabled", true);
+                //$("#rate").attr("disabled", true);
+                //$("#sizeMaterial").attr("disabled", true);
+                //$("#currency").attr("disabled", true);
+
+            }
+
+            else {
+
+                $.getJSON("/CostEstimation/getSizes", { code: catmodel },
+                           function (stateData) {
+                               var select = $("#design");
+                               select.empty();
+                               select.append($('<option/>', {
+                                   value: "",
+                                   text: "Select a DesignName"
+                               }));
+                               $.each(stateData, function (index, itemData) {
+                                   select.append($('<option/>', {
+                                       value: itemData.Value,
+                                       text: itemData.Text
+
+                                   }));
+                               });
+                           });
+            }
+        });
+
+
+    });
+
+
+
+    $(document).ready(function () {
+        $("#item").change(function () {
+            var item = $(this).val();
+            // alert(item);
+            if (item == "") {
+
+                $("#ItemWeight").attr("disabled", true);
+               // $("#unit").attr("disabled", true);
+                $("#BarcodeName").attr("disabled", true);
+                $("#ItemPrice").attr("disabled", true);
+                $("#BarcodeDescription").attr("disabled", true);
+            }
+            else {
+
+                $("#ItemWeight").attr("disabled", false);
+               // $("#unit").attr("disabled", false);
+                $("#BarcodeName").attr("disabled", false);
+                $("#ItemPrice").attr("disabled", false);
+                $("#BarcodeDescription").attr("disabled", false);
+            }
+
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+ $(document).ready(function () {
+     $("#ddlClientname").change(function () {
+      //   var idModel = document.getElementById('companyName').value;
+         // $("#companyName").val('');
+         var idmodel = $(this).val();
+         
+            //var item = $(this).val();
+            //// alert(item);
+            //if (item == "") {
+
+            //    $("#ItemWeight").attr("disabled", true);
+            //    $("#unit").attr("disabled", true);
+            //    $("#BarcodeName").attr("disabled", true);
+            //    $("#ItemPrice").attr("disabled", true);
+            //    $("#BarcodeDescription").attr("disabled", true);
+            //}
+          
+            if (idmodel == "") {
+                document.getElementById('right_form').style.display = "none";
+                document.getElementById('container').style.height = globalHeightDiff; // Set the remaining height in test DIV.
+                $('#footer').css('margin-top', globalHeight + 105);
+            }
+
+            else {
+                document.getElementById('right_form').style.display = "inline";
+                var height1 = $(document).height();// height of full document
+
+                if ($.browser.msie) {
+
+                    height1 = Math.abs(height1 + 157);
+                }
+                var height2 = $("#header").height(); // height of header
+                var height_diff = Math.abs(height1 - height2) + "px";
+                document.getElementById('container').style.height = height_diff; // Set the remaining height in test DIV.
+                $('#footer').css('margin-top', height1 -100);
+                $.ajax({
+                    url: '/CostEstimation/GetClientDetails',
+                    type: "GET",
+                    data: { name: idmodel },
+                    success: function (data) {
+                        if (data != null) {
+                            document.getElementById("address").innerHTML = data.address;
+                            document.getElementById("pincode").innerHTML = data.pincode;
+                            document.getElementById("contact").innerHTML = data.contact;
+                            document.getElementById("emailid").innerHTML = data.email;
+                            document.getElementById("website").innerHTML = data.website;
+                            document.getElementById("bankid").innerHTML = data.bnkid;
+
+
+                            $("#Address").val(data.address);
+                            $("#email").val(data.email);
+                            $("#pinCode").val(data.pincode);
+                            $("#contactNo").val(data.contact);
+                            //$("#email").val(data.each);
+                            $("#bankId").val(data.bnkid);
+                            $("#clientWebsite").val(data.website);
+
+                            alert(data);
+                          //  alert(data.itemname);
+                          //  $("#ddlCategory").val(data.itemname);
+                        }
+                        else {
+
+                            //$("#ItemWeight").attr("disabled", false);
+                            //$("#unit").attr("disabled", false);
+                            //$("#BarcodeName").attr("disabled", false);
+                            //$("#ItemPrice").attr("disabled", false);
+                            //$("#BarcodeDescription").attr("disabled", false);
+                        }
+                    },
+                    error: function () {
+                    }
+
+                });
+
+
+            }
+        });
+    });
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#amount").keyup(function () {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+
+        });
+
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#advance").keyup(function () {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+
+        });
+
+
+    });
+
+</script>
+
+
+<link rel="stylesheet" type="text/css" href="~/Content/themes/base/minified/calendar.css" title="calendar" />
+<script type="text/javascript" src="~/Scripts/calendar.js"></script>
+
+
+@using (Html.BeginForm("Create", "CostEstimation", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmCreate" }))
+{
+    @Html.ValidationSummary(true)   
+   
+    @Html.HiddenFor(model => model.clientCode);
+    @Html.HiddenFor(model => model.Address);
+    @Html.HiddenFor(model => model.pinCode);
+    @Html.HiddenFor(model => model.contactNo);
+    @Html.HiddenFor(model => model.email);
+    @Html.HiddenFor(model => model.bankId);
+    @Html.HiddenFor(model => model.clientWebsite);
+    @Html.HiddenFor(model => model.balamount)
+    <div class="content">
+ <div id="leftb_menu">
+                @Html.Partial("MastersLeftMenu");
+            </div>
+ <div class="mainbar">
+            		 <div class="page-head"><b>Cost Estimation</b>
+                     		<div class="bread-crumb">
+                            </div>
+                            <a href="#" class="set2"><i class="fa fa-plus fa-lg"></i></a>&nbsp; |&nbsp;
+                            <a href="#" class="set2"><i class="fa fa-floppy-o fa-lg"></i></a>&nbsp; | &nbsp;
+                            <a href="#" class="set2"><i class="fa fa-refresh fa-lg"></i></a>&nbsp; | &nbsp;
+                            <a href="#" class="set2"><i class="fa fa-check-square-o fa-lg"></i></a>&nbsp; | &nbsp;
+                            <a href="#" class="set2"><i class="fa fa-trash-o fa-lg"></i></a>
+              </div>
+                      
+                      <div class="matter">
+                      		 <div class="container">
+                           <div class="FormDetails">
+                      		<div class="FormDetails-head">Company's Details</div>
+                               <ul style="border:1px solid #c2bdbd;">
+                                                                      <br/>
+
+
+       @* <div id="container">*@
+
+           @* @Html.HiddenFor(model => model.BarcodeCode)*@
+            @*<div id="right_menu">
+                <div id="right_header">&nbsp;CostEstimationOfArticle Details:</div>
+                <div id="right_button_panel">
+                    &nbsp;
+										<a href="#"><span title="Add">
+                                            <img src="add1.jpg" alt="Add" width="31" height="29" /></span></a>
+                    |<a href="#"><span title="Refresh"><img src="refresh_button.jpg" width="33" height="30" /></span></a>
+                    |<a href="#"><span title="Save"><img src="save_button.jpg" width="28" height="27" /></span></a>
+                    |<a href="#"><span title="Update"><img src="update_button.jpg" width="34" height="33" /></span></a>
+                    |<a href="#"><span title="Delete"><img src="delete_button.jpg" width="33" height="33" /></span></a>
+                </div>
+            </div>*@
+           
+                                    <div class="Company_name">
+                                    							Enter Client Name:&nbsp;
+                                    							@*<select id="Clientname" onchange="Client_Name();">
+                                                                           <option value="SelClntName">Select Client Name</option>
+                                                                           <option>Maya</option>
+                                                                           <option>Manisha</option>
+                                                                           </select>*@
+
+                                                                      @Html.DropDownListFor(model => model.clientName, new SelectList(Model.clientname, "clientName", "clientName", Model.clientname), "Select ClientName", new { id = "ddlClientname" })
+                                    						</div>
+                                                            
+                                    						 <div id="right_form" style="display:none;">
+														      <ul style="border:1px solid gray;">
+                                                              <br /><br />
+                                                              <li style="list-style:none">
+      																Address
+                                                                      <span style="margin-left:58px">&nbsp;</span>
+                                                                    @* <input id="Item33" />*@
+                                                                      <label id="address"></label>
+                                                                         
+                                                                      <br /><br />
+  																	</li>     
+                                                               <li style="list-style:none">
+      																Pin Code
+                                                                      <span style="margin-left:58px">&nbsp;</span>
+                                                                    @* <input id="Item33" />*@
+                                                                      <label id="pincode"></label>
+                                                                         
+                                                                      <br /><br />
+  																	</li> 
+  																	 <li style="list-style:none">
+      																Contact
+                                                                      <span style="margin-left:58px">&nbsp;</span>
+                                                                    @* <input id="Item33" />*@
+                                                                      <label id="contact"></label>
+                                                                         
+                                                                      <br /><br />
+  																	</li> 
+                                                                   
+                                     							  <li style="list-style:none">
+      																Email
+                                                                      <span style="margin-left:58px">&nbsp;</span>
+                                                                    @* <input id="Item33" />*@
+                                                                      <label id="emailid" name="emailid"></label>
+                                                                         
+                                                                      <br /><br />
+  																	 <li style="list-style:none">
+      																Website
+                                                                      <span style="margin-left:58px">&nbsp;</span>
+                                                                    @* <input id="Item33" />*@
+                                                                      <label id="website"></label>
+                                                                         
+                                                                      <br /><br />
+  																	</li> 
+                                                                      <li style="list-style:none">
+      																Bank Id
+                                                                      <span style="margin-left:58px">&nbsp;</span>
+                                                                    @* <input id="Item33" />*@
+                                                                      <label id="bankid"></label>
+                                                                         
+                                                                      <br /><br />
+  																	</li> 
+                                                                      <li style="list-style:none">
+      																	Category Code
+																		<span style="margin-left:21px">&nbsp;</span>
+   																	  @* <select id="catgCode" onchange="Category_Code();">
+                                                                       			<option value="Select_catg">Select Category Code</option>
+                                                                                <option>001</option>
+                                                                                <option>002</option>
+                                                                       </select>*@
+                                                                                                                                                                                                                 
+                                                                      @Html.DropDownListFor(model => model.category, new SelectList(Model.categorylist, "categoryCode", "categoryCode", Model.categorylist), "Select Category", new { id = "ddlCategory" })
+
+                                                                       <br /><br />
+
+
+
+
+                                                                            <li style="list-style:none" ><span style="margin-left:76px">&nbsp;</span>
+                                                                   <font color="red">  @Html.ValidationMessageFor(model=>model.category)</font> <br /><br /> 
+                                                                    
+
+                                                                     </li>  
+                                                                     </li>
+                                                                     <li style="list-style:none">
+      																	Item
+																		<span style="margin-left:69px">&nbsp;</span>
+   																	   @*<select id="SelItem">
+                                                                       			<option value="SelItem1">Select Item</option>
+                                                                                <option>001</option>
+                                                                                <option>002</option>
+                                                                       </select>*@
+                                                                         @Html.DropDownListFor(model => model.item, Enumerable.Empty<SelectListItem>(), "select a item", new { id = "item", @class = "setwidth" })
+                                                                       <span style="margin-left:26px">&nbsp;</span>
+                                                                       Design
+																		<span style="margin-left:16px">&nbsp;</span>
+   																	  @* <select id="SelDesign">
+                                                                       			<option value="SelDsgn1">Select Design</option>
+                                                                                <option>001</option>
+                                                                                <option>002</option>
+                                                                       </select>*@
+                                                                   @Html.DropDownListFor(model => model.design, Enumerable.Empty<SelectListItem>(), "select a design", new { id = "design", @class = "setwidth" })
+
+                                                                       <br /><br />
+                                                                     </li>
+
+                                                                   <li style="list-style:none">
+                                                                         <font color="red">
+                                                                         <span style="margin-left:102px">&nbsp;</span>
+                                                                          @Html.ValidationMessageFor(model=>model.item)
+                                                                         @* @Html.ValidationSummary(true)
+                                                                         <span style="margin-left:250px">&nbsp;</span>
+                                                                      @Html.ValidationMessageFor(model => model.design)
+                                                                      @Html.ValidationSummary(true)*@
+                                                                             </font>
+                                                                     </li>
+  																	
+                                                                     
+
+
+                                                                     <li style="list-style:none">
+      																	Type Of Material
+																		<span style="margin-left:8px;">&nbsp;</span>
+   																	  @* <select id="SelTypeOfMatrl">
+                                                                       			<option value="SelTypeMatrl1">Select Type Of Material</option>
+                                                                                <option>001</option>
+                                                                                <option>002</option>
+                                                                       </select>*@
+                                                                      @Html.DropDownListFor(model => model.typeOfMaterial, new SelectList(Model.sizematerial, "sizeMaterial", "sizeMaterial", Model.sizematerial), "Select MaterialName", new { id = "ddlSuppliername" })
+
+                                                                       <span style="margin-left:24px">&nbsp;</span>
+                                                                        Weight
+																		<span style="margin-left:21px">&nbsp;</span>
+   																	     @*<input type="text" id="wght" />*@
+                                                                         @Html.TextBoxFor(model => model.weight)
+                                                                         <br /><br />
+                                                                     </li>
+                                                                   <li style="list-style:none">
+                                                                         <font color="red">
+                                                                         <span style="margin-left:102px">&nbsp;</span>
+                                                                          @Html.ValidationMessageFor(model=>model.typeOfMaterial)
+                                                                         @* @Html.ValidationSummary(true)
+                                                                         <span style="margin-left:250px">&nbsp;</span>
+                                                                      @Html.ValidationMessageFor(model => model.weight)
+                                                                      @Html.ValidationSummary(true)*@
+                                                                             </font>
+                                                                     </li>
+  																	
+                                                                     <li style="list-style:none">
+      																	Unit
+																		<span style="margin-left:72px;">&nbsp;</span>
+   																	  @* <select id="SelUnit">
+                                                                       			<option value="SelUnt1">Select Unit</option>
+                                                                                <option>1</option>
+                                                                                <option>2</option>
+                                                                       </select>*@
+                                                                    @Html.DropDownListFor(model => model.unit, new SelectList(Model.itemunittype, "UnitName", "UnitName", Model.itemunittype), "Select UnitName", new { id = "unit" })
+
+                                                                       <span style="margin-left:46px">&nbsp;</span>
+                                                                        Wastage
+																		<span style="margin-left:11px">&nbsp;</span>
+   																	    @* <input type="text" id="wastg" />*@
+                                                                         @Html.TextBoxFor(model=>model.wastage)
+                                                                         <br /><br />
+                                                                     </li>
+                                                                   <li style="list-style:none">
+                                                                         <font color="red">
+                                                                         <span style="margin-left:102px">&nbsp;</span>
+                                                                          @Html.ValidationMessageFor(model=>model.unit)
+                                                                          @*@Html.ValidationSummary(true)
+                                                                         <span style="margin-left:250px">&nbsp;</span>
+                                                                      @Html.ValidationMessageFor(model => model.wastage)
+                                                                      @Html.ValidationSummary(true)*@
+                                                                             </font
+                                                                     </li>
+  																	
+                                                                     <li style="list-style:none">
+      																	Making Charges
+																		<span style="margin-left:15px;">&nbsp;</span>
+   																	    @*<input type="text" id="Making_chrg" />*@
+                                                                         @Html.TextBoxFor(model=>model.makingCharge)
+                                                                       <span style="margin-left:17px">&nbsp;</span>
+                                                                        Tax
+																		<span style="margin-left:38px">&nbsp;</span>
+   																	     <select id="Selecttax" name="tax" >
+                                                                         <option value="Seltax1">Select Tax Type</option>
+                                                                         <option>Service Tax</option>
+                                                                         <option>Professional Tax</option>
+                                                                         
+                                                                         </select>
+                                                                         <br /><br />
+                                                                     </li>
+                                                                   <li style="list-style:none">
+                                                                         <font color="red">
+                                                                         <span style="margin-left:102px">&nbsp;</span>
+                                                                          @Html.ValidationMessageFor(model=>model.makingCharge)
+                                                                         @* @Html.ValidationSummary(true)
+                                                                         <span style="margin-left:250px">&nbsp;</span>
+                                                                      @Html.ValidationMessageFor(model => model.tax)
+                                                                      @Html.ValidationSummary(true)*@
+                                                                             </font>
+                                                                     </li>
+  																	
+                                                                   <li style="list-style:none">
+      																	Amount
+																		<span style="margin-left:52px;">&nbsp;</span>
+   																	  @* <select id="SelTypeOfMatrl">
+                                                                       			<option value="SelTypeMatrl1">Select Type Of Material</option>
+                                                                                <option>001</option>
+                                                                                <option>002</option>
+                                                                       </select>*@
+                                                                      @Html.TextBoxFor(model=>model.amount)
+                                                                       <span style="margin-left:15px">&nbsp;</span>
+                                                                        Advance
+																		<span style="margin-left:21px">&nbsp;</span>
+   																	     @*<input type="text" id="wght" />*@
+                                                                         @Html.TextBoxFor(model => model.advance)
+                                                                         <br /><br />
+                                                                     </li>
+                                                                   <li style="list-style:none">
+                                                                         <font color="red">
+                                                                         <span style="margin-left:102px">&nbsp;</span>
+                                                                          @Html.ValidationMessageFor(model=>model.amount)
+                                                                         @* @Html.ValidationSummary(true)
+                                                                         <span style="margin-left:250px">&nbsp;</span>
+                                                                      @Html.ValidationMessageFor(model => model.advance)
+                                                                      @Html.ValidationSummary(true)*@
+                                                                             </font
+                                                                     </li>
+  																	
+                                                                   <li style="list-style:none">
+      																	Balance Amount
+																		<span style="margin-left:8px;">&nbsp;</span>
+   																	  @* <select id="SelTypeOfMatrl">
+                                                                       			<option value="SelTypeMatrl1">Select Type Of Material</option>
+                                                                                <option>001</option>
+                                                                                <option>002</option>
+                                                                       </select>*@
+                                                                      <input type="text" id="balanceAmt" />
+                                                                       <span style="margin-left:1px">&nbsp;</span>
+                                                                        PaymentMode
+																		
+																		<span style="margin-left:3px">&nbsp;</span>
+   																	     <select id="PaymentMode" name="payment" >
+                                                                         <option value="Seltax1">Select Payment Mode</option>
+                                                                         <option>Cheque</option>
+                                                                         <option>Cash</option>
+                                                                         <option>Online</option>
+                                                                         
+                                                                         </select>
+                                                                         <br /><br />
+                                                                     </li>
+                                                                   <li style="list-style:none">
+                                                                         <font color="red">
+                                                                         <span style="margin-left:102px">&nbsp;</span>
+                                                                          @*@Html.ValidationMessageFor(model=>model.balamount)*@
+                                                                          @*@Html.ValidationSummary(true)
+                                                                         <span style="margin-left:250px">&nbsp;</span>
+                                                                      @Html.ValidationMessageFor(model => model.modeOfPayment)
+                                                                      @Html.ValidationSummary(true)*@
+                                                                             </font>
+                                                                     </li>
+  																	
+                                                                     <li style="list-style:none">
+      																	Time period
+																		<span style="margin-left:30px;">&nbsp;</span>
+   																	  @* <select id="SelTypeOfMatrl">
+                                                                       			<option value="SelTypeMatrl1">Select Type Of Material</option>
+                                                                                <option>001</option>
+                                                                                <option>002</option>
+                                                                       </select>*@
+                                                                      @Html.TextBoxFor(model=>model.timePeriod)
+                                                                       
+
+
+                                                                               Delivary At
+                                                                      <span style="margin-left:21px">&nbsp;</span>
+                                                                   <input name='txtFourth' id='date' style="width:120px;" >
+	                                                              <img src="~/Images/cal.gif" align='absmiddle' onmouseover="fnInitCalendar(this, 'date', 'style=calendar_blue.css,instance=single')">
+
+                                                                     </li>
+                                                                   <li style="list-style:none">
+                                                                         <font color="red">
+                                                                         <span style="margin-left:102px">&nbsp;</span>
+                                                                          @Html.ValidationMessageFor(model=>model.timePeriod)
+                                                                         @* @Html.ValidationSummary(true)
+                                                                         <span style="margin-left:250px">&nbsp;</span>
+                                                                      @Html.ValidationMessageFor(model => model.delivaryAt)
+                                                                      @Html.ValidationSummary(true)*@
+                                                                             </font>
+                                                                     </li>
+  																	
+                                        				
+<br />                    
+                                                            </ul>
+                                          <br />
+                                                                                                   <br />
+                                    </div> <!--container-->
+               </div><!--matter-->
+          
+      	    <li style="list-style:none">
+                                                                     <span style="margin-left:400px;">&nbsp;</span> 
+                                                                     <button type="submit" id="submit" class="btn btn-default" >Submit</button>
+                                                                     </li>
+	</div>
+	
+                  </div>  
+     <div class="footer"> <font face="calibri" color="#FFFFFF"> Powered By Maria Infotech Pvt.Ltd</font>
+            </div>	
+    </div>
+        </div>
+        }
+                                      
+                                         @* <button type="submit" id="submit" class="button_example">
+                                              <font color="#000000">Submit</font>
+                                          </button>
+                                      </div>
+
+            <div id="left_menu">
+                @Html.Partial("MastersLeftMenu");
+            </div>
+        </div>
+    </fieldset>
+}*@

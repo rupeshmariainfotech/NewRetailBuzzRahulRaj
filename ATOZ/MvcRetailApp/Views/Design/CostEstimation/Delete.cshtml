@@ -1,0 +1,193 @@
+﻿@model CodeFirstEntities.CostEstimationOfArticleMaster
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>CostEstimationOfArticleMaster</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.clientCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.clientCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.clientName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.clientName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.pinCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.pinCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.contactNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contactNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.clientWebsite)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.clientWebsite)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.bankId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.bankId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.category)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.category)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.item)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.item)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.design)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.design)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.typeOfMaterial)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.typeOfMaterial)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.weight)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.weight)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.unit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.unit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.wastage)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.wastage)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.makingCharge)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.makingCharge)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tax)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tax)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.amount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.amount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.advance)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.advance)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.balamount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.balamount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.modeOfPayment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.modeOfPayment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.timePeriod)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.timePeriod)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.delivaryAt)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.delivaryAt)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.modifiedOn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.modifiedOn)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

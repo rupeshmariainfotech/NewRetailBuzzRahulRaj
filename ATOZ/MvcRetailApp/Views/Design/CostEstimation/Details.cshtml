@@ -1,0 +1,204 @@
+﻿@model CodeFirstEntities.CostEstimationOfArticle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+        <legend>ItemMaster</legend>
+    <div id="container">
+            @Html.ValidationSummary(true)
+            <div id="right_menu">
+                <div id="right_header">&nbsp;CostEstimation Details:</div>
+                <div id="right_button_panel">
+                    &nbsp;
+										<a href="#"><span title="Add">
+                                            <img src="@Url.Content("~/Images/add_button.jpg")" alt="Add" width="31" height="29" /></span></a>
+                    |<a href="#"><span title="Refresh"><img src="@Url.Content("~/Images/refresh_button.jpg")" width="33" height="30" /></span></a>
+                    |<a href="#"><span title="Save"><img src="@Url.Content("~/Images/save_button.jpg")" width="28" height="27" /></span></a>
+                    |<a href="#"><span title="Update"><img src="@Url.Content("~/Images/update_button.jpg")" width="34" height="33" /></span></a>
+                    |<a href="#"><span title="Delete"><img src="@Url.Content("~/Images/delete_button.jpg")" width="33" height="33" /></span></a>
+
+                </div>
+
+            </div>
+            <div id="right_form">
+               
+
+                <h3>Cost Details</h3>
+                <ul style="border:1px solid #c2bdbd;">
+                            <br />
+                            <li style="list-style: none">Client Code
+                                <span style="margin-left: 39px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.clientCode)
+                                <br />
+                                <br />
+                            </li>
+
+
+                          @*  <li style="list-style: none">
+                                <label for="address" style="vertical-align: top;">
+                                    Client Name</label>
+                                <span style="margin-left: 54px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.clientname)
+                                 <br />
+                                <br />
+                            </li>*@
+                    <li style="list-style: none">
+                                <label for="address" style="vertical-align: top;">
+                                    Address</label>
+                                <span style="margin-left: 56px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.Address)
+                                 <br />
+                                <br />
+                            </li>
+
+
+                            <li style="list-style: none">
+                                <label for="Pin" style="">Pin Code</label>
+                                <span style="margin-left: 50px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.pinCode)
+                                <br />
+                                <br />
+                                </li>
+                    
+                           <li style="list-style: none">
+                                <label for="Pin" style="">Contact</label>
+                                <span style="margin-left: 52px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.contactNo)
+                                <br />
+                                <br />
+                                </li>
+
+                    <li style="list-style: none">
+                                <label for="Pin" style="">Email</label>
+                                <span style="margin-left: 58px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.email)
+                                <br />
+                                <br />
+                         <li style="list-style: none">
+                                <label for="Pin" style="">Website</label>
+                                <span style="margin-left: 47px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.clientWebsite)
+                                <br />
+                                <br />
+                              <li style="list-style: none">
+                                <label for="Pin" style="">Bank Id</label>
+                                <span style="margin-left: 46px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.bankId)
+                                <br />
+                                <br />
+                                   <li style="list-style: none">
+                                <label for="Pin" style="">Category Code</label>
+                                <span style="margin-left: 13px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.category)
+                                <br />
+                                <br />
+                            
+                                 <li style="list-style: none">
+                                <label for="Pin" style="">Item</label>
+                                <span style="margin-left: 58px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.item)
+                                <br />
+                                <br />
+
+                                      <li style="list-style: none">
+                                <label for="Pin" style="">Design</label>
+                                <span style="margin-left: 46px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.design)
+                                <br />
+                                <br />
+                                           <li style="list-style: none">
+                                <label for="Pin" style="">Material</label>
+                                <span style="margin-left: 41px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.typeOfMaterial)
+                                <br />
+                                <br />
+                                                <li style="list-style: none">
+                                <label for="Pin" style="">Weight</label>
+                                <span style="margin-left: 46px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.weight)
+                                <br />
+                                <br />
+                                                     <li style="list-style: none">
+                                <label for="Pin" style="">Unit</label>
+                                <span style="margin-left: 60px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.unit)
+                                <br />
+                                <br />
+@*                                                          <li style="list-style: none">
+                                <label for="Pin" style="">Wastage</label>
+                                <span style="margin-left: 1px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.wastage)
+                                <br />
+                                <br />
+                                                               <li style="list-style: none">
+                                <label for="Pin" style="">Making Charges</label>
+                                <span style="margin-left: 1px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.makingCharge)
+                                <br />
+                                <br />
+                                                                    <li style="list-style: none">
+                                <label for="Pin" style="">Tax</label>
+                                <span style="margin-left: 1px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.tax)
+                                <br />*@
+                              @*  <br />
+                                      *@                                   <li style="list-style: none">
+                                <label for="Pin" style="">Amount</label>
+                                <span style="margin-left: 46px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.amount)
+                                <br />
+                                <br />
+                                                                              <li style="list-style: none">
+                                <label for="Pin" style="">Advance</label>
+                                <span style="margin-left: 46px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.advance)
+                                <br />
+                                <br />
+                                                                                   <li style="list-style: none">
+                                <label for="Pin" style="">Balance Amount</label>
+                                <span style="margin-left: 6px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.balamount)
+                                <br />
+                                <br />
+                                                                                        <li style="list-style: none">
+                               @* <label for="Pin" style="">Payment mode</label>
+                                <span style="margin-left: 46px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.modeOfPayment)
+                                <br />
+                                <br />*@
+                                                                                             <li style="list-style: none">
+                               @* <label for="Pin" style="">Time Period</label>
+                                <span style="margin-left: 46px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.timePeriod)
+                                <br />
+                                <br />*@
+
+
+                                                                                                  <li style="list-style: none">
+                                <label for="Pin" style="">Delivary Date</label>
+                                <span style="margin-left: 18px">&nbsp;</span>
+                                @Html.DisplayFor(model=>model.delivaryAt)
+                                <br />
+                                <br />
+                            <li style="list-style: none"></li>
+
+                            <li style="list-style: none"></li>
+                        </ul>
+
+                <br />
+                 </div>
+            <div id="left_menu">
+                @Html.Partial("MastersLeftMenu");
+            </div>
+      
+
+    </div>
+
+
+</fieldset>
+
+

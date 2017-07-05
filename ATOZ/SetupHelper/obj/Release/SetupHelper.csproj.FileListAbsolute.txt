@@ -1,0 +1,11 @@
+D:\RetailBuzz\ATOZ\SetupHelper\bin\Release\SetupHelper.dll
+D:\RetailBuzz\ATOZ\SetupHelper\bin\Release\SetupHelper.pdb
+D:\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.csprojResolveAssemblyReference.cache
+D:\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.dll
+D:\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.pdb
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\bin\Release\SetupHelper.dll
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\bin\Release\SetupHelper.pdb
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\bin\Release\Microsoft.Web.Administration.dll
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.csprojResolveAssemblyReference.cache
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.dll
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.pdb

@@ -1,0 +1,177 @@
+﻿@model IEnumerable<CodeFirstEntities.CostEstimationOfArticleMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.clientCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pinCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contactNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.clientWebsite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bankId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.design)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typeOfMaterial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wastage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.makingCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.advance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.balamount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modeOfPayment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timePeriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.delivaryAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modifiedOn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pinCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contactNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.clientWebsite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bankId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.design)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typeOfMaterial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wastage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.makingCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.advance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.balamount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modeOfPayment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timePeriod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.delivaryAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modifiedOn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.clientId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.clientId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.clientId })
+        </td>
+    </tr>
+}
+
+</table>

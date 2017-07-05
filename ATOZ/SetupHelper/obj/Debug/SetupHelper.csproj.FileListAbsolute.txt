@@ -1,0 +1,5 @@
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\bin\Debug\SetupHelper.dll
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\bin\Debug\SetupHelper.pdb
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\bin\Debug\Microsoft.Web.Administration.dll
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Debug\SetupHelper.dll
+E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Debug\SetupHelper.pdb
