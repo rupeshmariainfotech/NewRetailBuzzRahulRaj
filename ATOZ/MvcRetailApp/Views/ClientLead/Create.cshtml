@@ -72,8 +72,8 @@
 
 @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">*@
-  @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+  @*<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
 
 <link href="~/Content/customAlerts.css" rel="stylesheet" />
 <script src="~/Scripts/bootbox.js"></script>
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="exampleInputname">Address<i style="color: red">*</i></label>
-                                        @Html.TextBoxFor(model => model.ClientLeads.Address, new {@placeholder="Address",@class="form-control" })
+                                        @Html.TextAreaFor(model => model.ClientLeads.Address, new {@placeholder="Address",@class="form-control",@rows=1 })
                                         @Html.ValidationMessageFor(model=>model.ClientLeads.Address,null,new {style= "Address", @id = "address" })
                                         <label id="errorname" class="error" style="display: none"></label>
                                     </div>
@@ -170,17 +170,17 @@
                                         @Html.ValidationMessageFor(model=>model.ClientLeads.Date,null,new {style= "color:red", @id = "date" })
                                         <label id="errorname" class="error" style="display: none"></label>
                                     </div>
-                                     @*<div class="form-group row">
+                                     <div class="form-group row">
                                         <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>
-                                        @Html.TextBoxFor(model => model.ClientLeads.ScheduleDate, new {@placeholder="ScheduleDate",@class="form-control",@onkeypress = "return false", @autocomplete = "off" ,@id="datepicker"})
+                                        @Html.TextBoxFor(model => model.ClientLeads.ScheduleDate, new {@placeholder="ScheduleDate",@class="form-control",@onkeypress = "return false", @autocomplete = "off" ,@type= "date" })
                                         
                                         @Html.ValidationMessageFor(model=>model.ClientLeads.ScheduleDate,null,new {style= "color:red", @id = "datepicker" })
                                         <label id="errorname" class="error" style="display: none"></label>
-                                    </div>*@
-                                    <div class="form-group row">
-                                        <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>`
-                                        @Html.TextBox("ScheduleDate", Model.ClientLeads.ScheduleDate, new { @class = "datepicker", @type = "date", @onkeypress = "return false", @autocomplete = "off",@style="height:35px; width:515px;" })
                                     </div>
+                                    @*<div class="form-group row">
+                                        <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>`
+                                        @Html.TextBox("ScheduleDate", Model.ClientLeads.ScheduleDate, new { @class = "datepicker form-control", @type = "date", @onkeypress = "return false", @autocomplete = "off" })
+                                    </div>*@
                                         <div class="form-group row">
                                             <label for="exampleInputname">Remark<i style="color: red">*</i></label>
                                             @Html.TextBoxFor(model => model.ClientLeads.Remark, new { @placeholder = "Remark", @class = "form-control" })

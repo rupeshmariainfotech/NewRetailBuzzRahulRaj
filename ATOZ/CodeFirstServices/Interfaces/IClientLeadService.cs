@@ -16,5 +16,8 @@ namespace CodeFirstServices.Interfaces
         //ClientMaster getClientById(int id);
         ClientLead getClientById(int id);
         void DeleteClientLead(ClientLead ClientLead);
+
+        IEnumerable<ClientLead> GetActiveClientLead();
+        ClientLead GetClientLeadById(int id);
     }
 }

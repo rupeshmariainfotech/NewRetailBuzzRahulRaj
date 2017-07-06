@@ -11,7 +11,7 @@ namespace CodeFirstEntities
      public class ClientLead
     {
         [Key]
-        public int clientLeadId { get; set; }
+        public int ClientLeadId { get; set; }
         [Required]
         [Display(Name = "Name")]
         public string ClientName { get; set; }
