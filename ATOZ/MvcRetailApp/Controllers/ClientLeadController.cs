@@ -113,6 +113,7 @@ namespace MvcRetailApp.Controllers
             model.CompanyCode = CompanyCode;
             model.CompanyName = CompanyName;
             model.FinancialYear = FinancialYear;
+           
             return View(model);
         }
 
@@ -128,9 +129,8 @@ namespace MvcRetailApp.Controllers
                 user = new User(),
             };
 
-          
-
-                ClientLead obj = new ClientLead();
+           
+            ClientLead obj = new ClientLead();
                 obj.ClientName = model.ClientLeads.ClientName;
                 obj.ContactNo1 = model.ClientLeads.ContactNo1;
                 obj.ContactNo2 = model.ClientLeads.ContactNo2;
@@ -142,8 +142,15 @@ namespace MvcRetailApp.Controllers
 
                 _ClientLeadService.CreateClientLead(obj);
 
+            var client_id = obj.clientLeadId;
+          
+            
+    
+            
+         ClientLead  c = _ClientLeadService.getClientById(client_id);
 
-
+           
+            Response.Write("<script>alert('you did it')</script>");
 
             //MainApplication model = new MainApplication()
             //{

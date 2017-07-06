@@ -30,7 +30,7 @@ namespace CodeFirstServices.Services
         public User GetLogin(string username, string pass)
         {
             Func<User, bool> filter = (User p) => p.UserName == username && p.Password == pass;
-            User user = _iuserrepository.Get(filter);
+            User user = _iuserrepository.Get(filter);       
             return user;
         }
 

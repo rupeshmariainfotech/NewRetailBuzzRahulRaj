@@ -114,8 +114,9 @@
         <!-- End: Sidebar -->
 
         <!-- Start: Content -->
-        @using(Html.BeginForm("Create","ClientLead",FormMethod.Post,new{enctype = "multipart/form-data", @id = "myform", @name = "myform" }))
+        @using (Html.BeginForm("Create", "ClientLead", FormMethod.Post, new { enctype = "multipart/form-data", @id = "myform", @name = "myform" }))
         {
+            @Html.HiddenFor(model => model.ClientLeads.ClientId)
             @Html.ValidationSummary(true)
              <audio id="audio" muted="true" preload="auto" style="display: none" controls="controls" autoplay="false">
                 <source src="" type="audio/ogg" />

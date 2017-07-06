@@ -9,3 +9,8 @@ E:\Megha\RetailBuzz\ATOZ\SetupHelper\bin\Release\Microsoft.Web.Administration.dl
 E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.csprojResolveAssemblyReference.cache
 E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.dll
 E:\Megha\RetailBuzz\ATOZ\SetupHelper\obj\Release\SetupHelper.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Release\SetupHelper.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Release\SetupHelper.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Release\Microsoft.Web.Administration.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Release\SetupHelper.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Release\SetupHelper.pdb

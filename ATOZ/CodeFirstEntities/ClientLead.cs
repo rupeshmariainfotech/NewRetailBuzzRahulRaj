@@ -31,6 +31,9 @@ namespace CodeFirstEntities
         public DateTime ScheduleDate { get; set; }
 
         public string Remark { get; set; }
-        
+
+
+        public int ClientId { get; set; }
+
     }
 }

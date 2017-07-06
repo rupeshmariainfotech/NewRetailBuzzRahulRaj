@@ -13,7 +13,8 @@ namespace CodeFirstServices.Interfaces
 
         void CreateClientLead(ClientLead ClientLead);
         void UpdateClientLead(ClientLead ClientLead);
-
+        //ClientMaster getClientById(int id);
+        ClientLead getClientById(int id);
         void DeleteClientLead(ClientLead ClientLead);
     }
 }

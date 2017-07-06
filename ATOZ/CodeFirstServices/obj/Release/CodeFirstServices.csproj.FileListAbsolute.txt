@@ -63,3 +63,14 @@ E:\Megha\RetailBuzz\ATOZ\CodeFirstServices\bin\Release\EntityFramework.xml
 E:\Megha\RetailBuzz\ATOZ\CodeFirstServices\obj\Release\CodeFirstServices.csprojResolveAssemblyReference.cache
 E:\Megha\RetailBuzz\ATOZ\CodeFirstServices\obj\Release\CodeFirstServices.dll
 E:\Megha\RetailBuzz\ATOZ\CodeFirstServices\obj\Release\CodeFirstServices.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\CodeFirstServices.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\CodeFirstServices.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\CodeFirstData.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\CodeFirstEntities.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\EntityFramework.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\CodeFirstData.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\CodeFirstEntities.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\bin\Release\EntityFramework.xml
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\obj\Release\CodeFirstServices.csprojResolveAssemblyReference.cache
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\obj\Release\CodeFirstServices.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstServices\obj\Release\CodeFirstServices.pdb

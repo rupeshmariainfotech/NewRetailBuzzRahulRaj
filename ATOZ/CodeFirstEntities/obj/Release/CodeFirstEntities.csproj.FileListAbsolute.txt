@@ -27,3 +27,7 @@ E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\bin\Release\CodeFirstEntities.pdb
 E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.csprojResolveAssemblyReference.cache
 E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.dll
 E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\bin\Release\CodeFirstEntities.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\bin\Release\CodeFirstEntities.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.dll
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.pdb

@@ -10,13 +10,14 @@ namespace CodeFirstServices.Services
 {
     public class ClientLeadService : IClientLeadService
     {
-
+        private readonly IClientMasterRepository _clientMasterRepository;
         private readonly IClientLeadRepository _clientleadRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ClientLeadService(IClientLeadRepository clientleadRepository, IUnitOfWork unitOfWork)
+        public ClientLeadService(IClientLeadRepository clientleadRepository, IClientMasterRepository clientMasterRepository,IUnitOfWork unitOfWork)
         {
             this._clientleadRepository = clientleadRepository;
+            this._clientMasterRepository = clientMasterRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -39,6 +40,20 @@ namespace CodeFirstServices.Services
             _clientleadRepository.Update(ClientLead);
             _unitOfWork.Commit();
         }
+
+        public ClientLead getClientById(int id)
+        {
+            var client = _clientleadRepository.Get(cl => cl.ClientId == id);
+            return client;
+        }
+
+
+
+        //public ClientMaster getClientById(int id)
+        //{
+        //    var client = _clientMasterRepository.GetById(id);
+        //    return client;
+        //}
     }
 }
 
