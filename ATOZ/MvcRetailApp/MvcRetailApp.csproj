@@ -24,6 +24,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -2201,6 +2202,10 @@
     <Content Include="Views\MisReports\RetailBillReportDatewise.cshtml" />
     <Content Include="Views\MisReports\StockReport.cshtml" />
     <Content Include="Views\ClientLead\Create.cshtml" />
+    <Content Include="Views\ClientLead\ClientLeadList.cshtml" />
+    <Content Include="Views\ClientLead\Edit.cshtml" />
+    <Content Include="Views\ClientLead\LoadNamesByClientLead.cshtml" />
+    <Content Include="Views\ClientLead\EditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReportEngine\RetailBillLetterHeadWithMRP.rdlc">

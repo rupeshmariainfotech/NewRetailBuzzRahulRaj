@@ -173,6 +173,39 @@ namespace MvcRetailApp.Controllers
             TempData["ViewType"] = "Edit";
             return View(model);
         }
+        public ActionResult ClientLeadList(string name)
+        {
+            MainApplication model = new MainApplication();
+            IEnumerable<ClientLead>ListofLeadClient= TempData["ClientLeadList"] as IEnumerable<ClientLead>;
+            List<ClientLead> FinalLeadList = new List<ClientLead>();
+            FinalLeadList = FinalLeadList.Concat(ListofLeadClient.Where(x => x.ClientName.ToLower().Contains(name.ToLower()))).Distinct().ToList();
+            model.ClientLeadList = FinalLeadList;
+            TempData["ClientLeadList"] = FinalLeadList;
+            return View(model);
+        }
 
+        public ActionResult LoadNamesByClientLead()
+        {
+            MainApplication model = new MainApplication();
+            model.ClientLeadList = _ClientLeadService.GetActiveClientLead();
+            TempData["ClientLeadList"] = model.ClientLeadList;
+            if (model.ClientLeadList.Count() == 0)
+            {
+                return RedirectToAction("EmptyList", "ClientLead");
+            }
+            return View(model);
+        }
+
+        public JsonResult EmptyList()
+        {
+            return Json("Empty", JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditPartial(int id)
+        {
+            MainApplication model = new MainApplication();
+            model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
+            return View(model);
+        }
     }
 }

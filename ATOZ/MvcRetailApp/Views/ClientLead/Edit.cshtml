@@ -161,13 +161,13 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
         $("#SearchButton").click(function () {
             var searchData = document.getElementById("SearchText").value;
             $.ajax({
-                url: '/Client/ClientList',
+                url: '/ClientLead/ClienLeadList',
                 data: { name: searchData },
                 type: "GET",
                 success: function (data) {
                     if (data != null) {
                         document.getElementById("list").style.display = "inline";
-                        $("#list").html(data);
+                         $("#list").html(data);
                     }
                 },
                 error: function () {
@@ -176,6 +176,75 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
         });
     });
 </script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            $.ajax({
+                url: '/ClientLead/LoadNamesByClientLead',
+                type: "GET",
+                success: function (data) {
+                    if (data != "Empty") {
+                        document.getElementById("EmptyList").style.display = "none"
+                        document.getElementById("list").style.display = "inline";
+                        document.getElementById("SearchNames").style.display = "inline";
+                        $("#list").html(data);
+                    }
+                    else {
+                        document.getElementById("SearchNames").style.display = "none";
+                        document.getElementById("list").innerHTML = "";
+                        document.getElementById("EmptyList").style.display = "inline";
+                        document.getElementById("ResultClientMaster").innerHTML = "";
+                        //document.getElementById("downarrow").style.display = "none"
+                        document.getElementById("uparrow").style.display = "none"
+                    }
+                }
+            });
+        });
+</script>
+
+<script type="text/javascript">
+    function EditRow(id, cnt, count) {
+        document.getElementById("ResultClientLead").style.display = "none";
+        document.getElementById("LoadPartialView").style.display = "inline";
+        for (var i = 1; i <= cnt; i++) {
+            var allRowId = "rowId" + i;
+            var editId = "editId" + i;
+            var labelEditId = "labelEditId" + i;
+            if (document.getElementById(editId) != null) {
+                document.getElementById(editId).style.display = "none";
+                document.getElementById(labelEditId).style.display = "inline";
+                //document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                document.getElementById(allRowId).className = "searchTableBg";
+            }
+        }
+        var rowId = "rowId" + count;
+        if (document.getElementById(rowId) != null) {
+            //document.getElementById(rowId).style.backgroundColor = "lightgreen";
+            document.getElementById(rowId).className = "searchTableBgClick";
+            //document.getElementById("ddltypemembershipcard").disabled = true;
+            document.getElementById("SearchText").disabled = true;
+            document.getElementById("SearchButton").disabled = true;
+            document.getElementById("pagertextbox").disabled = true;
+            document.getElementById("pagerdropdown").disabled = true;
+            document.getElementById("pager").style.display = "none";
+        }
+
+        $.ajax({
+            url: '/ClientLead/EditPartial',
+            type: "GET",
+            data: { id: id },
+            success: function (data) {
+                $("#Data").html(data);
+            }
+        });
+        document.getElementById("uparrow").style.display = "inline";
+        //document.getElementById("downarrow").style.display = "inline"
+        $("#TotalNumberOfClients").val(cnt);
+        $("#ClientRowValue").val(count);
+    }
+</script>
+
 
 <!-- Start: Header -->
 @Html.Partial("../Shared/Header")
@@ -203,7 +272,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                                 <div class="row">
                                     <div class="row">
 
-                                        <div class="row" id="SearchNames" style="display: none">
+                                        <div class="row" id="SearchNames">
                                             <div class="row">
                                                 <div class="form-group col-md-12 col-lg-12">
                                                     @Html.Label("Search")
@@ -240,7 +309,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                             <div id="Data"></div>
                           </div>
                         <div class="form-group col-md-8 col-lg-8">
-                            <div id="ResultClientMaster"></div>
+                            <div id="ResultClientLead"></div>
                         </div>
                         </div>
                     <div id="uparrow" style="display: none">
