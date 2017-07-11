@@ -16,7 +16,7 @@ using MvcRetailApp.Filters;
 
 namespace MvcRetailApp.Controllers
 {
-    [NoDirectAccess]
+    //[NoDirectAccess]
     [SessionExpireFilter]
     public class ClientLeadController : Controller
     {
@@ -137,7 +137,8 @@ namespace MvcRetailApp.Controllers
                 obj.Address = model.ClientLeads.Address;
                 obj.Requriment = model.ClientLeads.Requriment;
                 obj.Date = System.DateTime.Now;
-                obj.ScheduleDate = Convert.ToDateTime(frm.Get("ScheduleDate"));
+             // obj.ScheduleDate = Convert.ToDateTime(frm.Get("ScheduleDate"));
+            obj.ScheduleDate = model.ClientLeads.ScheduleDate;
                 obj.Remark = model.ClientLeads.Remark;
 
                 _ClientLeadService.CreateClientLead(obj);
@@ -201,11 +202,58 @@ namespace MvcRetailApp.Controllers
             return Json("Empty", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public ActionResult EditPartial(int id)
         {
             MainApplication model = new MainApplication();
             model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditPartial(ClientLead clnt)
+        {
+            _ClientLeadService.UpdateClientLead(clnt);
+             return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
+           // return RedirectToAction("EditPartial");
+        }
+
+        public ActionResult ResultClientLead(int id)
+        {
+            MainApplication model = new MainApplication();
+            model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
+            TempData["ClientLeadList"] = _ClientLeadService.GetAllClients();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            MainApplication model = new MainApplication();
+            model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
+            model.modulelist = _iIModuleService.getAllModules();
+            model.CompanyCode = CompanyCode;
+            model.CompanyName = CompanyName;
+            model.FinancialYear = FinancialYear;
+            TempData["ViewType"] = "Delete";
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult DeletePartial(int id)
+        {
+            MainApplication model = new MainApplication();
+            model.ClientLeads = _ClientLeadService.getClientById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePartial(ClientLead clnt)
+        {
+            _ClientLeadService.DeleteClientLead(clnt);
+            return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
+            // return View();
         }
     }
 }

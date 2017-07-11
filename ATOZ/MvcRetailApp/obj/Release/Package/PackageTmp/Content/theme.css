@@ -423,7 +423,7 @@ body {
     font-weight: 400;
     font-size: 13px;
 	line-height: 1.475;
-    background-color: #F1DDE7 !important;
+   background-color: #fff !important; 
 }
 .form-control {
     color:#000 !important;
@@ -1912,125 +1912,6 @@ label .checker, label .radio, .form-horizontal label .checker, .form-horizontal 
     background: #FFF !important;
     border-color: #CFCFCF;
     border-bottom: 1px solid #FFF;
-}
-
- .nav-tabs > .cashier.active > a,
- .nav-tabs > .cashier.active > a:hover,
- .nav-tabs > .cashier.active > a:focus {
-    cursor: default;
-    position: relative;
-    z-index: 12;
-    color: #555555;
-    background: #71da71 !important;
-    border-color: #CFCFCF;
-    border-bottom: 1px solid #FFF;
-}
-
- .nav-tabs > .cashier > a:hover {
-    border-color: #CFCFCF;
-    background-color:#71da71;
-}
-
- .nav-tabs > .purchase.active > a,
- .nav-tabs > .purchase.active > a:hover,
- .nav-tabs > .purchase.active > a:focus {
-    cursor: default;
-    position: relative;
-    z-index: 12;
-    color: #555555;
-    background: #F781F3 !important;
-    border-color: #CFCFCF;
-    border-bottom: 1px solid #FFF;
-}
-
-.nav-tabs > .purchase > a:hover {
-    border-color: #CFCFCF;
-    background-color:#F781F3;
-}
-
- .nav-tabs > .inventory.active > a,
- .nav-tabs > .inventory.active > a:hover,
- .nav-tabs > .inventory.active > a:focus {
-    cursor: default;
-    position: relative;
-    z-index: 12;
-    color: #555555;
-    background: #B266FF !important;
-    border-color: #CFCFCF;
-    border-bottom: 1px solid #FFF;
-}
-
- .nav-tabs > .inventory > a:hover {
-    border-color: #CFCFCF;
-    background-color:#B266FF;
-}
-
- .nav-tabs > .inward.active > a,
- .nav-tabs > .inward.active > a:hover,
- .nav-tabs > .inward.active > a:focus {
-    cursor: default;
-    position: relative;
-    z-index: 12;
-    color: #555555;
-    background: #ffb84d !important;
-    border-color: #CFCFCF;
-    border-bottom: 1px solid #FFF;
-}
-
- .nav-tabs > .inward > a:hover {
-    border-color: #CFCFCF;
-    background-color:#ffb84d;
-}
-
- .nav-tabs > .outward.active > a,
- .nav-tabs > .outward.active > a:hover,
- .nav-tabs > .outward.active > a:focus {
-    cursor: default;
-    position: relative;
-    z-index: 12;
-    color: #555555;
-    background: #ff9980 !important;
-    border-color: #CFCFCF;
-    border-bottom: 1px solid #FFF;
-}
-
-  .nav-tabs > .outward > a:hover {
-    border-color: #CFCFCF;
-    background-color:#ff9980;
-}
-
- .nav-tabs > .pointofsales.active > a,
- .nav-tabs > .pointofsales.active > a:hover,
- .nav-tabs > .pointofsales.active > a:focus {
-    cursor: default;
-    position: relative;
-    z-index: 12;
-    color: #555555;
-    background: #12AEC4 !important;
-    border-color: #CFCFCF;
-    border-bottom: 1px solid #FFF;
-}
-
-   .nav-tabs > .pointofsales > a:hover {
-    border-color: #CFCFCF;
-    background-color:#12AEC4;
-}
-
- .nav-tabs > .requisition.active > a,
- .nav-tabs > .requisition.active > a:hover,
- .nav-tabs > .requisition.active > a:focus {
-    cursor: default;
-    position: relative;
-    z-index: 12;
-    color: #555555;
-    background: #8080ff !important;
-    border-color: #CFCFCF;
-    border-bottom: 1px solid #FFF;
-}
-
-   .nav-tabs > .requisition > a:hover {
-    border-color: #CFCFCF;
-    background-color:#8080ff;
 }
 
 

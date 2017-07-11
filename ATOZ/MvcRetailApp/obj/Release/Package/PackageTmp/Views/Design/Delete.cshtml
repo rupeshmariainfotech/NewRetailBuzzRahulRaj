@@ -182,14 +182,16 @@
             if (document.getElementById(DesignDeleteId) != null) {
                 document.getElementById(DesignDeleteId).disabled = true;
 
-                document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                document.getElementById(rowid).className = "searchTableBg";
             }
         }
         document.getElementById("ddlcategorycode").disabled = true;
         document.getElementById("ddlsubcategory").disabled = true;
         rowid = "rowid" + count;
         if (document.getElementById(rowid) != null) {
-            document.getElementById(rowid).style.backgroundColor = "lightgreen";
+            //document.getElementById(rowid).style.backgroundColor = "lightgreen";
+            document.getElementById(rowid).className = "searchTableBgClick";
 
             confirmbox("Are You Sure Want To Delete This Row", id);
         }

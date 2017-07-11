@@ -174,252 +174,254 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        $.ajax({
-            url: '/Client/LoadNamesByMembershipCard',
-            type: "GET",
-            success: function (data) {
-                if (data != "Empty") {
-                    document.getElementById("EmptyList").style.display = "none"
-                    document.getElementById("list").style.display = "inline";
-                    document.getElementById("SearchNames").style.display = "inline";
-                    $("#list").html(data);
+            $.ajax({
+                url: '/Client/LoadNamesByMembershipCard',
+                type: "GET",
+                success: function (data) {
+                    if (data != "Empty") {
+                        document.getElementById("EmptyList").style.display = "none"
+                        document.getElementById("list").style.display = "inline";
+                        document.getElementById("SearchNames").style.display = "inline";
+                        $("#list").html(data);
+                    }
+                    else {
+                        document.getElementById("SearchNames").style.display = "none";
+                        document.getElementById("list").innerHTML = "";
+                        document.getElementById("EmptyList").style.display = "inline";
+                        document.getElementById("ResultClientMaster").innerHTML = "";
+                        //document.getElementById("downarrow").style.display = "none"
+                        document.getElementById("uparrow").style.display = "none"
+                    }
                 }
-                else {
-                    document.getElementById("SearchNames").style.display = "none";
-                    document.getElementById("list").innerHTML = "";
-                    document.getElementById("EmptyList").style.display = "inline";
-                    document.getElementById("ResultClientMaster").innerHTML = "";
-                    //document.getElementById("downarrow").style.display = "none"
-                    document.getElementById("uparrow").style.display = "none"
-                }
-            }
+            });
         });
-    });
-</script>
+    </script>
 
-<script type="text/javascript">
-    function EditRow(id, cnt, count) {
-        document.getElementById("ResultClientMaster").style.display = "none";
-        document.getElementById("LoadPartialView").style.display = "inline";
-        for (var i = 1; i <= cnt; i++) {
-            var allRowId = "rowId" + i;
-            var editId = "editId" + i;
-            var labelEditId = "labelEditId" + i;
-            if (document.getElementById(editId) != null) {
-                document.getElementById(editId).style.display = "none";
-                document.getElementById(labelEditId).style.display = "inline";
-                document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+    <script type="text/javascript">
+        function EditRow(id, cnt, count) {
+            document.getElementById("ResultClientMaster").style.display = "none";
+            document.getElementById("LoadPartialView").style.display = "inline";
+            for (var i = 1; i <= cnt; i++) {
+                var allRowId = "rowId" + i;
+                var editId = "editId" + i;
+                var labelEditId = "labelEditId" + i;
+                if (document.getElementById(editId) != null) {
+                    document.getElementById(editId).style.display = "none";
+                    document.getElementById(labelEditId).style.display = "inline";
+                    //document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                    document.getElementById(allRowId).className = "searchTableBg";
+                }
             }
-        }
-        var rowId = "rowId" + count;
-        if (document.getElementById(rowId) != null) {
-            document.getElementById(rowId).style.backgroundColor = "lightgreen";
-            //document.getElementById("ddltypemembershipcard").disabled = true;
-            document.getElementById("SearchText").disabled = true;
-            document.getElementById("SearchButton").disabled = true;
-            document.getElementById("pagertextbox").disabled = true;
-            document.getElementById("pagerdropdown").disabled = true;
-            document.getElementById("pager").style.display = "none";
-        }
+            var rowId = "rowId" + count;
+            if (document.getElementById(rowId) != null) {
+                //document.getElementById(rowId).style.backgroundColor = "lightgreen";
+                document.getElementById(rowId).className = "searchTableBgClick";
+                //document.getElementById("ddltypemembershipcard").disabled = true;
+                document.getElementById("SearchText").disabled = true;
+                document.getElementById("SearchButton").disabled = true;
+                document.getElementById("pagertextbox").disabled = true;
+                document.getElementById("pagerdropdown").disabled = true;
+                document.getElementById("pager").style.display = "none";
+            }
 
-        $.ajax({
-            url: '/Client/EditPartial',
-            type: "GET",
-            data: { id: id },
-            success: function (data) {
-                $("#Data").html(data);
-            }
+            $.ajax({
+                url: '/Client/EditPartial',
+                type: "GET",
+                data: { id: id },
+                success: function (data) {
+                    $("#Data").html(data);
+                }
+            });
+            document.getElementById("uparrow").style.display = "inline";
+            //document.getElementById("downarrow").style.display = "inline"
+            $("#TotalNumberOfClients").val(cnt);
+            $("#ClientRowValue").val(count);
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#SearchText").autocomplete({
+                source: "/Client/GetClientNames",
+                minLength: 1,
+                select: function (event, ui) {
+                    if (ui.item) {
+                        $("#SearchText").val(ui.item.value);
+                    }
+                }
+            });
         });
-        document.getElementById("uparrow").style.display = "inline";
-        //document.getElementById("downarrow").style.display = "inline"
-        $("#TotalNumberOfClients").val(cnt);
-        $("#ClientRowValue").val(count);
-    }
-</script>
+    </script>
 
+    <script type="text/javascript">
+        function UpdateClientData() {
+            var errorcount = 0;
+            if ($("#ClientDetails_ClientId").val() == "" || $("#ClientDetails_Address").val() == "" || $("#ddlcountry").val() == "" ||
+                $("#ddldistrict").val() == "" || $("#ddlstate").val() == "" || $("#ClientDetails_City").val() == "" ||
+                $("#ClientDetails_ContactNo1").val() == "") {
+                return false;
+            }
+            else if ($("#ClientDetails_ContactNo1").val().length > 14 || $("#ClientDetails_ContactNo1").val().length < 7) {
+                return false;
+            }
+            else {
+                if ($("#ClientDetails_Pincode").val() != "") {
+                    if ($("#ClientDetails_Pincode").val().length > 8 || $("#ClientDetails_Pincode").val().length < 6) {
+                        errorcount++;
+                        return false;
+                    }
+                }
+                if ($("#ClientDetails_ContactNo2").val() != "") {
+                    if ($("#ClientDetails_ContactNo2").val().length > 14 || $("#ClientDetails_ContactNo2").val().length < 7) {
+                        errorcount++;
+                        return false;
+                    }
+                }
+                if ($("#ClientDetails_ContactNo3").val() != "") {
+                    if ($("#ClientDetails_ContactNo3").val().length > 14 || $("#ClientDetails_ContactNo3").val().length < 7) {
+                        errorcount++;
+                        return false;
+                    }
+                }
 
-<script type="text/javascript">
-    $(function () {
-        $("#SearchText").autocomplete({
-            source: "/Client/GetClientNames",
-            minLength: 1,
-            select: function (event, ui) {
-                if (ui.item) {
-                    $("#SearchText").val(ui.item.value);
-                }
-            }
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    function UpdateClientData() {
-        var errorcount = 0;
-        if ($("#ClientDetails_ClientId").val() == "" || $("#ClientDetails_Address").val() == "" || $("#ddlcountry").val() == "" ||
-            $("#ddldistrict").val() == "" || $("#ddlstate").val() == "" || $("#ClientDetails_City").val() == "" ||
-            $("#ClientDetails_ContactNo1").val() == "") {
-            return false;
-        }
-        else if ($("#ClientDetails_ContactNo1").val().length > 14 || $("#ClientDetails_ContactNo1").val().length < 7) {
-            return false;
-        }
-        else {
-            if ($("#ClientDetails_Pincode").val() != "") {
-                if ($("#ClientDetails_Pincode").val().length > 8 || $("#ClientDetails_Pincode").val().length < 6) {
-                    errorcount++;
-                    return false;
-                }
-            }
-            if ($("#ClientDetails_ContactNo2").val() != "") {
-                if ($("#ClientDetails_ContactNo2").val().length > 14 || $("#ClientDetails_ContactNo2").val().length < 7) {
-                    errorcount++;
-                    return false;
-                }
-            }
-            if ($("#ClientDetails_ContactNo3").val() != "") {
-                if ($("#ClientDetails_ContactNo3").val().length > 14 || $("#ClientDetails_ContactNo3").val().length < 7) {
-                    errorcount++;
-                    return false;
-                }
-            }
-
-            if ($("#ClientDetails_Email").val() != "") {
-                $.getJSON("/User/EmailValidate", { email: $("#ClientDetails_Email").val() },
-                    function (data) {
-                        if (data != "true") {
-                            errorcount++;
-                            return false;
-                        }
-                        else {
-                            if (errorcount == 0) {
-                                if ($("#ddlclientbanknames").val() != "") {
-                                    if ($("#ddlBankNames").val() != "") {
-                                        if ($("#ClientBankDetails_AccountNo").val() == "" || $("#ClientBankDetails_AccountType").val() == "" ||
-                                            $("#ddlBankbranches").val() == "") {
-                                            alertbox("Branch,Account No,Account Type are required");
-                                            return false;
-                                        }
-                                        else if ($("#ClientBankDetails_AccountNo").val().length > 25 || $("#ClientBankDetails_AccountNo").val().length < 10) {
-                                            return false;
-                                        }
-                                        else if ($("#ClientBankDetails_MICRCode").val() != "") {
-                                            if ($("#ClientBankDetails_MICRCode").val().length != 9) {
+                if ($("#ClientDetails_Email").val() != "") {
+                    $.getJSON("/User/EmailValidate", { email: $("#ClientDetails_Email").val() },
+                        function (data) {
+                            if (data != "true") {
+                                errorcount++;
+                                return false;
+                            }
+                            else {
+                                if (errorcount == 0) {
+                                    if ($("#ddlclientbanknames").val() != "") {
+                                        if ($("#ddlBankNames").val() != "") {
+                                            if ($("#ClientBankDetails_AccountNo").val() == "" || $("#ClientBankDetails_AccountType").val() == "" ||
+                                                $("#ddlBankbranches").val() == "") {
+                                                alertbox("Branch,Account No,Account Type are required");
                                                 return false;
                                             }
+                                            else if ($("#ClientBankDetails_AccountNo").val().length > 25 || $("#ClientBankDetails_AccountNo").val().length < 10) {
+                                                return false;
+                                            }
+                                            else if ($("#ClientBankDetails_MICRCode").val() != "") {
+                                                if ($("#ClientBankDetails_MICRCode").val().length != 9) {
+                                                    return false;
+                                                }
+                                                else {
+                                                    /*if bank is selected in update page and update button gets clicked then update bankdetails first by sending 'yes' then
+                                                client's personal details if updatebank button gets clicked then update bankdetails only by sending 'no'*/
+                                                    buttonclick('Yes');
+                                                }
+                                            }
                                             else {
-                                                /*if bank is selected in update page and update button gets clicked then update bankdetails first by sending 'yes' then
-                                            client's personal details if updatebank button gets clicked then update bankdetails only by sending 'no'*/
                                                 buttonclick('Yes');
                                             }
                                         }
-                                        else {
-                                            buttonclick('Yes');
-                                        }
+                                        else { UpdateClient(); }
                                     }
                                     else { UpdateClient(); }
                                 }
-                                else { UpdateClient(); }
                             }
-                        }
-                    });
-            }
-            else {
-                if (errorcount == 0) {
-                    if ($("#ddlclientbanknames").val() != "") {
-                        if ($("#ddlBankNames").val() != "") {
-                            if ($("#ClientBankDetails_AccountNo").val() == "" || $("#ClientBankDetails_AccountType").val() == "" ||
-                                $("#ddlBankbranches").val() == "") {
-                                alertbox("Branch,Account No,Account Type are required");
-                                return false;
-                            }
-                            else if ($("#ClientBankDetails_AccountNo").val().length > 25 || $("#ClientBankDetails_AccountNo").val().length < 10) {
-                                return false;
-                            }
-                            else if ($("#ClientBankDetails_MICRCode").val() != "") {
-                                if ($("#ClientBankDetails_MICRCode").val().length != 9) {
+                        });
+                }
+                else {
+                    if (errorcount == 0) {
+                        if ($("#ddlclientbanknames").val() != "") {
+                            if ($("#ddlBankNames").val() != "") {
+                                if ($("#ClientBankDetails_AccountNo").val() == "" || $("#ClientBankDetails_AccountType").val() == "" ||
+                                    $("#ddlBankbranches").val() == "") {
+                                    alertbox("Branch,Account No,Account Type are required");
                                     return false;
                                 }
+                                else if ($("#ClientBankDetails_AccountNo").val().length > 25 || $("#ClientBankDetails_AccountNo").val().length < 10) {
+                                    return false;
+                                }
+                                else if ($("#ClientBankDetails_MICRCode").val() != "") {
+                                    if ($("#ClientBankDetails_MICRCode").val().length != 9) {
+                                        return false;
+                                    }
+                                    else {
+                                        /*if bank is selected in update page and update button gets clicked then update bankdetails first by sending 'yes' then
+                                    client's personal details if updatebank button gets clicked then update bankdetails only by sending 'no'*/
+                                        buttonclick('Yes');
+                                    }
+                                }
                                 else {
-                                    /*if bank is selected in update page and update button gets clicked then update bankdetails first by sending 'yes' then
-                                client's personal details if updatebank button gets clicked then update bankdetails only by sending 'no'*/
                                     buttonclick('Yes');
                                 }
                             }
-                            else {
-                                buttonclick('Yes');
-                            }
+                            else { UpdateClient(); }
                         }
                         else { UpdateClient(); }
                     }
-                    else { UpdateClient(); }
                 }
             }
         }
-    }
-</script>
-<script type="text/javascript">
-    function UpdateClient() {
-        //$("#Update").attr("disabled", true);
-        var count = document.getElementById("ClientRowValue").value;
-        var clientname = "clientname" + count;
-        var txt = document.getElementById("ClientDetails_ClientName").value;
-        txt = txt.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-        document.getElementById(clientname).innerHTML = txt;
-        document.getElementById("ClientDetails_ClientName").value = txt;
+    </script>
+    <script type="text/javascript">
+        function UpdateClient() {
+            //$("#Update").attr("disabled", true);
+            var count = document.getElementById("ClientRowValue").value;
+            var clientname = "clientname" + count;
+            var txt = document.getElementById("ClientDetails_ClientName").value;
+            txt = txt.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+            document.getElementById(clientname).innerHTML = txt;
+            document.getElementById("ClientDetails_ClientName").value = txt;
 
-        var cltmaster = {
-            ClientId: $("#ClientDetails_ClientId").val(),
-            ClientCode: $("#ClientDetails_ClientCode").val(),
-            ClientName: $("#ClientDetails_ClientName").val(),
-            TypeOfMembershipCard: $("#ddltypemembership").val(),
-            Country: $("#ddlcountry").val(),
-            State: $("#ddlstate").val(),
-            District: $("#ddldistrict").val(),
-            City: $("#ClientDetails_City").val(),
-            Address: $("#ClientDetails_Address").val(),
-            Email: $("#ClientDetails_Email").val(),
-            Website: $("#ClientDetails_Website").val(),
-            Pincode: $("#ClientDetails_Pincode").val(),
-            ContactNo1: $("#ClientDetails_ContactNo1").val(),
-            ContactNo2: $("#ClientDetails_ContactNo2").val(),
-            ContactNo3: $("#ClientDetails_ContactNo3").val(),
-            STNo: $("#ClientDetails_STNo").val(),
-            VTNo: $("#ClientDetails_VTNo").val(),
-            OtherTax: $("#ClientDetails_OtherTax").val(),
-            TDSNo: $("#ClientDetails_TDSNo").val(),
-            PanCard: $("#ClientDetails_PanCard").val(),
-            NameOnCard: $("#ClientDetails_NameOnCard").val(),
-            CardNumber: $("#ClientDetails_CardNumber").val(),
-            IssueDate: $("#ClientDetails_IssueDate").val(),
-            FormType: $("#ddlformtypes").val(),
-            checkState: $("#ClientDetails_checkState").val(),
-            ClientType: $("#ClientDetails_ClientType").val(),
-            ConsumeResell: $("#ClientDetails_ConsumeResell").val(),
-        };
+            var cltmaster = {
+                ClientId: $("#ClientDetails_ClientId").val(),
+                ClientCode: $("#ClientDetails_ClientCode").val(),
+                ClientName: $("#ClientDetails_ClientName").val(),
+                TypeOfMembershipCard: $("#ddltypemembership").val(),
+                Country: $("#ddlcountry").val(),
+                State: $("#ddlstate").val(),
+                District: $("#ddldistrict").val(),
+                City: $("#ClientDetails_City").val(),
+                Address: $("#ClientDetails_Address").val(),
+                Email: $("#ClientDetails_Email").val(),
+                Website: $("#ClientDetails_Website").val(),
+                Pincode: $("#ClientDetails_Pincode").val(),
+                ContactNo1: $("#ClientDetails_ContactNo1").val(),
+                ContactNo2: $("#ClientDetails_ContactNo2").val(),
+                ContactNo3: $("#ClientDetails_ContactNo3").val(),
+                STNo: $("#ClientDetails_STNo").val(),
+                VTNo: $("#ClientDetails_VTNo").val(),
+                OtherTax: $("#ClientDetails_OtherTax").val(),
+                TDSNo: $("#ClientDetails_TDSNo").val(),
+                PanCard: $("#ClientDetails_PanCard").val(),
+                NameOnCard: $("#ClientDetails_NameOnCard").val(),
+                CardNumber: $("#ClientDetails_CardNumber").val(),
+                IssueDate: $("#ClientDetails_IssueDate").val(),
+                FormType: $("#ddlformtypes").val(),
+                checkState: $("#ClientDetails_checkState").val(),
+                ClientType: $("#ClientDetails_ClientType").val(),
+                ConsumeResell: $("#ClientDetails_ConsumeResell").val(),
+            };
 
-        $.ajax({
-            url: '/Client/EditPartial',
-            contentType: "application/json; charset=utf-8",
-            type: "POST",
-            data: JSON.stringify(cltmaster),
-            datatype: "json",
-            success: function (data) {
-                document.getElementById("LoadPartialView").style.display = "none";
-                document.getElementById("ResultClientMaster").style.display = "inline";
-                $("#ResultClientMaster").html(data);
-            }
-        });
+            $.ajax({
+                url: '/Client/EditPartial',
+                contentType: "application/json; charset=utf-8",
+                type: "POST",
+                data: JSON.stringify(cltmaster),
+                datatype: "json",
+                success: function (data) {
+                    document.getElementById("LoadPartialView").style.display = "none";
+                    document.getElementById("ResultClientMaster").style.display = "inline";
+                    $("#ResultClientMaster").html(data);
+                }
+            });
 
-        document.getElementById("SearchText").disabled = false;
-        document.getElementById("SearchButton").disabled = false;
-        document.getElementById("pagertextbox").disabled = false;
-        document.getElementById("pagerdropdown").disabled = false;
-        document.getElementById("pager").style.display = "inline";
-        document.getElementById("rowId" + count).style.background = "#F1DDE7";
-    }
-</script>
+            document.getElementById("SearchText").disabled = false;
+            document.getElementById("SearchButton").disabled = false;
+            document.getElementById("pagertextbox").disabled = false;
+            document.getElementById("pagerdropdown").disabled = false;
+            document.getElementById("pager").style.display = "inline";
+            document.getElementById("rowId" + count).className = "searchTableBg";/*.style.background = "#F1DDE7";*/
+        }
+    </script>
 @Html.Partial("../Shared/Header")
 <!-- End: Header -->
 <!-- Start: Main -->

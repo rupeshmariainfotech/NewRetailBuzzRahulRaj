@@ -185,6 +185,7 @@ D:\RetailBuzz\ATOZ\MvcRetailApp\obj\Debug\MvcRetailApp.pdb
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ReportEngine\RetailBillLetterHeadWithMRP.aspx.cs
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ReportEngine\RetailBillLetterHeadWithMRP.aspx.designer.cs
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ReportEngine\RetailBillLetterHeadWithMRP.rdlc
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\MvcRetailApp.dll.config
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\MvcRetailApp.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\MvcRetailApp.pdb
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Antlr3.Runtime.dll
@@ -201,6 +202,7 @@ E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\EPPlus.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Data.Edm.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Data.OData.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Practices.Unity.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.ReportViewer.WebForms.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Web.Infrastructure.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Web.WebPages.OAuth.dll
@@ -219,6 +221,7 @@ E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\System.Web.WebPages.Razor.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\WebGrease.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\WebMatrix.Data.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\WebMatrix.WebData.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.SqlServer.Types.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\CodeFirstEntities.pdb
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\CodeFirstServices.pdb
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\CodeFirstData.pdb
@@ -245,6 +248,16 @@ E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Data.Edm.xml
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.Data.OData.xml
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\System.Spatial.xml
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\de\Microsoft.Data.Edm.resources.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\es\Microsoft.Data.Edm.resources.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\fr\Microsoft.Data.Edm.resources.dll
@@ -275,16 +288,3 @@ E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\zh-Hant\System.Spatial.resources.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\obj\Debug\MvcRetailApp.csprojResolveAssemblyReference.cache
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\obj\Debug\MvcRetailApp.dll
 E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\obj\Debug\MvcRetailApp.pdb
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\MvcRetailApp.dll.config
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.ReportViewer.WebForms.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\Microsoft.SqlServer.Types.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
-E:\Megha\RetailBuzz\ATOZ\MvcRetailApp\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll

@@ -227,12 +227,14 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
             rowid = "rowid" + i;
 
             if (document.getElementById(editid) != null) {
-                document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                document.getElementById(rowid).className = "searchTableBg";
             }
         }
         RowId = "rowid" + count;
         if (document.getElementById(RowId) != null) {
-            document.getElementById(RowId).style.backgroundColor = "lightgreen";
+            //document.getElementById(RowId).style.backgroundColor = "lightgreen";
+            document.getElementById(RowId).className = "searchTableBgClick";
         }
 
         $.ajax({
@@ -356,7 +358,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                 }
             });
             document.getElementById("EditId" + count).disabled = false;
-            document.getElementById("rowid" + count).style.background = "#F1DDE7";
+            document.getElementById("rowid" + count).className = "searchTableBg";/*.style.background = "#F1DDE7";*/
             document.getElementById("pager").style.display = "inline";
             document.getElementById('pagertextbox').disabled = false;
             document.getElementById('pagerdropdown').disabled = false;

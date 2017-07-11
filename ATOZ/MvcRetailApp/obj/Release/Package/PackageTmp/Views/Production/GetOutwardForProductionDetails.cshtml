@@ -1,0 +1,335 @@
+﻿@model CodeFirstEntities.MainApplication
+@{
+    ViewBag.Title = "GetOutwardForProductionDetails";
+}
+
+<script>
+    function AddExtaInwardItem() {
+
+        var rowid = document.getElementById("hdnRowCount").value;
+        rowid = +rowid + 1;
+
+        var row = "row" + rowid;
+        var ItemName = "ItemName" + rowid;
+        var Quantity = "Quantity" + rowid;
+        var Unit = "Unit" + rowid;
+        var Size = "Size" + rowid;
+        var Description = "Description" + rowid;
+        var Color = "Color" + rowid;
+        var CostPrice = "CostPriceVal" + rowid;
+
+        var ItemList = $("#AddExtraItemRows");
+
+        var data = "<tr id='" + row + "'><td style='text-align:center; color:blue'>" + rowid + "</td>";
+        data += "<td style='text-align:center'><label>----</label></td>";
+        data += "<td class='col-lg-3 col-md-3 col-sm-3'><input type='text' name='" + ItemName + "' id='" + ItemName + "' placeholder='Item Name' autocomplete='off' class='form-control' style='text-align:center'/></td>";
+        data += "<td style='text-align:center'><label>----</label></td>";
+        data += "<td><input type='text' name='" + Quantity + "' id='" + Quantity + "' placeholder='Quantity' autocomplete='off' class='form-control' style='text-align:center'/></td>";
+        data += "<td><select id='" + Unit + "' name='" + Unit + "' class='form-control'><option>Select Unit</option></select></td>";
+        data += "<td><input type='text' name='" + Size + "' id='" + Size + "' placeholder='Size' autocomplete='off' class='form-control' style='text-align:center'/></td>";
+        data += "<td><input type='text' name='" + Description + "' id='" + Description + "' placeholder='Description' autocomplete='off' class='form-control' style='text-align:center'/></td>";
+        data += "<td><select id='" + Color + "' name='" + Color + "' class='form-control'><option>Select Color</option></select></td>";
+        data += "<td style='text-align:center'><label>-----</label></td>";
+        data += "<td style='text-align:center'><label>-----</label></td>";
+        data += "<td><input type='text' name='" + CostPrice + "' id='" + CostPrice + "' placeholder='Cost Price' autocomplete='off' class='form-control' style='text-align:center'/></td>";
+
+        ItemList.append(data);
+
+        //FILL UNIT DDL ON ENTER CLICK EVENT
+        $.getJSON("/Production/GetAllUnits",
+        function (data) {
+            var select = $("#" + Unit);
+            select.empty();
+            select.append($('<option/>', {
+                text: "Select Item",
+                value: "",
+            }));
+            $.each(data, function (index, itemdata) {
+                select.append($('<option/>', {
+                    text: itemdata.Value,
+                    value: itemdata.Value,
+                }));
+            });
+        });
+
+        //FILL UNIT DDL ON ENTER CLICK EVENT
+        $.getJSON("/Production/GetAllColors",
+        function (data) {
+            var select = $("#" + Color);
+            select.empty();
+            select.append($('<option/>', {
+                text: "Select Color",
+                value: "",
+            }));
+            $.each(data, function (index, itemdata) {
+                select.append($('<option/>', {
+                    text: itemdata.Value,
+                    value: itemdata.Value,
+                }));
+            });
+        });
+
+        $("#hdnRowCount").val(rowid);
+    }
+</script>
+
+@*CALCULATE COST PRICE*@
+<script type="text/javascript">
+    function CalcCostPrice(Count, ProdItem) {
+
+        var ProductionItem = "ProductionItem" + Count;
+        var Quantity = "Quantity" + Count;
+        var LabourCost = "LabourCost" + Count;
+        var OtherExpenses = "OtherExpenses" + Count;
+        var CostPrice = "CostPrice" + Count;
+        var CostPriceVal = "CostPriceVal" + Count;
+
+        document.getElementById(LabourCost).disabled = false;
+        document.getElementById(OtherExpenses).disabled = false;
+        var productionitemval = +document.getElementById(ProductionItem).value;
+        var quantityval = +document.getElementById(Quantity).value;
+        var labourcostval = +document.getElementById(LabourCost).value;
+        var otherexpensesval = +document.getElementById(OtherExpenses).value;
+
+        var totalamount = 0;
+        var counter = 0;
+        var inputitemcount = document.getElementById("InputItemList").value;
+        for (i = 1; i <= inputitemcount; i++) {
+            var InputItem = "InputItem" + i;
+            var Amount = "Amount" + i;
+
+            var inputitemval = +document.getElementById(InputItem).value;
+            var amountval = +document.getElementById(Amount).innerHTML;
+            
+            if (inputitemval == productionitemval) {
+                totalamount = totalamount + amountval;
+                counter = 1;
+            }
+        }
+
+        if (counter == 1) {
+            var calc = totalamount + labourcostval + otherexpensesval;
+            var costprice = calc / quantityval;
+
+            document.getElementById(CostPrice).innerHTML = costprice;
+            document.getElementById(CostPriceVal).value = costprice;
+        }
+
+        //var quantity = +document.getElementById("Quantity" + Count).value;
+        //var grandtotal = +document.getElementById("GrandTotal").innerHTML;
+        //var costprice = grandtotal / quantity;
+        //document.getElementById("CostPrice" + Count).innerHTML = costprice.toFixed(2);
+        //document.getElementById("CostPriceVal" + Count).value = costprice.toFixed(2);
+    }
+</script>
+
+<script type="text/javascript">
+    function CalculateGrandTotal() {
+
+        var ttlamt = +document.getElementById("TotalAmount").innerHTML;
+        var labourcost = +document.getElementById("LabourCost").value;
+        var otherexp = +document.getElementById("OtherExpenses").value;
+        var grndttl = 0;
+        grndttl = ttlamt + labourcost + otherexp;
+        document.getElementById("GrandTotal").innerHTML = grndttl.toFixed(2);
+        document.getElementById("GrandTotalVal").value = grndttl;
+        document.getElementById("LabourCostVal").value = labourcost;
+        document.getElementById("OtherExpensesVal").value = otherexp;
+    }
+</script>
+
+<div class="col-lg-12 col-md-12">
+    <label style="font-size: 14px">Outward For Production Items(Consumption):</label>
+</div>
+<table border="1" class="table" style="border-collapse: collapse; width: 100%;" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr style="background-color: #eee">
+            <th style="text-align: center">Sr No.</th>
+            <th style="text-align: center">Input</th>
+            <th style="text-align: center">Item Name</th>
+            <th style="text-align: center">Quantity</th>
+            <th style="text-align: center">Unit</th>
+            <th style="text-align: center">Cost Price</th>
+            <th style="text-align: center">Color</th>
+            <th style="text-align: center">Material</th>
+            <th style="text-align: center">Amount</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int Count1 = 1;
+            if (Model.OutwardForProductionItemList != null)
+            {
+                foreach (var data in Model.OutwardForProductionItemList)
+                {
+                    string InputItem = "InputItem" + Count1;
+                    string Amount = "Amount" + Count1;
+            <tr>
+                <td style="text-align: center">@Count1</td>
+                <td style="text-align: center">
+                    <label>Item</label>@data.ProductionItem<input type="hidden" id="@InputItem" name="@InputItem" value="@data.ProductionItem"/></td>
+                <td style="text-align: center">@data.ItemName</td>
+                <td style="text-align: center">@data.Quantity</td>
+                <td style="text-align: center">@data.Unit</td>
+                <td style="text-align: center">@data.CostPrice</td>
+                <td style="text-align: center">@data.Color</td>
+                <td style="text-align: center">@data.Material</td>
+                <td style="text-align: center"><label id="@Amount">@data.Amount</label></td>
+                @{Count1++;}
+            </tr>
+                }
+            }
+
+            @*<input type="hidden" id="ItemList" value="@Count1" name="ItemList"/>*@
+            <input type="hidden" id="InputItemList" value="@Model.OutwardForProductionItemList.Count()" name="InputItemList"/>
+            
+        }
+    </tbody>
+</table>
+
+<div class="col-lg-12 col-md-12">
+    <div style="height: 10px"></div>
+</div>
+
+<div class="col-lg-12 col-md-12">
+    <div class="col-lg-10 col-md-10" style="text-align: right">
+        <label >Total Amount:</label>
+    </div>
+    <div class="col-lg-2 col-md-2" style="text-align: right">
+        <label id="TotalAmount">@Html.DisplayFor(model=>model.OutwardForProductionDetails.TotalAmount)</label>
+        <input type="hidden" id="TotalAmountVal" name="TotalAmountVal" value="@Model.OutwardForProductionDetails.TotalAmount"/>
+    </div>
+</div>
+<div class="col-lg-12 col-md-12">
+    <div style="height: 5px"></div>
+</div>
+<div class="col-lg-12 col-md-12">
+    <div class="col-lg-10 col-md-10" style="text-align: right">
+        <label>Labour Cost:</label>
+    </div>
+    <div class="col-lg-2 col-md-2" style="text-align: right">
+        @*@Html.TextBoxFor(model => model.OutwardForProductionDetails.ExpectedLabourCost, new { id="LabourCost", @class = "form-control", placeholder = "Labour Cost", @onchange="CalculateGrandTotal()", @style="text-align:right"})*@
+        <label id="LabourCost">@Html.DisplayFor(model=>model.OutwardForProductionDetails.ExpectedLabourCost)</label>
+        @*<input type="hidden" id="LabourCostVal" name="LabourCostVal" value="@Model.OutwardForProductionDetails.ExpectedLabourCost"/>*@
+    </div>
+</div>
+<div class="col-lg-12 col-md-12">
+    <div style="height: 5px"></div>
+</div>
+<div class="col-lg-12 col-md-12">
+    <div class="col-lg-10 col-md-10" style="text-align: right">
+        <label>Other Expenses:</label>
+    </div>
+    <div class="col-lg-2 col-md-2" style="text-align: right">
+        @*@Html.TextBoxFor(model => model.OutwardForProductionDetails.OtherExpenses, new { id="OtherExpenses", @class = "form-control", placeholder = "Other Expenses", @onchange="CalculateGrandTotal()", @style="text-align:right"})*@
+        <label id="OtherExpenses">@Html.DisplayFor(model=>model.OutwardForProductionDetails.OtherExpenses)</label>
+        @*<input type="hidden" id="OtherExpensesVal" name="OtherExpensesVal" value="@Model.OutwardForProductionDetails.OtherExpenses"/>*@
+    </div>
+</div>
+<div class="col-lg-12 col-md-12">
+    <div style="height: 5px"></div>
+</div>
+<div class="col-lg-12 col-md-12">
+    <div class="col-lg-10 col-md-10" style="text-align: right">
+        <label>Production Grand Total:</label>
+    </div>
+    <div class="col-lg-2 col-md-2" style="text-align: right">
+        <label id="GrandTotal">@Html.DisplayFor(model=>model.OutwardForProductionDetails.ProductionGrandTotal)</label>
+        <input type="hidden" id="GrandTotalVal" name="GrandTotalVal" value="@Model.OutwardForProductionDetails.ProductionGrandTotal"/> 
+    </div>
+</div>
+
+<div class="col-lg-12 col-md-12">
+    <label style="font-size: 14px">Expected Inward Items(Production):</label>
+</div>
+<table border="1" id="AddExtraItemRows" class="table" style="border-collapse: collapse; width: 100%;" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr style="background-color: #eee">
+            <th style="text-align: center">Sr No.</th>
+            <th style="text-align: center">Output</th>
+            <th style="text-align: center" class="col-lg-2 col-md-2">Item Name<i style="color:red">*</i></th>
+            <th style="text-align: center">Exp<br />
+                Qty</th>
+            <th class="col-lg-1 col-md-1" style="text-align: center">Received<br />
+                Quantity<i style="color:red">*</i></th>
+            <th style="text-align: center">Unit<i style="color:red">*</i></th>
+            <th style="text-align: center">Size<i style="color:red">*</i></th>
+            <th style="text-align: center">Description</th>
+            <th style="text-align: center">Color</th>
+             <th style="text-align: center">Labour<br />Cost</th>
+             <th style="text-align: center">Other<br />Expenses</th>
+            <th style="text-align: center; color:red">Cost Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int Count = 1;
+            if (Model.OutwardForProductionExpectedInwardList != null)
+            {
+                foreach (var data in Model.OutwardForProductionExpectedInwardList)
+                {
+                    string ProductionItem = "ProductionItem" + Count;
+                    string ItemName = "ItemName" + Count;
+                    string Quantity = "Quantity" + Count;
+                    string Unit = "Unit" + Count;
+                    string Size = "Size" + Count;
+                    string Description = "Description" + Count;
+                    string Color = "Color" + Count;
+                    string LabourCost = "LabourCost" + Count;
+                    string OtherExpenses = "OtherExpenses" + Count;
+                    string CostPrice = "CostPrice" + Count;
+                    string CostPriceVal = "CostPriceVal" + Count;
+                    
+            <tr>
+                <td style="text-align: center">@Count</td>
+                <td style="text-align: center">
+                    <label>Item</label><label>@data.ProductionItem</label><input type="hidden" id="@ProductionItem" name="@ProductionItem" value="@data.ProductionItem"/>
+                </td>
+                <td style="text-align: center">
+                    <label>@data.ItemName</label><input type="hidden" id="@ItemName" name="@ItemName" value="@data.ItemName"/>
+                </td>
+                <td style="text-align: center">
+                    <label>@data.Quantity</label>
+                </td>
+                <td style="text-align: center" class="col-lg-1 col-md-1">
+                    <input type="text" id="@Quantity" name="@Quantity" onchange="CalcCostPrice(@Count, @ProductionItem)" class="form-control" style="text-align: center"/>
+                </td>
+                <td style="text-align: center" class="col-lg-1 col-md-1">
+                    <label>@data.Unit</label><input type="hidden" id="@Unit" name="@Unit" value="@data.Unit"/>
+                </td>
+                <td style="text-align: center">
+                    <input type="text" id="@Size" name="@Size" class="form-control" placeholder="Size" style="text-align: center"/>
+                </td>
+                <td style="text-align: center">
+                    <input type="text" id="@Description" name="@Description" class="form-control" placeholder="Description" style="text-align: center"/>
+                </td>
+                <td style="text-align: center" class="col-lg-1 col-md-1">
+                    <label>@data.Color</label><input type="hidden" id="@Color" name="@Color" value="@data.Color"/>
+                </td>
+                <td style="text-align: center" class="col-lg-1 col-md-1">
+                    <input type="text" id="@LabourCost" name="@LabourCost" onchange="CalcCostPrice(@Count, @ProductionItem)" class="form-control" disabled="disabled" style="text-align: center" value="0"/>
+                </td>
+                <td style="text-align: center" class="col-lg-1 col-md-1">
+                    <input type="text" id="@OtherExpenses" name="@OtherExpenses" onchange="CalcCostPrice(@Count, @ProductionItem)" class="form-control" disabled="disabled" style="text-align: center" value="0"/>
+                </td>
+                <td style="text-align: center">
+                    <label id="@CostPrice" style="color:red"></label><input type="hidden" id="@CostPriceVal" name="@CostPriceVal"/>
+                </td>
+
+                @{Count++;}
+            </tr>
+                }
+            }
+
+            <input type="hidden" id="ItemList" value="@Count" name="ItemList"/>
+            var itemcount = Count - 1;
+            <input type="hidden" id="hdnRowCount" value="@itemcount" name="hdnRowCount"/>
+            
+        }
+    </tbody>
+</table>
+
+<div class="col-lg-12 col-md-12" style="text-align: right">
+    <a href="#" onclick="AddExtaInwardItem()" id="ExtraInwardItem" style="font-weight: normal">Add Extra Inward Item</a>
+</div>

@@ -157,7 +157,8 @@ $(this).parents('form:eq(0),body').find();
             var rows = "Row" + i;
             var edit = "Edit" + i;
             if (document.getElementById(rows) != null) {
-                document.getElementById(rows).style.background = "#F1DDE7";
+                //document.getElementById(rows).style.background = "#F1DDE7";
+                 document.getElementById(rows).className = "searchTableBg";
                 document.getElementById(edit).disabled = true;
             }
         }
@@ -168,7 +169,8 @@ $(this).parents('form:eq(0),body').find();
         $("#next").attr("disabled", true);
         $("#last").attr("disabled", true);
         document.getElementById("pager").style.display = "none";
-        document.getElementById(rowid).style.background = "lightgreen";
+        //document.getElementById(rowid).style.background = "lightgreen";
+          document.getElementById(rowid).className = "searchTableBgClick";
         $("#Search").attr("disabled", true);
         document.getElementById("SearchButton").disabled = true;
     }

@@ -157,7 +157,7 @@
                 }
             }
             moduleStatus = moduleStatus + finalStatus + "$";
-            finalStatus = "";
+            finalStatus = "";            
         }
         $.ajax({
             url: '/User/updatePermissions',
@@ -644,7 +644,7 @@
             {
 
                 MISstartassignid = startassignid + 57;
-                MISendassignid = startassignid + 86;
+                MISendassignid = startassignid + 88;
                 if (item1.AssignId >= MISstartassignid && item1.AssignId <= MISendassignid)
                 {
 
@@ -706,12 +706,12 @@
 <div id="JobWorkModules" class="collapse">
     <table border="1">
         @{
-            id = 88;
+            id = 90;
             foreach (var item1 in Model.UpdatedUserCredentailList)
             {
 
-                JobWorkstartassignid = startassignid + 87;
-                JobWorkendassignid = startassignid + 94;
+                JobWorkstartassignid = startassignid + 89;
+                JobWorkendassignid = startassignid + 96;
                 if (item1.AssignId >= JobWorkstartassignid && item1.AssignId <= JobWorkendassignid)
                 {
 
@@ -773,12 +773,12 @@
 <div id="ShopGodownModules" class="collapse">
     <table border="1">
         @{
-            id = 96;
+            id = 98;
             foreach (var item1 in Model.UpdatedUserCredentailList)
             {
 
-                ShopGodownstartassignid = startassignid + 95;
-                ShopGodownendassignid = startassignid + 95 + DynamicShopGodownRange;
+                ShopGodownstartassignid = startassignid + 97;
+                ShopGodownendassignid = startassignid + 97 + DynamicShopGodownRange;
                 if (item1.AssignId >= ShopGodownstartassignid && item1.AssignId <= ShopGodownendassignid)
                 {
 

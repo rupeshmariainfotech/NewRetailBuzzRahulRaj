@@ -173,14 +173,16 @@
             if (document.getElementById(SubCatDeleteId) != null) {
                 document.getElementById(SubCatDeleteId).style.display = "none";
                 document.getElementById(LabSubDeleteId).style.display = "inline";
-                document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                document.getElementById(rowid).className = "searchTableBg";
             }
         }
         document.getElementById("DDLCatList").disabled = true;
         document.getElementById("searchbutton").disabled = true;
         document.getElementById("searchtext").disabled = true;
         RowId = "RowId" + count;
-        document.getElementById(RowId).style.backgroundColor = "lightgreen";
+        //document.getElementById(RowId).style.backgroundColor = "lightgreen";
+        document.getElementById(RowId).className = "searchTableBgClick";
 
         confirmbox("Are you sure! You want to delete this Row???", id)
 

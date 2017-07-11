@@ -1,0 +1,68 @@
+﻿@model CodeFirstEntities.MainApplication
+
+@{
+    ViewBag.Title = "DeletePartial";
+}
+
+@Html.HiddenFor(model => model.ClientLeads.ClientLeadId)
+
+<div class="row">
+    <div id="title2" style="position: absolute; font-family: Arial; font-size: 16px; text-align: left;">
+        <h2>Client Lead Details</h2>
+    </div>
+    <br />
+    <br />
+    <br />
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-lg-6">
+        <div class="col-md-12 col-lg-12">
+            <div class="form-group row">
+                <label for="exampleClientLeadId">Client Lead Id</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.ClientLeadId)
+            </div>
+            <div class="form-group row">
+                <label for="exampleClientName">Client Name</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.ClientName)
+            </div>
+            <div class="form-group row">
+                <label for="exampleContactNo1">Contact No.1</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.ContactNo1)
+            </div>
+            <div class="form-group row">
+                <label for="exampleContactNo2">Contact No.2</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.ContactNo2)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-6">
+        <div class="col-md-12 col-lg-12">
+            <div class="form-group-row">
+                <label for="exampleAddress">Address</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.Address)
+            </div>
+            <div class="form-group-row">
+                <label for="exampleRequriment">Requriment</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.Requriment)
+            </div>
+            <div class="form-group-row">
+                <label for="exampleDate">Date</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.Date)
+            </div>
+            <div class="form-group-row">
+                <label for="exampleScheduleDate">ScheduleDate</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.ScheduleDate)
+            </div>
+            <div class="form-group-row">
+                <label for="exampleRemark">Remark</label><br />
+                @Html.DisplayFor(model => model.ClientLeads.Remark)
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-lg-offset-5">
+    <button type="submit" class="btn btn-success" id="Delete" onclick="DeleteClientLeadData()">Delete</button>
+</div>

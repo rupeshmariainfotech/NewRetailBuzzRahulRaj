@@ -51,6 +51,18 @@ namespace CodeFirstServices.Services
             var details = _ClientLeadRepository.GetById(id);
             return details;
         }
+
+        public IEnumerable<ClientLead> GetAllClients()
+        {
+            var list = _ClientLeadRepository.GetAll();
+            return list;
+        }
+        public ClientLead getClientById(int id)
+        {
+            var client = _ClientLeadRepository.Get(cl => cl.ClientLeadId == id);
+            return client;
+        }
+
     }
 }
 

@@ -95,65 +95,147 @@
         bootbox.alert('<i class="fa fa-2x fa-warning"></i><br>' + message + '<hr>');
     }
 
-    function creditnotewithsellingpriceconfirmbox(message) {
+    //function creditnotewithsellingpriceconfirmbox(message) {
+    //    var sample = document.getElementById("audio");
+    //    sample.src = '../../Audio/tone2.ogg';
+    //    sample.load();
+    //    sample.muted = false;
+    //    sample.play();
+
+    //    bootbox.classes('confirmClass');
+    //    bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
+	//	 function (result) {
+	//	     if (result) {
+	//	         $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
+    //           function (data) {
+    //               window.open("/SalesReturn/PrintCreditNoteWithSellingPrice?id=" + data, "_target", "width=700,height=500,top=100px,left=350px");
+    //           });
+	//	     }
+	//	 });
+    //}
+
+    function SellingPriceCustomBox(message) {
         var sample = document.getElementById("audio");
-        sample.src = '../../Audio/tone2.ogg';
+        sample.src = '../../Audio/tone1.ogg';
+
         sample.load();
         sample.muted = false;
         sample.play();
-
-        bootbox.classes('confirmClass');
-        bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
-		 function (result) {
-		     if (result) {
-		         $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
-               function (data) {
-                   window.open("/SalesReturn/PrintCreditNoteWithSellingPrice?id=" + data, "_target", "width=700,height=500,top=100px,left=350px");
-               });
-		     }
-		 });
+        bootbox.classes('printConfirmClass');
+        bootbox.dialog(message,
+            [
+                {
+                    "label": "Cancel",
+                    "class": "btn-danger",
+                    "callback": function () {
+                        window.location.assign("/SalesReturn/SalesReturn");
+                    }
+                },
+                {
+                    "label": "Letter Head",
+                    "class": "btn-primary",
+                    "callback": function () {
+                        $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
+                        function (encodevalue) {
+                            window.open("/ReportEngine/RetailCreditNoteLetterHeadWithSP.aspx?id=" + encodevalue, "_target", "width=722,height=960,top=200px,left=200px");
+                        });
+                    }
+                },
+                {
+                    "label": "PrePrinted",
+                    "class": "btn-success",
+                    "callback": function () {
+                        $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
+                        function (encodevalue) {
+                            window.open("/ReportEngine/RetailCreditNotePrePrintedWithSP.aspx?id=" + encodevalue, "_target", "width=722,height=960,top=200px,left=200px");
+                        });
+                    }
+                }, ]
+        );
     }
 
-    function creditnotewithmrpconfirmbox(message) {
+
+    //function creditnotewithmrpconfirmbox(message) {
+    //    var sample = document.getElementById("audio");
+    //    sample.src = '../../Audio/tone2.ogg';
+    //    sample.load();
+    //    sample.muted = false;
+    //    sample.play();
+
+    //    bootbox.classes('confirmClass');
+    //    bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
+	//	 function (result) {
+	//	     if (result) {
+	//	         $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
+    //           function (data) {
+    //               window.open("/SalesReturn/PrintCreditNoteWithMRP?id=" + data, "_target", "width=700,height=500,top=100px,left=350px");
+    //           });
+	//	     }
+	//	 });
+    //}
+
+
+    function MRPCustomBox(message) {
         var sample = document.getElementById("audio");
-        sample.src = '../../Audio/tone2.ogg';
+        sample.src = '../../Audio/tone1.ogg';
+
         sample.load();
         sample.muted = false;
         sample.play();
-
-        bootbox.classes('confirmClass');
-        bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
-		 function (result) {
-		     if (result) {
-		         $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
-               function (data) {
-                   window.open("/SalesReturn/PrintCreditNoteWithMRP?id=" + data, "_target", "width=700,height=500,top=100px,left=350px");
-               });
-		     }
-		 });
+        bootbox.classes('printConfirmClass');
+        bootbox.dialog(message,
+            [
+                {
+                    "label": "Cancel",
+                    "class": "btn-danger",
+                    "callback": function () {
+                        window.location.assign("/SalesReturn/SalesReturn");
+                    }
+                },
+                {
+                    "label": "Letter Head",
+                    "class": "btn-primary",
+                    "callback": function () {
+                        $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
+                    function (encodevalue) {
+                        window.open("/ReportEngine/RetailCreditNoteLetterHeadWithMRP.aspx?id=" + encodevalue, "_target", "width=722,height=960,top=200px,left=200px");
+                    });
+                    }
+                },
+                {
+                    "label": "PrePrinted",
+                    "class": "btn-success",
+                    "callback": function () {
+                        $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
+                        function (encodevalue) {
+                            window.open("/ReportEngine/RetailCreditNotePrePrintedWithMRP.aspx?id=" + encodevalue, "_target", "width=722,height=960,top=200px,left=200px");
+                        });
+                    }
+                }, ]
+        );
     }
 
-    function confirmbox(message) {
-        var sample = document.getElementById("audio");
-        sample.src = '../../Audio/tone2.ogg';
-        sample.load();
-        sample.muted = false;
-        sample.play();
+    //function confirmbox(message) {
+    //    var sample = document.getElementById("audio");
+    //    sample.src = '../../Audio/tone2.ogg';
+    //    sample.load();
+    //    sample.muted = false;
+    //    sample.play();
 
-        bootbox.classes('confirmClass');
-        bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
-		 function (result) {
-		     if (result) {
-		         $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
-                  function (data) {
-                      window.open("/SalesReturn/PrintSalesReturn?id=" + data, "_target", "width=770,height=842,top=200px,left=300px");
-                  });
-		     }
-		     else {
-		         window.location.assign("/SalesReturn/SalesReturn");
-		     }
-		 });
-    }
+    //    bootbox.classes('confirmClass');
+    //    bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
+	//	 function (result) {
+	//	     if (result) {
+	//	         $.getJSON("/SalesReturn/EncodeId", { id: document.getElementById("SalesReturnDetails_Id").value },
+    //              function (data) {
+    //                  window.open("/SalesReturn/PrintSalesReturn?id=" + data, "_target", "width=770,height=842,top=200px,left=300px");
+    //              });
+	//	     }
+	//	     else {
+	//	         window.location.assign("/SalesReturn/SalesReturn");
+	//	     }
+	//	 });
+    //}
 </script>
 
 <script>
@@ -306,11 +388,11 @@
         });
 
         $("#CreditPrintSellingPrice").click(function () {
-            creditnotewithsellingpriceconfirmbox("Do You Want To Print Credit Note");
+            SellingPriceCustomBox("Do You Want To Print Credit Note");
         });
 
         $("#CreditPrintMRP").click(function () {
-            creditnotewithmrpconfirmbox("Do You Want To Print Credit Note");
+            MRPCustomBox("Do You Want To Print Credit Note");
         });
     });
 </script>

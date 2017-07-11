@@ -367,12 +367,15 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
             if (document.getElementById(editId) != null) {
                 document.getElementById(editId).style.display = "none";
                 document.getElementById(labelEditId).style.display = "inline";
-                document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                document.getElementById(allRowId).className = "searchTableBg";
+
             }
         }
         var rowId = "rowId" + count;
         if (document.getElementById(rowId) != null) {
-            document.getElementById(rowId).style.backgroundColor = "lightgreen";
+            //document.getElementById(rowId).style.backgroundColor = "lightgreen";
+            document.getElementById(rowId).className = "searchTableBgClick";
             var typeOfSuppilerData = document.getElementById("ddlDesignation").value;
             document.getElementById("ddlDesignation").disabled = true;
             document.getElementById("SearchText").disabled = true;

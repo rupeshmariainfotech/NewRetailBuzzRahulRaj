@@ -221,13 +221,16 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                 document.getElementById(editId).style.display = "none";
                 document.getElementById(labelEditId).style.display = "inline";
                 //document.getElementById(labelDeleteId).style.display = "inline";
-                document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                document.getElementById(allRowId).className = "searchTableBg";
+
             }
         }
 
         var rowId = "rowId" + count;
         if (document.getElementById(rowId) != null) {
-            document.getElementById(rowId).style.backgroundColor = "lightgreen";
+            //document.getElementById(rowId).style.backgroundColor = "lightgreen";
+            document.getElementById(rowId).className = "searchTableBgClick";
             document.getElementById("ddltypeofmode").disabled = true;
             document.getElementById("SearchText").disabled = true;
             document.getElementById("SearchButton").disabled = true;
@@ -410,7 +413,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                 document.getElementById("pagertextbox").disabled = false;
                 document.getElementById("pagerdropdown").disabled = false;
                 document.getElementById("pager").style.display = "inline";
-                document.getElementById("rowId" + count).style.background = "#F1DDE7";
+                document.getElementById("rowId" + count).className = "searchTableBg";/*.style.background = "#F1DDE7";*/
             }
         });
     }

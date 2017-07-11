@@ -208,12 +208,14 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
             if (document.getElementById(deleteId) != null) {
                 document.getElementById(deleteId).style.display = "none";
                 document.getElementById(labelDeleteId).style.display = "inline";
-                document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(allRowId).style.backgroundColor = "#F1DDE7";
+                  document.getElementById(allRowId).className="searchTableBg"
             }
         }
         var rowId = "rowId" + count;
         if (document.getElementById(rowId) != null) {
-            document.getElementById(rowId).style.backgroundColor = "lightgreen";
+            //document.getElementById(rowId).style.backgroundColor = "lightgreen";
+              document.getElementById(rowId).className="searchTableBgClick"
             //document.getElementById("ddltypeofsupplier").disabled = true;
             document.getElementById("SearchText").disabled = true;
             document.getElementById("SearchButton").disabled = true;

@@ -18,5 +18,9 @@ namespace CodeFirstServices.Interfaces
 
         IEnumerable<ClientLead> GetActiveClientLead();
         ClientLead GetClientLeadById(int id);
+
+        IEnumerable<ClientLead> GetAllClients();
+
+        ClientLead getClientById(int id);
     }
 }

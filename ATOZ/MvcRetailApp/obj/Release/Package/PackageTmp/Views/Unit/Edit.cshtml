@@ -131,13 +131,15 @@
             editid = "EditId" + i;
             rowid = "rowid" + i;
             if (document.getElementById(editid) != null) {
-                document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                document.getElementById(rowid).className = "searchTableBg";
                 document.getElementById(editid).disabled = true;
             }
         }
         var RowId = "rowid" + count;
         if (document.getElementById(RowId) != null) {
-            document.getElementById(RowId).style.backgroundColor = "lightgreen";
+            //document.getElementById(RowId).style.backgroundColor = "lightgreen";
+            document.getElementById(RowId).className = "searchTableBgClick";
         }
 
         $.ajax({

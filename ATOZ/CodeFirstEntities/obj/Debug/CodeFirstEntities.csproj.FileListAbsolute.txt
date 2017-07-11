@@ -14,6 +14,6 @@ D:\RetailBuzz\ATOZ\CodeFirstEntities\obj\Debug\CodeFirstEntities.dll
 D:\RetailBuzz\ATOZ\CodeFirstEntities\obj\Debug\CodeFirstEntities.pdb
 E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\bin\Debug\CodeFirstEntities.dll
 E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\bin\Debug\CodeFirstEntities.pdb
+E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\obj\Debug\CodeFirstEntities.csprojResolveAssemblyReference.cache
 E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\obj\Debug\CodeFirstEntities.dll
 E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\obj\Debug\CodeFirstEntities.pdb
-E:\Megha\RetailBuzz\ATOZ\CodeFirstEntities\obj\Debug\CodeFirstEntities.csprojResolveAssemblyReference.cache

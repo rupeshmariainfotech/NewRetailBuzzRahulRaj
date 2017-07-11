@@ -94,14 +94,17 @@
 		             var rows = "Row" + i;
 		             var deletebutton = "Delete" + i;
 		             if (document.getElementById(rows) != null) {
-		                 document.getElementById(rows).style.background = "#F1DDE7";
+		                 //document.getElementById(rows).style.background = "#F1DDE7";
+		                 document.getElementById(rows).className = "searchTableBg";
 		                 document.getElementById(deletebutton).disabled = true;
 		             }
 		         }
 		         document.getElementById("SearchButton").disabled = true;
 		         document.getElementById("Search").disabled = true;
 		         document.getElementById("pager").style.display = "none";
-		         document.getElementById(rowid).style.background = "lightgreen";
+		         //document.getElementById(rowid).style.background = "lightgreen";
+		         document.getElementById(rowid).className = "searchTableBgClick";
+
 		     }
 		     else {
 		         window.location.reload();

@@ -744,23 +744,8 @@ $(this).parents('form:eq(0),body').find();
                     validationcount = 1;
                     return false;
                 }
-                else if ($("#BillPaymentDetails_ChequeAccNo").val() == "") {
-                    alertbox("Please Enter Cheque Account No");
-                    validationcount = 1;
-                    return false;
-                }
                 else if ($("#BillPaymentDetails_ChequeAmount").val() == "") {
                     alertbox("Please Enter Cheque Amount");
-                    validationcount = 1;
-                    return false;
-                }
-                else if ($("#BillPaymentDetails_ChequeDate").val() == "") {
-                    alertbox("Please Enter Cheque Date");
-                    validationcount = 1;
-                    return false;
-                }
-                else if ($("#BillPaymentDetails_ChequeBank").val() == "") {
-                    alertbox("Please Enter Cheque Bank");
                     validationcount = 1;
                     return false;
                 }
@@ -1051,23 +1036,8 @@ $(this).parents('form:eq(0),body').find();
                         validationcount = 1;
                         return false;
                     }
-                    else if ($("#BillPaymentDetails_ChequeAccNo").val() == "") {
-                        alertbox("Please Enter Cheque Account No");
-                        validationcount = 1;
-                        return false;
-                    }
                     else if ($("#BillPaymentDetails_ChequeAmount").val() == "") {
                         alertbox("Please Enter Cheque Amount");
-                        validationcount = 1;
-                        return false;
-                    }
-                    else if ($("#BillPaymentDetails_ChequeDate").val() == "") {
-                        alertbox("Please Enter Cheque Date");
-                        validationcount = 1;
-                        return false;
-                    }
-                    else if ($("#BillPaymentDetails_ChequeBank").val() == "") {
-                        alertbox("Please Enter Cheque Bank");
                         validationcount = 1;
                         return false;
                     }
@@ -1383,7 +1353,7 @@ $(this).parents('form:eq(0),body').find();
                                 <td>
                                     <div style="height: 12px"></div>
                                     <div class="col-lg-12 col-md-12" id="TypeOfPaymentLabel" style="display: none;">
-                                        <label style="font-weight: bolder; font-size: 14px;">Type Of Payment</label>
+                                        <label style="font-weight: bolder; font-size: 14px;">Mode Of Payment</label>
                                     </div>
                                 </td>
                             </tr>
@@ -1395,16 +1365,8 @@ $(this).parents('form:eq(0),body').find();
                                             <label>&nbsp Cash</label>
                                         </div>
                                         <div class="col-md-3 col-lg-3">
-                                            <input type="radio" name="CashierRadioBtn" onclick="CashierModule('Card')" />
-                                            <label>&nbsp Card</label>
-                                        </div>
-                                        <div class="col-md-3 col-lg-3">
                                             <input type="radio" name="CashierRadioBtn" onclick="CashierModule('Cheque')" />
                                             <label>&nbsp Cheque</label>
-                                        </div>
-                                        <div class="col-md-3 col-lg-3">
-                                            <input type="radio" name="CashierRadioBtn" onclick="CashierModule('CashCardCheque')" />
-                                            <label>&nbsp Cash/Card/Cheque</label>
                                         </div>
                                     </div>
                                 </td>

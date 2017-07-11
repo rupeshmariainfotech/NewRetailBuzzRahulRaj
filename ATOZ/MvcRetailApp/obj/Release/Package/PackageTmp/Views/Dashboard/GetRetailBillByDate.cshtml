@@ -42,7 +42,7 @@
         function PrintRetailBillDetails(id) {
             $.getJSON("/RetailBill/EncodeId", { id: id },
                     function (encodevalue) {
-                        window.open("/RetailBill/PrintRetailBill?id=" + encodevalue, "_target", "width=1000,height=842,top=100px,left=300px");
+                        window.open("/ReportEngine/RetailBillLetterHeadWithSP.aspx?id=" + encodevalue, "_target", "width=1000,height=842,top=100px,left=300px");
                     });
         }
     </script>

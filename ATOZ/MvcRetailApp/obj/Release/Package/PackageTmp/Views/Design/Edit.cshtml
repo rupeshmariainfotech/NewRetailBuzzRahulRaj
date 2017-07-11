@@ -145,7 +145,8 @@
             DesignEditId = "EditId" + i;
             rowid = "rowid" + i;
             if (document.getElementById(DesignEditId) != null) {
-                document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                //document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                document.getElementById(rowid).className = "searchTableBg";
                 document.getElementById(DesignEditId).disabled = true;
             }
         }
@@ -153,8 +154,9 @@
         document.getElementById("ddlsubcategory").disabled = true;
         var rowid = "rowid" + count;
         if (document.getElementById(rowid) != null) {
-            document.getElementById(rowid).style.backgroundColor = "lightgreen";
-        }
+            //document.getElementById(rowid).style.backgroundColor = "lightgreen";
+            document.getElementById(rowid).className = "searchTableBgClick";
+    }
 
         $.ajax({
             url: '/Design/EditPartial',
@@ -227,7 +229,7 @@
                 }
 
             }
-            document.getElementById("rowid" + count).style.background = "#F1DDE7";
+            document.getElementById("rowid" + count).className = "searchTableBg";/*.style.background = "#F1DDE7";*/
             document.getElementById("pager").style.display = "inline";
             document.getElementById('pagertextbox').disabled = false;
             document.getElementById('pagerdropdown').disabled = false;

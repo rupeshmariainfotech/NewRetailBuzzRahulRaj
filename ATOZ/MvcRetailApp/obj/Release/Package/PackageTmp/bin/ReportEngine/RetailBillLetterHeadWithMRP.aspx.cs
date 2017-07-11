@@ -31,7 +31,7 @@ namespace MvcRetailApp.ReportEngine
                // int id = Convert.ToInt32(Request.QueryString["id"]);
                 string id = Request.QueryString["id"];
                 int RetailBillId = Decode(id);
-                SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagementConnectionString"].ConnectionString);
+                SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagement3ConnectionString"].ConnectionString);
                 SqlDataAdapter adp2 = new SqlDataAdapter("select * from RetailBills where RetailMasterId=" + RetailBillId, con);
                 RetailManagementDataSet5 ds2 = new RetailManagementDataSet5();
                 con.Open();
@@ -55,25 +55,25 @@ namespace MvcRetailApp.ReportEngine
                 //ReportViewer1.LocalReport.SetParameters(parameter);                
                 ReportViewer1.LocalReport.Refresh();
 
-                //Warning[] warnings;
-                //string[] streamIds;
-                //string mimetype = string.Empty;
-                //string encoding = string.Empty;
-                //string extension = string.Empty;
-                //string title = "Retail Bill";
-                //byte[] bytes = ReportViewer1.LocalReport.Render("PDF", null, out mimetype, out encoding, out extension, out streamIds, out warnings);
-                //Response.Buffer = true;
-                //Response.Clear();
-                //Response.ContentType = "application/pdf";
-                //Response.BinaryWrite(bytes);
-                //Response.End();
-                //string filename = "RetailBill.pdf";
-                //string path = Server.MapPath("C");
-                //FileStream file = new FileStream(path + "/" + filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                //file.Write(bytes, 0, bytes.Length);
-                //file.Dispose();
+                Warning[] warnings;
+                string[] streamIds;
+                string mimetype = string.Empty;
+                string encoding = string.Empty;
+                string extension = string.Empty;
+                string title = "Retail Bill";
+                byte[] bytes = ReportViewer1.LocalReport.Render("PDF", null, out mimetype, out encoding, out extension, out streamIds, out warnings);
+                Response.Buffer = true;
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.BinaryWrite(bytes);
+                Response.End();
+                string filename = "RetailBillLetterHeadWithMRP.pdf";
+                string path = Server.MapPath("C");
+                FileStream file = new FileStream(path + "/" + filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                file.Write(bytes, 0, bytes.Length);
+                file.Dispose();
 
-                //Response.Write(string.Format("<script>window.open('{0}','_blank');</script>", "RetailBillLetterHeadWithMRP.aspx?file=" + filename));
+                Response.Write(string.Format("<script>window.open('{0}','_blank');</script>", "RetailBillLetterHeadWithMRP.aspx?file=" + filename));
                 
 
 
@@ -83,7 +83,7 @@ namespace MvcRetailApp.ReportEngine
 
         private DataTable GetDs(int RBId)
         {
-            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagementConnectionString"].ConnectionString);
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagement3ConnectionString"].ConnectionString);
             string RetailBillNo = Session["RetailBillNo"].ToString();
             SqlDataAdapter adp1 = new SqlDataAdapter("select * from RetailBillItems where RetailBillNo='" + RetailBillNo + "'", con);
             RetailManagementDataSet4 ds1 = new RetailManagementDataSet4();
@@ -99,7 +99,7 @@ namespace MvcRetailApp.ReportEngine
 
         private DataTable GetDs1(int RBId)
         {
-            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagementConnectionString"].ConnectionString);
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagement3ConnectionString"].ConnectionString);
             SqlDataAdapter adp2 = new SqlDataAdapter("select * from RetailBills where RetailMasterId=" + RBId, con);
             RetailManagementDataSet5 ds2 = new RetailManagementDataSet5();
             con.Open();
@@ -113,7 +113,7 @@ namespace MvcRetailApp.ReportEngine
 
         private DataTable GetDs2()
         {
-            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagementConnectionString"].ConnectionString);
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagement3ConnectionString"].ConnectionString);
             string rbno = Session["RetailBillNo"].ToString();
             SqlDataAdapter adp3 = new SqlDataAdapter("select * from InventoryTaxes where Code='" + rbno + "'", con);
             InventoryTaxesDataSet ds3 = new InventoryTaxesDataSet();
@@ -127,7 +127,7 @@ namespace MvcRetailApp.ReportEngine
         }
         private DataTable GetDs3()
         {
-            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagementConnectionString"].ConnectionString);
+            SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["RetailManagement3ConnectionString"].ConnectionString);
             string rbno = Session["RetailBillNo"].ToString();
             SqlDataAdapter adp3 = new SqlDataAdapter("select * from SalesReturns where BillNo='" + rbno + "'", con);
             SalesReturnsDataset ds4 = new SalesReturnsDataset();

@@ -34,7 +34,7 @@
                 @Html.TextBoxFor(model => model.BillPaymentDetails.ChequeNo, new { @class="form-control", @placeholder="Check No"})
             </td>
             <td class="col-lg-3 col-md-3">
-                <label>Account No.<i style="color:red">*</i></label><br />
+                <label>Account No.</label><br />
                 @Html.TextBoxFor(model => model.BillPaymentDetails.ChequeAccNo, new { @class="form-control", @placeholder="Account No"})
             </td>
             <td class="col-lg-3 col-md-3">
@@ -42,7 +42,7 @@
                 @Html.TextBoxFor(model => model.BillPaymentDetails.ChequeAmount, new { @class="form-control", @placeholder="Amount", @onkeypress="return AllowNumbers(event)"})
             </td>
             <td class="col-lg-3 col-md-3">
-                <label>Date<i style="color:red">*</i></label><br />
+                <label>Date</label><br />
                 @Html.TextBoxFor(model => model.BillPaymentDetails.ChequeDate, new { @class="form-control", @placeholder="Date"})
             </td>
         </tr>
@@ -54,7 +54,7 @@
         </tr>
         <tr>
             <td class="col-lg-3 col-md-3">
-                <label>Bank<i style="color:red">*</i></label><br />
+                <label>Bank</label><br />
                 @Html.TextBoxFor(model => model.BillPaymentDetails.ChequeBank, new { @class="form-control", @placeholder="Bank Name"})
             </td>
             <td class="col-lg-3 col-md-3">

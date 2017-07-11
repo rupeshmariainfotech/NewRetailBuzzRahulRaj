@@ -58,62 +58,69 @@
             links[16] = "/Supplier/Edit";
             links[17] = "/Supplier/Delete";
 
-            links[18] = "/Client/Create";
-            links[19] = "/Client/Edit";
-            links[20] = "/Client/Delete";
+            links[18] = "/ClientLead/Create";
+            links[19] = "/ClientLead/Edit";
+            links[20] = "/ClientLead/Delete";
 
-            links[21] = "/Transport/Create";
-            links[22] = "/Transport/Edit";
-            links[23] = "/Transport/Delete";
+            links[21] = "/Client/Create";
+            links[22] = "/Client/Edit";
+            links[23] = "/Client/Delete";
 
-            links[24] = "/Design/Create";
-            links[25] = "/Design/Edit";
-            links[26] = "/Design/Delete";
+            links[24] = "/Transport/Create";
+            links[25] = "/Transport/Edit";
+            links[26] = "/Transport/Delete";
 
-            links[27] = "/TypeOfMaterial/Create";
-            links[28] = "/TypeOfMaterial/Edit";
-            links[29] = "/TypeOfMaterial/Delete";
+            links[27] = "/Design/Create";
+            links[28] = "/Design/Edit";
+            links[29] = "/Design/Delete";
 
-            links[30] = "/Brand/CreateBrand";
-            links[31] = "/Brand/EditBrand";
-            links[32] = "/Brand/Deletebrand";
+            links[30] = "/TypeOfMaterial/Create";
+            links[31] = "/TypeOfMaterial/Edit";
+            links[32] = "/TypeOfMaterial/Delete";
 
-            links[33] = "/Shop/Create";
-            links[34] = "/Shop/Edit";
-            links[35] = "/Shop/Delete";
+            links[33] = "/Brand/CreateBrand";
+            links[34] = "/Brand/EditBrand";
+            links[35] = "/Brand/Deletebrand";
 
-            links[36] = "/Godown/Create";
-            links[37] = "/Godown/Edit";
-            links[38] = "/Godown/Delete";
+            links[36] = "/Shop/Create";
+            links[37] = "/Shop/Edit";
+            links[38] = "/Shop/Delete";
 
-            links[39] = "/Unit/Create";
-            links[40] = "/Unit/Edit";
-            links[41] = "/Unit/Delete";
+            links[39] = "/Godown/Create";
+            links[40] = "/Godown/Edit";
+            links[41] = "/Godown/Delete";
 
-            links[42] = "/PurchaseItemTax/Create";
-            links[43] = "/PurchaseItemTax/Edit";
-            links[44] = "/PurchaseItemTax/Delete";
+            links[42] = "/Unit/Create";
+            links[43] = "/Unit/Edit";
+            links[44] = "/Unit/Delete";
 
-            links[45] = "/ItemTax/Create";
-            links[46] = "/ItemTax/Edit";
-            links[47] = "/ItemTax/Delete";
+            links[45] = "/PurchaseItemTax/Create";
+            links[46] = "/PurchaseItemTax/Edit";
+            links[47] = "/PurchaseItemTax/Delete";
 
-            links[48] = "/Item/CreateCategory";
-            links[49] = "/Item/EditCategory";
-            links[50] = "/Item/DeleteCategory";
+            links[48] = "/ItemTax/Create";
+            links[49] = "/ItemTax/Edit";
+            links[50] = "/ItemTax/Delete";
 
-            links[51] = "/Item/CreateSubCategory";
-            links[52] = "/Item/EditSubCategory";
-            links[53] = "/Item/DeleteSubCategory";
+            links[51] = "/Item/CreateCategory";
+            links[52] = "/Item/EditCategory";
+            links[53] = "/Item/DeleteCategory";
 
-            links[54] = "/Item/CreateItem";
-            links[55] = "/Item/EditItem";
-            links[56] = "/Item/CreateItemName";
+            links[54] = "/Item/CreateSubCategory";
+            links[55] = "/Item/EditSubCategory";
+            links[56] = "/Item/DeleteSubCategory";
 
-            //links[57] = "/DiscountMaster/CreateDiscount";
-            links[57] = "/Item/DeleteItemName";
-            links[58] = "/DiscountMaster/EditDiscount";
-            links[59] = "/DiscountMaster/DeleteDiscount";
+            links[57] = "/Item/CreateItem";
+            links[58] = "/Item/EditItem";
+            links[59] = "/Item/DeleteItemName";
+
+            links[60] = "/DiscountMaster/CreateDiscount";
+            links[61] = "/DiscountMaster/EditDiscount";
+            links[62] = "/DiscountMaster/DeleteDiscount";
+
+            //links[60] = "/ESIC/Create";
+            //links[61] = "/ESIC/Edit";
+            //links[62] = "/ESIC/Delete";
 
             int i = 0;
             int count = 0;
@@ -126,7 +133,7 @@
                 <ul class="nav nav-second-level" style="background-color: white;">
                     @foreach (var item in Model.userCredentialList)
                      {
-                        if (!string.IsNullOrEmpty(item.Status) && item.ModuleId <= 14)
+                        if (!string.IsNullOrEmpty(item.Status) && item.ModuleId <= 15)
                         {
                         <li>
                             <a href="#"><i class="@item.Icon"></i><span>@item.Modules</span><span class="fa arrow"></span></a>
@@ -135,7 +142,7 @@
                                 {
                                
                                     <li>
-                                        <a href="@links[i]"><i class="fa fa-plus-square"></i>&nbsp;<span>Create</span></a>
+                                        <a href="@links[i]"><i class="fa fa-plus-square"></i>&nbsp;<span >Create</span></a>
                                     </li>
                                     i++;
                                 }
@@ -179,7 +186,7 @@
                         
                          {
                                     count++;
-                                    if (item.ModuleId <= 14)
+                                    if (item.ModuleId <= 15)
                                     {
                                         i++; i++; i++;
                                     }
@@ -193,7 +200,7 @@
                         <ul class="nav nav-second-level">
                             @foreach (var item in Model.userCredentialList)
                             {
-                                if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 15)
+                                if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 16)
                                 {
                                 <li>
                                     <a href="#"><i class="@item.Icon"></i><span>Purchase Tax</span><span class="fa arrow"></span></a>
@@ -236,7 +243,7 @@
                                     </ul>
                                 </li>
                                 }
-                                else if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 16)
+                                else if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 17)
                                 {
                                 <li>
                                     <a href="#"><i class="@item.Icon"></i><span>Sales Tax</span><span class="fa arrow"></span></a>
@@ -282,7 +289,7 @@
                                 else
                                 {
                                     taxcount++;
-                                    if (item.ModuleId >= 15 && item.ModuleId <= 16)
+                                    if (item.ModuleId >= 16 && item.ModuleId <= 17)
                                     {
                                         i++; i++; i++;
                                     }
@@ -292,7 +299,7 @@
                     </li>
                     @foreach (var item in Model.userCredentialList)
                     {
-                        if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 17 && item.ModuleId <= 20)
+                        if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 18 && item.ModuleId <= 21)
                         {
                         <li>
                             <a href="#"><i class="@item.Icon"></i><span>@item.Modules</span><span class="fa arrow"></span></a>
@@ -338,7 +345,7 @@
                         else
                         { 
                             remainingmastercount++; 
-                            if (item.ModuleId >= 17 && item.ModuleId <= 20)
+                            if (item.ModuleId >= 18 && item.ModuleId <= 21)
                             {
                                 i++; i++; i++;
                             }
@@ -376,7 +383,7 @@
                         foreach (var item in Model.userCredentialList)
                         {
 
-                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 21 && item.ModuleId <= 22)
+                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 22 && item.ModuleId <= 23)
                             {
                                 if (item.Modules == "Cashier Receipt")
                                 {
@@ -431,7 +438,7 @@
                         foreach (var item in Model.userCredentialList)
                         {
 
-                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 23 && item.ModuleId <= 24)
+                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 24 && item.ModuleId <= 25)
                             {
                                 if (item.Modules == "Cashier")
                                 {
@@ -461,7 +468,7 @@
                                 @foreach (var item in Model.userCredentialList)
                                 {
 
-                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 25)
+                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 26)
                                     {
                                         if (item.Modules == "Card-Cheque Handover")
                                         {
@@ -486,7 +493,7 @@
                         </li> 
                                 foreach (var item in Model.userCredentialList)
                                 {
-                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 26)
+                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 28)
                                     {
                                         if (item.Modules == "Income Expense Voucher Entry")
                                         {
@@ -532,7 +539,7 @@
                         foreach (var item in Model.userCredentialList)
                         {
 
-                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 27 && item.ModuleId <= 29)
+                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 28 && item.ModuleId <= 30)
                             {
                                 if (item.Modules == "Purchase Order")
                                 {
@@ -603,7 +610,7 @@
                         {
                             foreach (var item in Model.userCredentialList)
                             {
-                                if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 30 && item.ModuleId <= 32)
+                                if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 31 && item.ModuleId <= 33)
                                 {
                                     if (item.Modules == "Stock")
                                     {
@@ -634,7 +641,7 @@
                             <ul class="nav nav-third-level">
                                 @foreach (var item in Model.userCredentialList)
                                 {
-                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 33 && item.ModuleId <= 38)
+                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 41 && item.ModuleId <= 46)
                                     {
 
                                         if (item.Modules == "Supplier Inwards")
@@ -686,7 +693,7 @@
                             <ul class="nav nav-third-level">
                                 @foreach (var item in Model.userCredentialList)
                                 {
-                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 39 && item.ModuleId <= 43)
+                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 40 && item.ModuleId <= 54)
                                     {
                                         if (item.Modules == "Outward To Client")
                                         {
@@ -765,7 +772,7 @@
             {
                 foreach (var item in Model.userCredentialList)
                 {
-                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 44)
+                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 55)
                     {
             <li>
                 <a href="~/BarcodePrinting/BarcodePrinting"><i class="fa fa-barcode"></i><span>@item.Modules</span></a>
@@ -779,7 +786,7 @@
             {
                 foreach (var item in Model.userCredentialList)
                 {
-                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 45)
+                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId == 46)
                     {
             <li>
                 <a href="~/CostCodeCreation/CostCodeCreate"><i class="fa fa-barcode"></i><span>@item.Modules</span></a>
@@ -812,7 +819,7 @@
                             foreach (var item in Model.userCredentialList)
                             {
 
-                                if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 46 && item.ModuleId <= 53)
+                                if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 47 && item.ModuleId <= 54)
                                 {
                                     if (item.Modules == "Quotation")
                                     {
@@ -895,7 +902,7 @@
                         foreach (var item in Model.userCredentialList)
                         {
 
-                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 54 && item.ModuleId <= 57)
+                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 55 && item.ModuleId <= 58)
                             {
                                 if (item.Modules == "Stock Verification")
                                 {
@@ -980,6 +987,8 @@
                links7[27] = "/MisReports/StartingBlankPageForSalesReport";
                links7[28] = "/MisReports/CommissionReport";
                links7[29] = "/MisReports/CommissionReleaseReport";
+               links7[30] = "/MisReports/StockReport";
+               links7[31] = "/MisReports/RetailBillReport";
 
                count = 0;
                 <ul class="nav nav-third-level">
@@ -987,7 +996,7 @@
                     {
                         foreach (var item in Model.userCredentialList)
                         {
-                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 58 && item.ModuleId <= 87)
+                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 59 && item.ModuleId <= 90)
                             {
                                 if (item.Modules == "Employee Report")
                                 {
@@ -1169,6 +1178,18 @@
                             <a href="@links7[29]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
+                                if (item.Modules == "Stock Report")
+                                {
+                        <li>
+                            <a href="@links7[30]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
+                        </li>
+                                }
+                                if (item.Modules == "Retail Bill Report")
+                                {
+                        <li>
+                            <a href="@links7[31]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
+                        </li>
+                                }
                             }
                             else { count++; }
                         }
@@ -1204,7 +1225,7 @@
                         foreach (var item in Model.userCredentialList)
                         {
 
-                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 88 && item.ModuleId <= 93)
+                            if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 91 && item.ModuleId <= 96)
                             {
                                 if (item.Modules == "Job Worker")
                                 {
@@ -1267,7 +1288,7 @@
                                 @foreach (var item in Model.userCredentialList)
                                 {
 
-                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 94 && item.ModuleId <= 95)
+                                    if (!string.IsNullOrEmpty(item.Status) && item.ModuleId >= 97 && item.ModuleId <= 98)
                                     {
                                         if (item.Modules == "Job Work Stock Report")
                                         {

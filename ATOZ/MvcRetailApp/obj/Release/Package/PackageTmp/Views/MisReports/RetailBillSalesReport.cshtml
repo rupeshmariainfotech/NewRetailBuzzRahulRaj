@@ -349,15 +349,15 @@ $(this).parents('form:eq(0),body').find();
                 <table border="1" class="table" style="border-collapse: collapse; width: 100%;" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#FF647A"><label style="color:white">Bill<br />Date</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#12AEC4"><label style="color:white">Tax Free<br />Goods Value</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#FB3F8A"><label style="color:white">1% Goods<br />Value</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#65BD77"><label style="color:white">1% VAT<br />Amount</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#E9967A"><label style="color:white">5.5% Goods<br />Value</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#009999"><label style="color:white">5.5% VAT<br />Amount</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#B266FF"><label style="color:white">12.5% Goods<br />Value</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#E65055"><label style="color:white">12.5% VAT<br />Amount</label></th>
-                            <th style="text-align: center; color:red; font-size:14px; background-color:#00CC00"><label style="color:white">Net<br />Amount</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade1"><label style="color:white">Bill<br />Date</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade2"><label style="color:white">Tax Free<br />Goods Value</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade3"><label style="color:white">1% Goods<br />Value</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade4"><label style="color:white">1% VAT<br />Amount</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade5"><label style="color:white">5.5% Goods<br />Value</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade6"><label style="color:white">5.5% VAT<br />Amount</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade7"><label style="color:white">12.5% Goods<br />Value</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade8"><label style="color:white">12.5% VAT<br />Amount</label></th>
+                            <th style="text-align: center; color:red; font-size:14px;" class="colorShade9"><label style="color:white">Net<br />Amount</label></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -414,7 +414,7 @@ $(this).parents('form:eq(0),body').find();
                     <tbody>
                         @{
                                     <tr>
-                                                <td style="text-align: right;"><button type="button" class="btn btn-success" onclick="GetResult()">Result</button><input type="hidden" id="ttlbilldate" name="ttlbilldate" value="Result"/></td>
+                                                <td style="text-align: center;"><button type="button" class="btn btn-success" onclick="GetResult()">Result</button><input type="hidden" id="ttlbilldate" name="ttlbilldate" value="Result"/></td>
                                                 <td style="text-align: right;"><label id="ttltaxfreegoods" style="color:blue"></label><input type="hidden" id="ttltaxfreegoodsval" name="ttltaxfreegoodsval"/></td>
                                                 <td style="text-align: right;"><label id="ttlonepergoods" style="color:blue"></label><input type="hidden" id="ttlonepergoodsval" name="ttlonepergoodsval"/></td>
                                                 <td style="text-align: right;"><label id="ttlonepervat" style="color:blue"></label><input type="hidden" id="ttlonepervatval" name="ttlonepervatval"/></td>

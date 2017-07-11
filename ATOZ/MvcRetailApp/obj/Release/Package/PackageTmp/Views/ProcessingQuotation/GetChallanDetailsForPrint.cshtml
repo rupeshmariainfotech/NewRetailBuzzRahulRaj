@@ -46,7 +46,7 @@
                         function (encodevalue) {
                             //var w = window.open("/ProcessingQuotation/PrintChallanSellingPriceLH?id=" + encodevalue, "_target", "width=770.97,height=956.22,top=200px,left=300px");
                             //w.window.print();
-                            window.open("/ReportEngine/PrintDeliveryChallanLetterHeadSP.aspx?id=" + encodevalue, "_target", "width=770.97,height=956.22,top=200px,left=300px");
+                            window.open("/ReportEngine/DeliveryChallanLetterHeadSP.aspx?id=" + encodevalue, "_target", "width=770.97,height=956.22,top=200px,left=300px");
                         });
                     }
                 },
@@ -58,7 +58,7 @@
                     $.getJSON("/ProcessingQuotation/EncodeId", { id: document.getElementById("DeliveryChallanDetails_Id").value },
                     function (encodevalue) {
                         //window.open("/ProcessingQuotation/PrintChallanSellingPricePrePrinted?id=" + encodevalue, "_target", "width=850,height=842,top=200px,left=300px");
-                        window.open("/ReportEngine/PrintDeliveryChallanPrePrintedSP.aspx?id=" + encodevalue, "_target", "width=850,height=842,top=200px,left=300px");
+                        window.open("/ReportEngine/DeliveryChallanPrePrintedSP.aspx?id=" + encodevalue, "_target", "width=850,height=842,top=200px,left=300px");
                     });
                 }
             }, ]
@@ -91,7 +91,7 @@
                         function (encodevalue) {
                             //var w = window.open("/ProcessingQuotation/PrintChallanMRPLH?id=" + encodevalue, "_target", "width=770.97,height=956.22,top=200px,left=300px");
                             //w.window.print();
-                            window.open("/ReportEngine/PrintDeliveryChallanLetterHeadMRP.aspx?id=" + encodevalue, "_target", "width=770.97,height=956.22,top=200px,left=300px");
+                            window.open("/ReportEngine/DeliveryChallanLetterHeadMRP.aspx?id=" + encodevalue, "_target", "width=770.97,height=956.22,top=200px,left=300px");
                         });
                     }
                 },
@@ -103,7 +103,7 @@
                     $.getJSON("/ProcessingQuotation/EncodeId", { id: document.getElementById("DeliveryChallanDetails_Id").value },
                     function (encodevalue) {
                         //window.open("/ProcessingQuotation/PrintChallanMRPPrePrinted?id=" + encodevalue, "_target", "width=850,height=842,top=200px,left=300px");
-                        window.open("/ReportEngine/PrintDeliveryChallanPrePrintedMRP.aspx?id=" + encodevalue, "_target", "width=850,height=842,top=200px,left=300px");
+                        window.open("/ReportEngine/DeliveryChallanPrePrintedMRP.aspx?id=" + encodevalue, "_target", "width=850,height=842,top=200px,left=300px");
                     });
                 }
             }, ]

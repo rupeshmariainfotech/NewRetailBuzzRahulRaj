@@ -83,11 +83,12 @@
 		             var del = "Delete" + i;
 		             var row = "Row" + i;
 		             document.getElementById(del).disabled = true;
-		             document.getElementById(row).style.background = "#defff2";
+		             //document.getElementById(row).style.background = "#defff2";
+		             document.getElementById(row).className = "searchTableBg";
 		         }
-
-		         var row = "Row" + count;
-		         document.getElementById(row).style.background = "lightgreen";
+                 var row = "Row" + count;
+		         //document.getElementById(row).style.background = "lightgreen";
+                 document.getElementById(row).className = "searchTableBgClick";
 		         $("#Search").attr("disabled", true);
 		         $("#SearchButton").attr("disabled", true);
 		         document.getElementById("pagerdropdown").disabled = true;

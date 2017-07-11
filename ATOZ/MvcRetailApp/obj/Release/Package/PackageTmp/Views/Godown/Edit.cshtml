@@ -145,11 +145,13 @@ $(this).parents('form:eq(0),body').find();
             var edit = "Edit" + i;
             var row = "Row" + i;
             document.getElementById(edit).disabled = true;
-            document.getElementById(row).style.background = "#F1DDE7";
+            //document.getElementById(row).style.background = "#F1DDE7";
+            document.getElementById(row).className = "searchTableBg";
         }
 
         var row = "Row" + count;
-        document.getElementById(row).style.background = "lightgreen";
+        //document.getElementById(row).style.background = "lightgreen";
+        document.getElementById(row).className = "searchTableBgClick";
         document.getElementById("pagerdropdown").disabled = true;
         document.getElementById("pagertextbox").disabled = true;
         $("#first").attr("disabled", true);

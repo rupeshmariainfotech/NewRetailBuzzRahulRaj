@@ -2518,9 +2518,7 @@ th {
   background-color: #f9f9f9;
 }
 
-.table-hover>tbody>tr:hover>td,.table-hover>tbody>tr:hover>th {
-  background-color:#950050 !important;
-}
+
 
 table col[class*=col-] {
   position: static;
@@ -3972,7 +3970,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 
 .nav-pills>li.active>a,.nav-pills>li.active>a:hover,.nav-pills>li.active>a:focus {
   color: #fff;
-  background-color: #479d7c;
+  /*background-color: #479d7c;*/
 }
 
 .nav-stacked>li {

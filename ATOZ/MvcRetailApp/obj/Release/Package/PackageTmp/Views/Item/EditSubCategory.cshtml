@@ -142,8 +142,8 @@
             if (document.getElementById(SubCatEditId) != null) {
                 document.getElementById(SubCatEditId).style.display = "none";
                 document.getElementById(LabSubEditId).style.display = "inline";
-                document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
-                
+                //document.getElementById(rowid).style.backgroundColor = "#F1DDE7";
+                document.getElementById(rowid).className = "searchTableBg";
             }
 
         }
@@ -151,8 +151,8 @@
         document.getElementById("searchbutton").disabled = true;
         document.getElementById("searchtext").disabled = true;
         RowId = "RowId" + count;
-        document.getElementById(RowId).style.background = "lightgreen";
-        
+        //document.getElementById(RowId).style.background = "lightgreen";
+        document.getElementById(RowId).className = "searchTableBgClick";
 
         $.ajax({
             url: '/Item/SubCategoryEditPartial',
