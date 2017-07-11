@@ -138,9 +138,23 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                     </div>
                 </div>
 
-                <div class="row">
+                @*<div class="row">
                     <div class="col-md-offset-5 col-lg-offset-5">
                         <button type="button" class="btn btn-success" id="Submit">Update</button>
+                    </div>
+                </div>*@
+                <div class="container">
+                   
+                    <div class="row">
+                        <div class="col-sm-6" >
+                            <button type="button" class="btn btn-success" id="Submit">Update</button>
+                        </div>
+                        <div class="col-sm-6" >
+                            @*<button type="button" class="btn btn-success" id="Submit"   onclick="location.href='@Url.Action("AcceptClientLead", "ClientLead",new { @id = Model.ClientLeads.ClientLeadId }))'">Accept</button>*@
+
+                            <button type="button" name="btn" value="Accept" onclick="location.href='@Url.Action("AcceptClientLead", "ClientLead",new { @id = Model.ClientLeads.ClientLeadId })'">GO TO HOME</button>
+                            @*<button type="button" name="btn" value="Accept" onclick="location.href='@Url.Action("AcceptClientLead", "ClientLead")'">Accept</button>*@
+                        </div>
                     </div>
                 </div>
 

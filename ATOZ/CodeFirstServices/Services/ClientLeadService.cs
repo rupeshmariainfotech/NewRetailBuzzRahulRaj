@@ -12,15 +12,15 @@ namespace CodeFirstServices.Services
     {
 
         private readonly IClientLeadRepository _ClientLeadRepository;
-        private readonly IClientMasterRepository _clientMasterRepository;
-        private readonly IClientLeadRepository _clientleadRepository;
+      //  private readonly IClientMasterRepository _clientMasterRepository;
+       // private readonly IClientLeadRepository _clientleadRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ClientLeadService(IClientLeadRepository clientleadRepository, IClientMasterRepository clientMasterRepository,IUnitOfWork unitOfWork)
+     //   public ClientLeadService(IClientLeadRepository clientleadRepository, IClientMasterRepository clientMasterRepository,IUnitOfWork unitOfWork)
         public ClientLeadService(IClientLeadRepository _ClientLeadRepository, IUnitOfWork unitOfWork)
         {
-            this._clientleadRepository = clientleadRepository;
-            this._clientMasterRepository = clientMasterRepository;
+            //this._clientleadRepository = clientleadRepository;
+            //this._clientMasterRepository = clientMasterRepository;
             this._ClientLeadRepository = _ClientLeadRepository;
             this._unitOfWork = unitOfWork;
         }
@@ -59,11 +59,16 @@ namespace CodeFirstServices.Services
 
         public ClientLead getClientById(int id)
         {
-            var client = _clientleadRepository.Get(cl => cl.ClientId == id);
+            var client = _ClientLeadRepository.Get(cl => cl.ClientId == id);
             return client;
         }
 
+        public ClientLead GetLastInsertedClientLead()
+        {
+            var client = _ClientLeadRepository.GetAll().LastOrDefault();
+            return client;
 
+        }
 
         //public ClientMaster getClientById(int id)
         //{

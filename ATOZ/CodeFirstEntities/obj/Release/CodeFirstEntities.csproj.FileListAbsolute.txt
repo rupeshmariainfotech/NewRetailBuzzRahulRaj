@@ -31,3 +31,4 @@ C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\bi
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\bin\Release\CodeFirstEntities.pdb
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.dll
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\CodeFirstEntities\obj\Release\CodeFirstEntities.csprojResolveAssemblyReference.cache

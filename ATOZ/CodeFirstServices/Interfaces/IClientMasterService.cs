@@ -22,5 +22,6 @@ namespace CodeFirstServices.Interfaces
         ClientMaster getClientByName(string name);
         IEnumerable<ClientMaster> GetActiveAndMaharashtraClients(string name);
         IEnumerable<ClientMaster> GetActiveClients();
+      //  void CreateClientLeadAccept(ClientLead clientLeadDetails);
     }
 }

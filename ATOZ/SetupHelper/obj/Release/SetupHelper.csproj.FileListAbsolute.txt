@@ -14,3 +14,4 @@ C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Rele
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Release\Microsoft.Web.Administration.dll
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Release\SetupHelper.dll
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Release\SetupHelper.pdb
+C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Release\SetupHelper.csprojResolveAssemblyReference.cache

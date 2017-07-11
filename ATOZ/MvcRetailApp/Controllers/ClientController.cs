@@ -133,8 +133,8 @@ namespace MvcRetailApp.Controllers
             {
                 ClientDetails = new ClientMaster()
             };
-            
-            var ClientDetails = _ClientMasterService.GetLastInsertedClient();
+         
+            var ClientDetails =_ClientMasterService.GetLastInsertedClient();
             int lastid = 0;
             int length = 0;
             if (ClientDetails != null)
@@ -451,7 +451,7 @@ namespace MvcRetailApp.Controllers
         public ActionResult LoadNamesByMembershipCard()
         {
             MainApplication model = new MainApplication();
-            model.ClientList = _ClientMasterService.GetActiveClients();
+            model.ClientList = _ClientMasterService.GetAllClients();
             TempData["ClientList"] = model.ClientList;
             if (model.ClientList.Count() == 0)
             {

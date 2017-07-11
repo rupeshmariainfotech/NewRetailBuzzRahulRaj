@@ -2206,6 +2206,7 @@
     <Content Include="Views\ClientLead\Edit.cshtml" />
     <Content Include="Views\ClientLead\LoadNamesByClientLead.cshtml" />
     <Content Include="Views\ClientLead\EditPartial.cshtml" />
+    <Content Include="Views\ClientLead\ClientLeadDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReportEngine\RetailBillLetterHeadWithMRP.rdlc">

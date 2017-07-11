@@ -71,6 +71,7 @@ namespace CodeFirstEntities
         public IEnumerable<PurchaseItemDetail> PurchaseItemList { get; set; }
 
         public ClientMaster ClientDetails { get; set; }
+        public ClientLead  ClientLeadDetails { get; set; }
         public IEnumerable<ClientMaster> ClientList { get; set; }
         public ClientBankDetail ClientBankDetails { get; set; }
         public IEnumerable<ClientBankDetail> ClientBankDetailList { get; set; }

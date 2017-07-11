@@ -107,6 +107,8 @@ namespace MvcRetailApp.Controllers
             {
                 ClientLeads = new ClientLead()
             };
+            var ClientLeadDetails = _ClientLeadService.GetLastInsertedClientLead();
+           
             model.ClientLeads.Date =System.DateTime.Now;
             model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
             model.modulelist = _iIModuleService.getAllModules();
@@ -122,47 +124,40 @@ namespace MvcRetailApp.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(MainApplication model,FormCollection frm)
+        public ActionResult Create(MainApplication model)
         {
-            MainApplication mainapp = new MainApplication()
-            {
-                user = new User(),
-            };
-
+          
+          //  var ClientLeadDetails = _ClientLeadService.GetLastInsertedClientLead();
            
+
             ClientLead obj = new ClientLead();
                 obj.ClientName = model.ClientLeads.ClientName;
-                obj.ContactNo1 = model.ClientLeads.ContactNo1;
-                obj.ContactNo2 = model.ClientLeads.ContactNo2;
-                obj.Address = model.ClientLeads.Address;
-                obj.Requriment = model.ClientLeads.Requriment;
-                obj.Date = System.DateTime.Now;
-                obj.ScheduleDate = Convert.ToDateTime(frm.Get("ScheduleDate"));
-                obj.Remark = model.ClientLeads.Remark;
+              obj.ContactNo1 = model.ClientLeads.ContactNo1;
+              obj.ContactNo2 = model.ClientLeads.ContactNo2;
+              obj.Address = model.ClientLeads.Address;
+              obj.Requriment = model.ClientLeads.Requriment;
+              obj.Date = System.DateTime.Now;
+            obj.ScheduleDate = model.ClientLeads.ScheduleDate;
+            obj.Remark = model.ClientLeads.Remark;
 
-                _ClientLeadService.CreateClientLead(obj);
 
-            var client_id = obj.clientLeadId;
-          
-            
-    
-            
-         ClientLead  c = _ClientLeadService.getClientById(client_id);
 
-           
+
+            //  _ClientLeadService.CreateClientLead(model.ClientLeadDetails);
+              _ClientLeadService.CreateClientLead(obj);
+
+            //var client_id = obj.ClientLeadId;
+
+
+            //  _ClientMasterService.CreateClient(model.ClientDetails);
+
+            //ClientLead  c = _ClientLeadService.getClientById(client_id);
+
+
             Response.Write("<script>alert('you did it')</script>");
 
-            //MainApplication model = new MainApplication()
-            //{
-            //    ClientLeads = new ClientLead()
-            //};
-            //model.ClientLeads.Date = System.DateTime.Now;
-            //model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
-            //model.modulelist = _iIModuleService.getAllModules();
-            //model.CompanyCode = CompanyCode;
-            //model.CompanyName = CompanyName;
-            //model.FinancialYear = FinancialYear;
-            return RedirectToAction("Create");
+        
+            return RedirectToAction("ClientLeadDetails/" + obj.ClientLeadId, "ClientLead");
         }
 
 
@@ -214,5 +209,79 @@ namespace MvcRetailApp.Controllers
             model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
             return View(model);
         }
+
+
+        [HttpGet]
+        public ActionResult ClientLeadDetails(int id)
+        {
+            MainApplication model = new MainApplication()
+            {
+                // ClientDetails = new ClientMaster(),
+                //ClientBankDetails = new ClientBankDetail(),
+               ClientLeads = new ClientLead(),
+
+            };
+            //int Id = Decode(id);
+            model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
+            //model.ClientBankDetailList = _ClientBankDetailService.GetDetailsFromBank(model.ClientDetails.ClientCode);
+            model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
+            model.modulelist = _iIModuleService.getAllModules();
+            model.CompanyCode = CompanyCode;
+            model.CompanyName = CompanyName;
+            model.FinancialYear = FinancialYear;
+
+           // string previousclient = TempData["clientcode"].ToString();
+            //if (previousclient != model.ClientDetails.ClientCode)
+            //{
+            //    ViewData["clientchanged"] = previousclient + " is replaced with " + model.ClientDetails.ClientCode + " because " + previousclient + " is acquired by another person";
+            //}
+            //TempData["clientcode"] = previousclient;
+
+            return View(model);
+        }
+
+
+
+        public ActionResult AcceptClientLead(MainApplication model,int id)
+        {
+           model.ClientLeadDetails= _ClientLeadService.GetClientLeadById(id);
+            ClientMaster cm = new ClientMaster();
+         cm.Address = model.ClientLeadDetails.Address;
+           cm.ClientId = model.ClientLeadDetails.ClientId;
+          cm.ClientName = model.ClientLeadDetails.ClientName;
+           cm.ContactNo1 = model.ClientLeadDetails.ContactNo1;
+           cm.ContactNo2 = model.ClientLeadDetails.ContactNo2;
+            // _ClientLeadService.CreateClientLead(obj);
+            _ClientMasterService.CreateClient(cm);
+            // _ClientMasterService.
+            return View(model);
+          
+        }
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

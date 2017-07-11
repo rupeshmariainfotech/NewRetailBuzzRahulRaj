@@ -94,5 +94,14 @@ namespace CodeFirstServices.Services
             var details = _clientMasterRepository.GetMany(cl => cl.Status == "Active");
             return details;
         }
+
+        //public void CreateClientLeadAccept(ClientMaster Client)
+        //{
+        //    _clientMasterRepository.Add(Client);
+        //    _unitOfWork.Commit();
+        //}
+
+
+
     }
 }
