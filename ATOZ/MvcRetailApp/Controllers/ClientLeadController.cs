@@ -255,5 +255,10 @@ namespace MvcRetailApp.Controllers
             return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
             // return View();
         }
+
+        public ActionResult test(ClientLead clnt)
+        {
+             return View();
+        }
     }
 }
