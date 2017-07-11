@@ -259,6 +259,11 @@ namespace MvcRetailApp.Controllers
         }
 
 
+        public ActionResult tp()
+        {
+            return View();
+        }
+
 
       
 
