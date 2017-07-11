@@ -1,0 +1,151 @@
+﻿@model CodeFirstEntities.MainApplication
+
+@{
+    ViewBag.Title = "EditPartial";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.9.1.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("input").not($(":button")).keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                iname = $(this).val();
+                if (iname !== 'Submit') {
+                    var fields =
+$(this).parents('form:eq(0),body').find('button,input,textarea,select');
+                    var index = fields.index(this);
+                    if (index > -1 && (index + 1) < fields.length) {
+                        fields.eq(index + 1).focus();
+                    }
+                    return false;
+                }
+            }
+        });
+        $("select").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                iname = $(this).val();
+                if (iname !== 'Submit') {
+                    var fields =
+$(this).parents('form:eq(0),body').find('button,input,textarea,select');
+                    var index = fields.index(this);
+                    if (index > -1 && (index + 1) < fields.length) {
+                        fields.eq(index + 1).focus();
+                    }
+                    return false;
+                }
+            }
+        });
+        $("textarea").keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                iname = $(this).val();
+                if (iname !== 'Submit') {
+                    var fields =
+$(this).parents('form:eq(0),body').find('button,input,textarea,select');
+                    var index = fields.index(this);
+                    if (index > -1 && (index + 1) < fields.length) {
+                        fields.eq(index + 1).focus();
+                    }
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<div class="col-md-12 col-lg-12">
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="row">
+                <h2>
+                    Client Lead Details
+                </h2>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4">
+                        <label>Client Lead Id</label>
+                        @Html.DisplayFor(model => model.ClientLeads.ClientLeadId)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-group row">
+                                <label for="exampleInputname">Client Name<i style="color: red">*</i></label>
+                                @Html.TextBoxFor(model => model.ClientLeads.ClientName, new { @placeholder = "Client Name", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.ClientName, null, new { style = "color:red", @id = "name" })
+                                <label id="errorname" class="error" style="display: none"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputname">Contac No.1<i style="color: red">*</i></label>
+                                @Html.TextBoxFor(model => model.ClientLeads.ContactNo1, new { @placeholder = "Contac No.1", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.ContactNo1, null, new { style = "color:red", @id = "contact1" })
+                                <label id="errorname" class="error" style="display: none"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputname">Contact No.1<i style="color: red">*</i></label>
+                                @Html.TextBoxFor(model => model.ClientLeads.ContactNo2, new { @placeholder = "Contact No.1", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.ContactNo2, null, new { style = "color:red", @id = "contact2" })
+                                <label id="errorname" class="error" style="display: none"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputname">Address<i style="color: red">*</i></label>
+                                @Html.TextAreaFor(model => model.ClientLeads.Address, new { @placeholder = "Address", @class = "form-control",@rows=1 })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.Address, null, new { style = "Address", @id = "address" })
+                                <label id="errorname" class="error" style="display: none"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="form-group row">
+                                <label for="exampleInputname">Requriment<i style="color: red">*</i></label>
+                                @Html.TextBoxFor(model => model.ClientLeads.Requriment, new { @placeholder = "Requriment", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.Requriment, null, new { style = "color:red", @id = "requriment" })
+                                <label id="errorname" class="error" style="display: none"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputname">Date<i style="color: red">*</i></label>
+                                @Html.TextBoxFor(model => model.ClientLeads.Date, new { @placeholder = "Date", @class = "form-control", @value = System.DateTime.Now, @readonly = "Readonly" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.Date, null, new { style = "color:red", @id = "date" })
+                                <label id="errorname" class="error" style="display: none"></label>
+                            </div>
+                            <div class="form-group row">
+                        <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>
+                        @Html.TextBoxFor(model => model.ClientLeads.ScheduleDate, new {@placeholder="ScheduleDate",@class="form-control",@onkeypress = "return false", @autocomplete = "off",@type="date" })
+
+                        @Html.ValidationMessageFor(model=>model.ClientLeads.ScheduleDate,null,new {style= "color:red", @id = "datepicker" })
+                        <label id="errorname" class="error" style="display: none"></label>
+                    </div>
+                            @*<div class="form-group row">
+                                <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>`
+                                @Html.TextBox("ScheduleDate", Model.ClientLeads.ScheduleDate, new { @class = "datepicker form-control", @type = "date", @onkeypress = "return false", @autocomplete = "off" })
+                            </div>*@
+                            <div class="form-group row">
+                                <label for="exampleInputname">Remark<i style="color: red">*</i></label>
+                                @Html.TextBoxFor(model => model.ClientLeads.Remark, new { @placeholder = "Remark", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.Remark, null, new { style = "color:red", @id = "remark" })
+                                <label id="errorname" class="error" style="display: none"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-offset-5 col-lg-offset-5">
+                        <button type="button" class="btn btn-success" id="Submit" onclick="UpdateClientLead()">Update</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>

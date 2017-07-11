@@ -28,7 +28,9 @@ namespace CodeFirstEntities
         [Required]
         public DateTime Date { get; set; }
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? ScheduleDate { get; set; }
+      //  public DateTime? ScheduleDate { get; set; }
 
         public string Remark { get; set; }
 

@@ -1,0 +1,1190 @@
+﻿@model CodeFirstEntities.MainApplication
+@{
+    ViewBag.Title = "OutwardForProduction";
+}
+
+<meta charset="utf-8" />
+<title>Retail Managment Software</title>
+<meta name="keywords" content="Retail Software" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Font CSS  -->
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" />
+<link href="~/Content/style.default.css" rel="stylesheet" />
+<link href="~/Content/style.default.blue.css" rel="stylesheet" />
+<!-- Core CSS  -->
+<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/sb-admin-2.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/metisMenu.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="~/fonts/glyphicons.min.css" />
+
+<!-- Plugin CSS -->
+<link rel="stylesheet" type="text/css" href="~/Content/fullcalendar.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/datatables.min.css" />
+@*<link rel="stylesheet" type="text/css" href="~/Content/animate.css" />*@
+
+<!-- Theme CSS -->
+<link rel="stylesheet" type="text/css" href="~/Content/theme.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/pages.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/plugins.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/responsive.css" />
+
+<!-- Demonstration CSS -->
+<link rel="stylesheet" type="text/css" href="~/Content/demo.css" />
+
+<!-- Your Custom CSS -->
+<link rel="stylesheet" type="text/css" href="~/Content/custom.css" />
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="~/Images/favicon.ico" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script src="@Url.Content("~/Scripts/jquery-1.9.1.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.24.min.js")" type="text/javascript"></script>
+
+<!-- Plugins - Via CDN -->
+<script type="text/javascript" src="~/Scripts/jquery.flot.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.sparkline.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Scripts/fullcalendar.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.js"></script>
+
+
+<script type="text/javascript" src="~/Scripts/jquery.scrollTo-1.4.3.1-min.js"></script>
+
+<!-- Theme Javascript -->
+<script type="text/javascript" src="~/Scripts/uniform.min.js"></script>
+<script type="text/javascript" src="~/Scripts/main.js"></script>
+<script type="text/javascript" src="~/Scripts/custom.js"></script>
+<script type="text/javascript" src="~/Scripts/sb-admin-2.js"></script>
+<script type="text/javascript" src="~/vendor/plugins/metisMenu/metisMenu.min.js"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        // Init Theme Core 	  
+        Core.init();
+
+        $("input").not($(":button")).keypress(function (evt) {
+            if (evt.keyCode == 13) {
+                iname = $(this).val();
+                if (iname !== 'Submit') {
+                    var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select');
+                    var index = fields.index(this);
+                    if (index > -1 && (index + 1) < fields.length) {
+                        fields.eq(index + 1).focus();
+                    }
+                    return false;
+                }
+            }
+        });
+    });
+</script>
+
+<!--custom Alerts-->
+<link href="~/Content/customAlerts.css" rel="stylesheet" />
+<script src="~/Scripts/bootbox.js"></script>
+
+@*VALIDATION ON UNIT AND RATE*@
+<script type="text/javascript">
+    function AllowNumbers(key) {
+        var keycode = (key.which) ? key.which : key.keyCode;
+        //comparing pressed keycodes
+        if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+            return false;
+        }
+    }
+
+    function AllowDecimal(key, rowid) {
+        var numbertype = $("#NumberType" + rowid).val();
+        var quantity = $("#Quantity" + rowid).val();
+        var pointFoundCount = 0;
+        for (var i = 0; i <= quantity.length; i++) {
+            if (quantity[i] == '.') {
+                pointFoundCount++;
+            }
+        }
+
+        var pointposition = quantity.indexOf(".");
+        var digitupto = 0;
+        if (pointposition != -1) {
+            digitupto = quantity.substr(pointposition, quantity.length).length;
+        }
+
+        var keycode = (key.which) ? key.which : key.keyCode;
+        //comparing pressed keycodes
+        if (numbertype == 'Whole') { //if unit type is whole number then don't allow point
+            if (!(keycode == 8) && (keycode < 48 || keycode > 57)) {
+                return false;
+            }
+        }
+        else if (keycode == 46) { //if decimal point is inserted
+            if (pointFoundCount > 0 && pointFoundCount < 2) { // more than one decimal point is inserted then don't allow to insert it
+                return false;
+            }
+        }
+        else if (digitupto != 0) { // if unit type is decimal then wait for decimal point to be insert then execute this condition 
+            if (numbertype == '2Digit') { // if unit type is 2 digit the then allow 2 digits after decimal not the characters in between
+                if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57) || digitupto >= 3) {
+                    return false;
+                }
+            }
+            else { // if unit type is 2 digit the then allow 3 digits after decimal not the characters in between
+                if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57) || digitupto >= 4) {
+                    return false;
+                }
+            }
+        }
+        else { //don't allow any decimal point or character until first digit occurs
+            if (quantity.length == 0) // if first digit is point in quantity field then don't allow it and characters too
+            {
+                if (!(keycode == 8) && (keycode < 48 || keycode > 57)) {
+                    return false;
+                }
+            }
+            else { //don't allow any character until the above else if condition meets
+                if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+                    return false;
+                }
+            }
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    function infoBox(message) {
+        var sample = document.getElementById("audio");
+        sample.src = '../../Audio/tone1.ogg';
+
+        sample.load();
+        sample.muted = false;
+        sample.play();
+
+        bootbox.classes('infoClass');
+        bootbox.alert('<i class="fa fa-2x fa-info-circle"></i><br>' + message + '<hr>');
+    }
+    function alertbox(message) {
+        var sample = document.getElementById("audio");
+        sample.src = '../../Audio/tone1.ogg';
+
+        sample.load();
+        sample.muted = false;
+        sample.play();
+
+        bootbox.classes('alertClass');
+        bootbox.alert('<i class="fa fa-2x fa-warning"></i><br>' + message + '<hr>');
+    }
+
+    function confirmbox(message, row) {
+        var sample = document.getElementById("audio");
+        sample.src = '../../Audio/tone2.ogg';
+        sample.load();
+        sample.muted = false;
+        sample.play();
+
+        bootbox.classes('confirmClass');
+        bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
+		 function (result) {
+		     if (result) {
+		         $("#" + row).remove();
+		         //var rowid = document.getElementById("hdnRowCount").value;
+		         CalculateTotalAmount();
+		     }
+		 });
+    }
+
+    function confirmbox1(message, row) {
+        var sample = document.getElementById("audio");
+        sample.src = '../../Audio/tone2.ogg';
+        sample.load();
+        sample.muted = false;
+        sample.play();
+
+        bootbox.classes('confirmClass');
+        bootbox.confirm('<i class="fa fa-2x fa-question-circle"></i><br>' + message + '<hr>',
+		 function (result) {
+		     if (result) {
+		         $("#" + row).remove();
+		     }
+		 });
+    }
+</script>
+
+<script type="text/javascript">
+    function AllowNumbersWithoutDecimal(key) {
+        var keycode = (key.which) ? key.which : key.keyCode;
+        //comparing pressed keycodes
+        if (!(keycode == 8) && (keycode < 48 || keycode > 57)) {
+            return false;
+        }
+    }
+</script>
+
+@*GET TAIOLOR DETAILS ON TAILOR NAME DDL CHANGE EVENT*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#EmpDDL").change(function () {
+            var name = document.getElementById("EmpDDL").value;
+            $.getJSON("/Production/GetDetailsByEmpName", { empname: name },
+                         function (data) {
+                             document.getElementById("Barcode1").disabled = false;
+                             document.getElementById("ItemCode1").disabled = false;
+                             document.getElementById("empcontactno").innerHTML = data.MobileNo;
+                             document.getElementById("empdesignation").innerHTML = data.Designation;
+                             document.getElementById("OutwardForProductionDetails_EmpDesignation").value = data.Designation;
+                             document.getElementById("OutwardForProductionDetails_EmpContact").value = data.MobileNo;
+                         });
+        })
+    });
+</script>
+
+@*FILL ITEM DDL USING SHOP STOCK AND GODOWN STOCK*@
+<script type="text/javascript">
+
+    function GetBarcodeItems(count) {
+
+        var batchno = "BatchNo" + count;
+        var itemcode = "ItemCode" + count;
+
+        var shopgodowncode = document.getElementById("loginshopgodowncode").value;
+        var batchno = document.getElementById(batchno).value;
+        $.getJSON("/Production/GetItemsFromShopAndGodownStock", { LoginShopGodown: shopgodowncode, BatchNo: batchno },
+        function (data) {
+            var select = $("#" + itemcode);
+            select.empty();
+            select.append($('<option/>', {
+                text: "Select Item",
+                value: "",
+            }));
+            $.each(data, function (index, itemdata) {
+                select.append($('<option/>', {
+                    text: itemdata.Text + " " + itemdata.Value,
+                    value: itemdata.Value,
+                }));
+            });
+        });
+    }
+</script>
+
+
+
+@*GET ITEM DETAILS ON ITEM DDL*@
+<script type="text/javascript">
+    function GetItemDetailsByItem(rowid) {
+
+        //CHECK IF SAME BARCODE IS ALREADY SELECTED THEN ENABLES PREVIOUS ROW
+        itemcode = "ItemCode" + rowid;
+        barcode = "Barcode" + rowid;
+        var rowcount = document.getElementById("hdnRowCount").value;
+        var itemcode = document.getElementById(itemcode).value;
+        var barcode = document.getElementById(barcode).value;
+        var counter = 0;
+        var validationcounter = 0;
+        for (i = 1; i < rowcount; i++) {
+            var BARCODE = "Barcode" + i;
+            var ITEMCODE = "ItemCode" + i;
+            var QUANTITY = "Quantity" + i;
+            var STKQTY = "StkQty" + i;
+            var SHOPGODOWNQTY = "ShopGodownQty" + i;
+            var UNIT = "Unit" + i;
+            var COSTPRICE = "CostPrice" + i;
+            var COLOR = "Color" + i;
+            var MATERIAL = "Material" + i;
+            var AMOUNT = "Amount" + i;
+
+            //IF ITEM IS ALREADY SELECTED THEN GET ALERT
+            if (document.getElementById(ITEMCODE) != null) {
+                if ($("#" + BARCODE).val().toUpperCase() == barcode.toUpperCase()) {
+                    alertbox("The Item Is Already Selected Please Change The Quantity..");
+                    document.getElementById(QUANTITY).disabled = false;
+                    document.getElementById(ITEMCODE).disabled = false;
+
+                    //ITEM IS ALREADY SELECTED THEN EMPTY CURRENT ROW
+                    var BARCODE = "Barcode" + rowcount;
+                    var ITEMCODE = "ItemCode" + rowcount;
+                    var QUANTITY = "Quantity" + rowcount;
+                    var STKQTY = "StkQty" + rowcount;
+                    var SHOPGODOWNQTY = "ShopGodownQty" + rowcount;
+                    var UNIT = "Unit" + rowcount;
+                    var COSTPRICE = "CostPrice" + rowcount;
+                    var COLOR = "Color" + rowcount;
+                    var MATERIAL = "Material" + rowcount;
+                    var AMOUNT = "Amount" + rowcount;
+
+                    document.getElementById(BARCODE).value = "";
+                    document.getElementById(ITEMCODE).value = "";
+                    document.getElementById(QUANTITY).value = "";
+                    document.getElementById(STKQTY).innerHTML = "";
+                    document.getElementById(SHOPGODOWNQTY).innerHTML = "";
+                    document.getElementById(UNIT).innerHTML = "";
+                    document.getElementById(COSTPRICE).innerHTML = "";
+                    document.getElementById(COLOR).innerHTML = "";
+                    document.getElementById(MATERIAL).innerHTML = "";
+                    document.getElementById(AMOUNT).innerHTML = "";
+
+                    counter = i;
+                    break;
+                }
+            }
+        }
+
+        //IF COUNTER IS 0 THAT MEANS CURRENT ITEM IS NOT SELECED IN PREVIOUS ROWS
+        if (counter == 0) {
+            //IF PREVIOUS ROW IS ENABLED FOR CHANGE THE QUANTITY BUT WE SELECT AGAIN DDL THEN DISABLED THIS ENABLES QUANTITY
+            for (i = 1; i < rowcount; i++) {
+
+                var BARCODE = "Barcode" + i;
+                var ITEMCODE = "ItemCode" + i;
+                var QUANTITY = "Quantity" + i;
+                var STKQTY = "StkQty" + i;
+                var SHOPGODOWNQTY = "ShopGodownQty" + i;
+                var UNIT = "Unit" + i;
+                var COSTPRICE = "CostPrice" + i;
+                var COLOR = "Color" + i;
+                var MATERIAL = "Material" + i;
+                var AMOUNT = "Amount" + i;
+
+                if ($("#" + BARCODE).val() == "") {
+                    alertbox("Please Select The Barcode");
+                    var BARCODE = "Barcode" + rowcount;
+                    document.getElementById(BARCODE).value = "";
+                    validationcounter++;
+                }
+                else if ($("#" + QUANTITY).val() == "") {
+                    alertbox("Please Fill The Quantity");
+                    var BARCODE = "Barcode" + rowcount;
+                    document.getElementById(BARCODE).value = "";
+                    validationcounter++;
+                }
+            }
+
+            if (validationcounter == 0) {
+                //DISPLAY DETAILS ON ITEM CHANGE EVENT
+                var barcode = document.getElementById("Barcode" + rowid).value;
+                var shopgodowncode = document.getElementById("loginshopgodowncode").value;
+                if (barcode != "") {
+                    document.getElementById("Quantity" + rowid).disabled = false;
+                    $.getJSON("/Production/GetItemDetails", { barcode: barcode, shopgodown: shopgodowncode },
+                          function (data) {
+                              if (data != "Fail" && data != "No Stock") {
+
+                                  document.getElementById("StkQty" + rowid).innerHTML = data.totalstkqty;
+                                  document.getElementById("ShopGodownQty" + rowid).innerHTML = data.Quantity;
+                                  document.getElementById("Unit" + rowid).innerHTML = data.Unit;
+                                  document.getElementById("CostPrice" + rowid).innerHTML = +(data.SellingPrice).toFixed(2);
+                                  document.getElementById("Color" + rowid).innerHTML = data.Color;
+                                  document.getElementById("Material" + rowid).innerHTML = data.Material;
+                                  document.getElementById("ProdItemVal" + rowid).value = document.getElementById("ProdItemCount").value;
+
+                                  document.getElementById("BatchNo" + rowid).value = data.BatchNo;
+                                  document.getElementById("UnitVal" + rowid).value = data.Unit;
+                                  document.getElementById("NumberType" + rowid).value = data.NumberType;
+                                  document.getElementById("ItemLabel" + rowid).innerHTML = data.ItemName;
+                                  document.getElementById("ItemCode" + rowid).value = data.ItemCode;
+                                  document.getElementById("ItemName" + rowid).value = data.ItemName;
+                                  document.getElementById("ColorVal" + rowid).value = data.Color;
+                                  document.getElementById("MaterialVal" + rowid).value = data.Material;
+                                  document.getElementById("CostPriceVal" + rowid).value = +(data.SellingPrice).toFixed(2);
+                                  document.getElementById("Size" + rowid).value = data.Size;
+                                  document.getElementById("Brand" + rowid).value = data.Brand;
+                                  document.getElementById("DesignCode" + rowid).value = data.DesignCode;
+                                  document.getElementById("DesignName" + rowid).value = data.DesignName;
+                                  document.getElementById("Description" + rowid).value = data.Description;
+                                  document.getElementById("SellingPrice" + rowid).value = data.SellingPrice;
+                                  document.getElementById("MRP" + rowid).value = data.MRP;
+                              }
+                              else if (data == "No Stock") {
+                                  alertbox("No Stock Available");
+                                  $("#Barcode" + rowid).val("");
+                              }
+                              else {
+                                  alertbox("Item Not Present..");
+                                  $("#Barcode" + rowid).val("");
+                              }
+                          });
+                }
+            }
+        }
+    }
+</script>
+
+@*DISPLAY TOTAL STOCK IN POPUP*@
+<script>
+    function ShowQuantity(row) {
+        var barcodebatch = document.getElementById("Barcode" + row).value;
+        window.open("/Stock/ShowAllQuantity?barcodebatch=" + barcodebatch, "_target", "width=500,height=300,top=150px,left=400px");
+    }
+</script>
+
+@*FOR ADD OUTWARD ITEM*@
+<script>
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+
+            document.getElementById("ProdItemCheck").value = "Yes";
+            document.getElementById("ProdInwardItemCheck").value = "Yes";
+
+            //CREATE DYNAMIC ROWS IN DIRECT RETAIL BILL
+            var rowcount = document.getElementById("hdnRowCount").value;
+
+            var prevBarcode = "Barcode" + rowcount;
+            var prevItemCode = "ItemCode" + rowcount;
+            var prevQuantity = "Quantity" + rowcount;
+            var prevStkQty = "StkQty" + rowcount;
+            var prevShopGodownQty = "ShopGodownQty" + rowcount;
+            var prevUnit = "Unit" + rowcount;
+            var prevCostPrice = "CostPrice" + rowcount;
+            var prevColor = "Color" + rowcount;
+            var prevMaterial = "Material" + rowcount;
+            var prevamount = "Amount" + rowcount;
+
+            if (document.getElementById(prevItemCode) != null) {
+                if ($("#" + prevBarcode).val() == "") {
+                    alertbox("Please Select The Barcode..");
+                }
+                else if ($("#" + prevQuantity).val() == "") {
+                    alertbox("Please Fill The Quantity..");
+                }
+                else {
+                    document.getElementById(prevBarcode).disabled = true;
+                    document.getElementById(prevItemCode).disabled = true;
+                    document.getElementById(prevQuantity).disabled = true;
+                    OutwardItemDynamicRows();
+                }
+            }
+            else {
+                OutwardItemDynamicRows();
+            }
+
+            function OutwardItemDynamicRows() {
+                var rowid = document.getElementById("hdnRowCount").value;
+                rowid = +rowid + 1;
+
+                var row = "row" + rowid;
+                var BatchNo = "BatchNo" + rowid;
+                var Barcode = "Barcode" + rowid;
+                var ItemCode = "ItemCode" + rowid;
+                var ItemLabel = "ItemLabel" + rowid;
+                var Quantity = "Quantity" + rowid;
+                var StkQty = "StkQty" + rowid;
+                var ShopGodownQty = "ShopGodownQty" + rowid;
+                var Unit = "Unit" + rowid;
+                var CostPrice = "CostPrice" + rowid;
+                var Color = "Color" + rowid;
+                var Material = "Material" + rowid;
+                var Amount = "Amount" + rowid;
+
+                var ItemName = "ItemName" + rowid;
+                var Description = "Description" + rowid;
+                var UnitVal = "UnitVal" + rowid;
+                var NumberType = "NumberType" + rowid;
+                var CostPriceVal = "CostPriceVal" + rowid;
+                var ColorVal = "ColorVal" + rowid;
+                var MaterialVal = "MaterialVal" + rowid;
+                var AmountVal = "AmountVal" + rowid;
+                var SellingPrice = "SellingPrice" + rowid;
+                var MRP = "MRP" + rowid;
+                var Brand = "Brand" + rowid;
+                var Size = "Size" + rowid;
+                var DesignCode = "DesignCode" + rowid;
+                var DesignName = "DesignName" + rowid;
+                var ProdItemVal = "ProdItemVal" + rowid;
+
+                var ItemList = $("#AddItemRows");
+
+                var data = "<tr id='" + row + "'><td style='text-align:center; color:red'>" + rowid + "</td>";
+                data += "<td class='col-md-3 col-lg-3 col-sm-3'><input type='text' name='" + Barcode + "' style='text-align:center' id='" + Barcode + "' class='form-control' autocomplete='off' onchange='GetItemDetailsByItem(" + rowid + ")'><input type='hidden' name='" + BatchNo + "' id='" + BatchNo + "' /></td>";
+                data += "<td class='col-md-2 col-lg-2 col-sm-2' style='text-align:center'><label id='" + ItemLabel + "' style='font-weight:normal'></label><input type='hidden' name='" + ItemCode + "' id='" + ItemCode + "' /><input type='hidden' name='" + ItemName + "' id='" + ItemName + "' /></td>";
+                data += "<td style='text-align:center'><a id='" + StkQty + "' href='#' onclick='ShowQuantity(" + rowid + ")'></a></td>";
+                data += "<td style='text-align:center'> <label id='" + ShopGodownQty + "' style='font-weight: normal'></td>";
+                data += "<td class='col-md-1 col-lg-1 col-sm-1'><input type='text' name='" + Quantity + "' id='" + Quantity + "' autocomplete='off' class='form-control' style='text-align:center' onchange='CalculateAmount(" + rowid + ',' + '\"quantity\"' + ")' onkeypress='return AllowDecimal(event," + rowid + ")' disabled='disabled'/></td>";
+                data += "<td style='text-align:center'><label id='" + Unit + "' style='font-weight: normal'></label><input type='hidden' id='" + UnitVal + "' name='" + UnitVal + "' /><input type='hidden' id='" + NumberType + "' name='" + NumberType + "' /></td>";
+                data += "<td style='text-align:center'><label id='" + CostPrice + "' style='font-weight: normal'></label><input type='hidden' id='" + CostPriceVal + "' name='" + CostPriceVal + "' /></td>";
+                data += "<td style='text-align:center'><label id='" + Color + "' style='font-weight: normal'></label><input type='hidden' id='" + ColorVal + "' name='" + ColorVal + "' /></td>";
+                data += "<td style='text-align:center'><label id='" + Material + "' style='font-weight: normal'></label><input type='hidden' id='" + MaterialVal + "' name='" + MaterialVal + "' /></td>";
+                data += "<td style='text-align:center'><label id='" + Amount + "' style='font-weight: normal'></label><input type='hidden' id='" + AmountVal + "' name='" + AmountVal + "' /></td>";
+                data += "<td style='text-align:center'><label style='font-weight: normal; color:red'>Input</label><input type='hidden' id='" + ProdItemVal + "' name='" + ProdItemVal + "' /></td>";
+                data += "<td><div style='height:2px'></div><a href='#' onclick='DeleteRow(" + rowid + ")' class='fa fa-trash fa-lg' style='color:red;' /></td><input type='hidden' name='" + MRP + "' id='" + MRP + "' /><input type='hidden' name='" + SellingPrice + "' id='" + SellingPrice + "' /><input type='hidden' name='" + Size + "' id='" + Size + "' /><input type='hidden' name='" + Brand + "' id='" + Brand + "' /><input type='hidden' name='" + DesignCode + "' id='" + DesignCode + "' /><input type='hidden' name='" + DesignName + "' id='" + DesignName + "' /><input type='hidden' name='" + Description + "' id='" + Description + "' /></tr>";
+
+                ItemList.append(data);
+
+                //FILL BATCH DDL
+                var shopgodowncode = document.getElementById("loginshopgodowncode").value;
+
+
+                //FILL ITEM DDL ON ENTER CLICK EVENT
+                //var shopgodowncode = document.getElementById("loginshopgodowncode").value;
+                //var batchno = document.getElementById(BatchNo).value;
+                //alert(batchno);
+                //$("#" + BatchNo).change(function () {
+                //    if ($("#" + BatchNo).val() != "") {
+                //        $.getJSON("/Production/GetItemsFromShopAndGodownStock", { LoginShopGodown: shopgodowncode, BatchNo: batchno },
+                //        function (data) {
+                //            var select = $("#" + ItemCode);
+                //            select.empty();
+                //            select.append($('<option/>', {
+                //                text: "Select Item",
+                //                value: "",
+                //            }));
+                //            $.each(data, function (index, itemdata) {
+                //                select.append($('<option/>', {
+                //                    text: itemdata.Text + " " + itemdata.Value,
+                //                    value: itemdata.Value,
+                //                }));
+                //            });
+                //        });
+                //    }
+                //});
+
+
+                $("#hdnRowCount").val(rowid);
+            }
+
+        }
+    });
+</script>
+
+@*FOR ADD INWARD ITEM*@
+<script>
+    function AddExpectedInwardItem() {
+
+        document.getElementById("save").disabled = false;
+
+        if ($("#ProdItemCheck").val() == "Yes") {
+            var count = +document.getElementById("ProdItemCount").value;
+            count = count + 1;
+            document.getElementById("ProdItemCount").value = count;
+            document.getElementById("ProdItemCheck").value = 'No';
+        }
+
+        var rowid = document.getElementById("hdnRowCountForInward").value;
+        rowid = +rowid + 1;
+
+        var row = "row" + rowid;
+        var InwardItem = "InwardItem" + rowid;
+        var InwardDescription = "InwardDescription" + rowid;
+        var InwardQuantity = "InwardQuantity" + rowid;
+        var InwardColor = "InwardColor" + rowid;
+        var InwardMaterial = "InwardMaterial" + rowid;
+        var InwardUnit = "InwardUnit" + rowid;
+        var InwardProdItemVal = "InwardProdItemVal" + rowid;
+
+        var ItemList = $("#AddItemRows");
+
+        var data = "<tr id='" + row + "'><td style='text-align:center; color:blue'>" + rowid + "</td>";
+        data += "<td class='col-md-1 col-lg-1 col-sm-1' style='text-align:center'><label>--------</label></td>";
+        data += "<td class='col-lg-3 col-md-3 col-sm-3'><input type='text' name='" + InwardItem + "' id='" + InwardItem + "' onchange='GetProdItemValue(" + rowid + ")' placeholder='Item Name' autocomplete='off' class='form-control' style='text-align:center'/></td>";
+        data += "<td style='text-align:center'><label>----</label></td>";
+        data += "<td style='text-align:center'><label>----</label></td>";
+        data += "<td><input type='text' name='" + InwardQuantity + "' id='" + InwardQuantity + "' placeholder='Quantity' autocomplete='off' class='form-control' style='text-align:center'/></td>";
+        data += "<td><select id='" + InwardUnit + "' name='" + InwardUnit + "' class='form-control'><option>Select Unit</option></select></td>";
+        data += "<td style='text-align:center'><label>----</label></td>";
+        data += "<td><select id='" + InwardColor + "' name='" + InwardColor + "' class='form-control'><option>Select Color</option></select></td>";
+        data += "<td><select id='" + InwardMaterial + "' name='" + InwardMaterial + "' class='form-control'><option>Select Material</option></select></td>";
+        data += "<td style='text-align:center'><label>----</label></td>";
+        data += "<td style='text-align:center'><label style='font-weight: normal; color:blue'>Output</label><input type='hidden' id='" + InwardProdItemVal + "' name='" + InwardProdItemVal + "' /></td>";
+        data += "<td><div style='height:2px'></div><a href='#' onclick='InwardDeleteRow(" + rowid + ")' class='fa fa-trash fa-lg' style='color:red;' /></td></tr>";
+        ItemList.append(data);
+
+        ////FILL BATCH DDL
+        //var shopgodowncode = document.getElementById("loginshopgodowncode").value;
+        //$.getJSON("/StockDistribution/GetBatchesByShopGodownCode", { code: shopgodowncode, }, function (data) {
+
+        //    var select = $("#" + BatchNo);
+        //    select.empty();
+        //    select.append($('<option>', {
+        //        text: "Select Batch",
+        //        value: ""
+        //    }));
+
+        //    $.each(data, function (i, item) {
+        //        select.append($('<option>', {
+        //            value: item.Value,
+        //            text: item.Text
+        //        }));
+        //    });
+        //});
+
+        //FILL UNIT DDL ON ENTER CLICK EVENT
+        $.getJSON("/Production/GetAllUnits",
+        function (data) {
+            var select = $("#" + InwardUnit);
+            select.empty();
+            select.append($('<option/>', {
+                text: "Select Item",
+                value: "",
+            }));
+            $.each(data, function (index, itemdata) {
+                select.append($('<option/>', {
+                    text: itemdata.Value,
+                    value: itemdata.Value,
+                }));
+            });
+        });
+
+        //FILL UNIT DDL ON ENTER CLICK EVENT
+        $.getJSON("/Production/GetAllColors",
+        function (data) {
+            var select = $("#" + InwardColor);
+            select.empty();
+            select.append($('<option/>', {
+                text: "Select Color",
+                value: "",
+            }));
+            $.each(data, function (index, itemdata) {
+                select.append($('<option/>', {
+                    text: itemdata.Value,
+                    value: itemdata.Value,
+                }));
+            });
+        });
+
+        //FILL UNIT DDL ON ENTER CLICK EVENT
+        $.getJSON("/Production/GetAllMaterials",
+        function (data) {
+            var select = $("#" + InwardMaterial);
+            select.empty();
+            select.append($('<option/>', {
+                text: "Select Material",
+                value: "",
+            }));
+            $.each(data, function (index, itemdata) {
+                select.append($('<option/>', {
+                    text: itemdata.Value,
+                    value: itemdata.Value,
+                }));
+            });
+        });
+
+        $("#hdnRowCountForInward").val(rowid);
+    }
+</script>
+
+<script type="text/javascript">
+    function GetProdItemValue(id) {
+        if ($("#ProdInwardItemCheck").val() == "Yes") {
+            var count = +document.getElementById("ProdInwardItemCount").value;
+            count = count + 1;
+            document.getElementById("ProdInwardItemCount").value = count;
+            document.getElementById("ProdInwardItemCheck").value = 'No';
+        }
+
+        var InwardProdItemVal = "InwardProdItemVal" + id;
+        document.getElementById(InwardProdItemVal).value = document.getElementById("ProdInwardItemCount").value;
+    }
+</script>
+
+
+@*CALCULATE AMOUNT + CALCULATE AMOUNT USING DISCOUNT IN RS OR PERCENT*@
+<script type="text/javascript">
+    function CalculateAmount(count) {
+
+        var checkcounter = 0;
+        var quantity = "Quantity" + count;
+        var stkqty = "StkQty" + count;
+        var costprice = "CostPrice" + count;
+        var sellingprice = "SellingPrice" + count;
+        var amount = "Amount" + count;
+        var amountvalue = "AmountVal" + count;
+
+        var finalquantity = +document.getElementById(quantity).value;
+        var finalstockquantity = +document.getElementById(stkqty).innerHTML;
+        var finalcost = +document.getElementById(costprice).innerHTML;
+
+        if (finalquantity > finalstockquantity) {
+            checkcounter = 1;
+            alertbox("Can Not Exceed Stock Quantity..");
+            document.getElementById(quantity).value = "";
+        }
+
+        if (checkcounter == 0) {
+            var finalamount = finalquantity * finalcost;
+            document.getElementById(amount).innerHTML = finalamount.toFixed(2);
+            document.getElementById(amountvalue).value = finalamount.toFixed(2);
+            CalculateTotalAmount();
+        }
+
+    }
+</script>
+
+<script type="text/javascript">
+    function CalculateTotalAmount() {
+        var count = document.getElementById("hdnRowCount").value;
+        var ttlamt = 0;
+        for (i = 1; i <= count; i++) {
+            var amount = "AmountVal" + i;
+            if (document.getElementById(amount) != null) {
+                var amtval = +document.getElementById(amount).value;
+                ttlamt = ttlamt + amtval;
+            }
+        }
+        document.getElementById("TotalAmount").innerHTML = ttlamt.toFixed(2);
+        document.getElementById("TotalAmountVal").value = ttlamt;
+        CalculateGrandTotal();
+    }
+</script>
+
+@*DELETE ROW*@
+<script type="text/javascript">
+    function DeleteRow(rowid) {
+        var row = "row" + rowid;
+        confirmbox("Are you sure you wish to delete this row?", row);
+    }
+</script>
+
+@*DELETE ROW*@
+<script type="text/javascript">
+    function InwardDeleteRow(rowid) {
+        var row = "row" + rowid;
+        confirmbox1("Are you sure you wish to delete this row?", row);
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        document.getElementById("PreparedByEmail").innerHTML = document.getElementById("preparedby").value;
+        var preparedbyemail = document.getElementById("PreparedByEmail").innerHTML;
+
+        $.getJSON("/Production/GetPreparedByEmpDetails", { email: preparedbyemail },
+                  function (data) {
+                      document.getElementById("PreparedByName").innerHTML = data.Name;
+                      document.getElementById("PreparedByContact").innerHTML = data.MobileNo;
+                      document.getElementById("PreparedByEmail").innerHTML = data.Email;
+                      document.getElementById("OutwardForProductionDetails_PreparedBy").value = data.Name;
+                  });
+    })
+</script>
+
+<script type="text/javascript">
+    function GetEnabled() {
+        CalculateGrandTotal();
+    }
+</script>
+
+<script type="text/javascript">
+    function CalculateGrandTotal() {
+
+        var ttlamt = +document.getElementById("TotalAmountVal").value;;
+        var labourcost = +document.getElementById("LabourCost").value;
+        var otherexp = +document.getElementById("OtherExpenses").value;
+        var grndttl = 0;
+        grndttl = ttlamt + labourcost + otherexp;
+        document.getElementById("GrandTotal").innerHTML = grndttl.toFixed(2);
+        document.getElementById("GrandTotalVal").value = grndttl;
+    }
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#save").click(function () {
+            var rowid = document.getElementById("hdnRowCount").value;
+            var counter = 0;
+            for (i = 1; i <= rowid; i++) {
+                var Barcode = "Barcode" + i;
+                var ItemCode = "ItemCode" + i;
+                var Quantity = "Quantity" + i;
+                if (document.getElementById(Barcode) != null) {
+                    document.getElementById(Barcode).disabled = false;
+                    document.getElementById(ItemCode).disabled = false;
+                    document.getElementById(Quantity).disabled = false;
+                }
+            }
+            $("#submit").trigger('click');
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        document.getElementById("ProdItemVal1").value = document.getElementById("ProdItemCount").value;
+    });
+</script>
+
+<!-- Start: Header -->
+@Html.Partial("../Shared/Header")
+<!-- End: Header -->
+<section>
+    <div class="mainwrapper">
+        <div class="col-md-12 col-lg-12">
+            <!-- Start: Main -->
+            <div id="main">
+                <!-- Start: Sidebar -->
+                @Html.Partial("../Shared/LeftMenu")
+                <!-- End: Sidebar -->
+
+
+                <!-- Start: Content -->
+                @using (Html.BeginForm("OutwardForProduction", "Production", FormMethod.Post))
+                {
+                    <audio id="audio" muted="true" preload="auto" style="display: none" controls="controls" autoplay="false">
+                        <source src="" type="audio/ogg" />
+                    </audio>
+                    
+                    <input type="hidden" id="preparedby" value="@HttpContext.Current.Session["UserEmail"]"/>
+                    <input type="hidden" id="hdnRowCount" name="hdnRowCount" value="1" />
+                    <input type="hidden" id="hdnRowCountForInward" name="hdnRowCountForInward" value="0" />
+                    <input type="hidden" id="ProdItemCount" name="ProdItemCount" value="1" />
+                    <input type="hidden" id="ProdItemCheck" name="ProdItemCheck" value="Yes" />
+                    <input type="hidden" id="ProdInwardItemCount" name="ProdInwardItemCount" value="0" />
+                    <input type="hidden" id="ProdInwardItemCheck" name="ProdInwardItemCheck" value="Yes" />
+                    @Html.HiddenFor(model => model.OutwardForProductionDetails.EmpDesignation)
+                    @Html.HiddenFor(model => model.OutwardForProductionDetails.EmpContact)
+                    @Html.HiddenFor(model => model.OutwardForProductionDetails.PreparedBy)
+                    
+                    <div class="mainpanel">
+                        <br />
+
+                        <h2>Outward For Production</h2>
+
+                        <div class="tile-body">
+                            <br />
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                @{
+                    string shopcode = string.Empty;
+                    string godowncode = string.Empty;
+                    if (HttpContext.Current.Session["UserName"].ToString() != "SuperAdmin")
+                    {
+                        if (Session["LOGINSHOPGODOWNCODE"] != null)
+                        {
+                            if (Session["LOGINSHOPGODOWNCODE"].ToString().Contains("SH"))
+                            {
+                                shopcode = Session["LOGINSHOPGODOWNCODE"].ToString();
+                            }
+                            else
+                            {
+                                godowncode = Session["LOGINSHOPGODOWNCODE"].ToString();
+                            }
+                                    <div style="text-align: right">
+                                        <label style="font-family: 'Good Times'; font-size: small; color: red">Login At:</label>
+                                        <label style="font-family: 'Good Times'; font-size: small; color: red" id="loginshopname">@Session["SHOPGODOWNNAME"].ToString()</label>
+                                    </div>
+                    
+                                    <input type="hidden" id="loginshopgodowncode" value="@Session["LOGINSHOPGODOWNCODE"].ToString()"/>
+
+
+                        }
+                    }
+                                }
+
+                                <table style="border: 1px double; width: 100%">
+                                    <tr>
+                                        <td>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div style="height: 10px"></div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                                    <div class="row">
+                                                        <label>Employee Name<i style="color: red">*</i></label>
+                                                    </div>
+                                                    <div class="row">
+                                                        @Html.DropDownListFor(model => Model.OutwardForProductionDetails.EmpName, new SelectList(Model.EmpList, "Name", "Name"), "Select Emp Name", new { id = "EmpDDL", @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.OutwardForProductionDetails.EmpName, null, new { style = "color:red" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <label>Designation</label><br />
+                                                        <label id="empdesignation"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3" style="border-right: 1px solid #999; height: 50px;">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <label>Contact No.</label><br />
+                                                        <label id="empcontactno"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        @{
+                    string date = DateTime.Now.ToString("dd/MM/yyyy");
+                    string outwardcode = Model.OutwardForProductionDetails.OutwardCode;
+                                                        }
+                                                        <div class="row">
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="row">
+                                                                    <label style="font-size: 14px;">Date</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-8 col-md-8">
+                                                                <div class="row">
+                                                                    <label style="font-size: 14px;">@date</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="row">
+                                                                    <label style="font-size: 14px;">Out No.</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-8 col-md-8">
+                                                                <div class="row">
+                                                                    <label style="font-size: 14px;">@outwardcode</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <div style="height: 10px"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <div style="height: 10px"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <label style="font-size: 14px">Outward Items..</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="col-md-12 col-lg-12 col-sm-12">
+                                                <div class="row" id="DynamicRowsDiv">
+                                                    <table class="table" id="AddItemRows" style="border-color: #d2d2d2; border: outset">
+                                                        <thead>
+                                                            <tr style="background-color: #eee">
+                                                                <th style="text-align: center">Sr<br />
+                                                                    No</th>
+                                                                <th style="text-align: center">Barcode</th>
+                                                                <th style="text-align: center">Item</th>
+                                                                <th style="text-align: center">Stk<br />
+                                                                    Qty</th>
+                                                                <th style="text-align: center">Qty</th>
+                                                                <th class="col-md-1 col-lg-1 col-sm-1" style="text-align: center">Tran<br />
+                                                                    Qty<b style="color: #f00">*</b></th>
+                                                                <th style="text-align: center">Unit</th>
+                                                                <th style="text-align: center">Cost<br />
+                                                                    Price</th>
+                                                                <th style="text-align: center">Color</th>
+                                                                <th style="text-align: center">Material</th>
+                                                                <th style="text-align: center">Amount</th>
+                                                                <th style="text-align: center">Outward<br />
+                                                                    Status</th>
+                                                                <th style="text-align: center"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="ItemDetails">
+                                                            <tr style="height: 30px;" id="row1">
+                                                                <td style="text-align: center; color: red">1</td>
+                                                                <td class="col-md-3 col-lg-3 col-sm-3">
+                                                                    <input type="text" id="Barcode1" name="Barcode1" class="form-control" style="text-align: center" autocomplete="off" onchange="GetItemDetailsByItem(1)" />
+                                                                    <input type="hidden" id="BatchNo1" name="BatchNo1" />
+                                                                </td>
+                                                                <td class="col-md-2 col-lg-2 col-sm-2" style="text-align: center">
+                                                                    <label id="ItemLabel1" style="font-weight: normal"></label>
+                                                                    <input type="hidden" id="ItemCode1" name="ItemCode1" />
+                                                                    <input type="hidden" id="ItemName1" name="ItemName1" />
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <a href="#" onclick="ShowQuantity(1)" id="StkQty1" style="font-weight: normal"></a>
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <label id="ShopGodownQty1" style="font-weight: normal"></label>
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <input type="text" name="Quantity1" id="Quantity1" style="text-align: center" class="form-control" autocomplete="off" disabled="disabled" onchange="CalculateAmount(1,'quantity')" onkeypress="return AllowDecimal(event,1)" /></td>
+                                                                <td style="text-align: center">
+                                                                    <label id="Unit1" style="font-weight: normal"></label>
+                                                                    <input type="hidden" name="UnitVal1" id="UnitVal1" />
+                                                                    <input type="hidden" name="NumberType1" id="NumberType1" />
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <label id="CostPrice1" style="font-weight: normal"></label>
+                                                                    <input type="hidden" name="CostPriceVal1" id="CostPriceVal1" />
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <label id="Color1" style="font-weight: normal"></label>
+                                                                    <input type="hidden" name="ColorVal1" id="ColorVal1" />
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <label id="Material1" style="font-weight: normal"></label>
+                                                                    <input type="hidden" name="MaterialVal1" id="MaterialVal1" />
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <label id="Amount1" style="font-weight: normal"></label>
+                                                                    <input type="hidden" name="AmountVal1" id="AmountVal1" />
+                                                                </td>
+                                                                <td style="text-align: center">
+                                                                    <label style="color: red">Input</label>
+                                                                    @*<label id="ProdItem1" style="font-weight: normal"></label>*@
+                                                                    <input type="hidden" name="ProdItemVal1" id="ProdItemVal1" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="hidden" name="MRP1" id="MRP1" />
+                                                                    <input type="hidden" name="Size1" id="Size1" />
+                                                                    <input type="hidden" name="Brand1" id="Brand1" />
+                                                                    <input type="hidden" name="DesignCode1" id="DesignCode1" />
+                                                                    <input type="hidden" name="DesignName1" id="DesignName1" />
+                                                                    <input type="hidden" name="Description1" id="Description1" />
+                                                                    <input type="hidden" name="SellingPrice1" id="SellingPrice1" />
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="text-align: right">
+                                            <div class="col-lg-12 col-md-12">
+                                                <a href="#" onclick="AddExpectedInwardItem()" id="AddExpectedInwardItem" style="font-weight: normal">Add Expected Inward Item</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div style="height: 10px">
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="col-lg-9 col-md-9" style="text-align: right">
+                                                        <label style="font-size: 14px">Total Amount:</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        <label id="TotalAmount" style="font-size: 14px">0.00</label><input type="hidden" id="TotalAmountVal" name="TotalAmountVal" value="0" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div style="height: 7px"></div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="col-lg-9 col-md-9" style="text-align: right">
+                                                        <label style="font-size: 14px">Expected Labour Cost:<i style="color: red">*</i></label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        @Html.TextBoxFor(model => model.OutwardForProductionDetails.ExpectedLabourCost, new { id = "LabourCost", @class = "form-control", placeholder = "Labour Cost", @onchange = "GetEnabled()", @value = "0" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div style="height: 7px"></div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="col-lg-9 col-md-9" style="text-align: right">
+                                                        <label style="font-size: 14px">Other Expenses:</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        @Html.TextBoxFor(model => model.OutwardForProductionDetails.OtherExpenses, new { id = "OtherExpenses", @class = "form-control", placeholder = "Other Expenses", @onchange = "CalculateGrandTotal()", @value = "0" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div style="height: 7px"></div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="col-lg-9 col-md-9" style="text-align: right">
+                                                        <label style="font-size: 14px">Production Grand Total:</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        <label id="GrandTotal" style="font-size: 14px">0.00</label><input type="hidden" id="GrandTotalVal" name="GrandTotalVal" value="0" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div style="height: 7px"></div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="col-lg-9 col-md-9" style="text-align: right">
+                                                        <label style="font-size: 14px">Expected Manufacturing Days:</label>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        @Html.TextBoxFor(model => model.OutwardForProductionDetails.ExpectedManufacturingDays, new { @class = "form-control", placeholder = "Manufacturing Days" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="col-lg-12 col-md-12">
+                                                <label>Narration:</label>
+                                                @Html.TextBoxFor(model => model.OutwardForProductionDetails.Narration, new { @class = "form-control", placeholder = "Narration" })
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <div class="col-ld-12 col-md-12" id="Verticalline">
+                                                <div style="height: 15px"></div>
+                                                <div style="width: 100%; height: 1px; background-color: black"></div>
+                                                <div style="height: 10px"></div>
+                                            </div>
+
+                                            <div class="col-md-12 col-lg-12" id="PreparedByDiv">
+                                                <div class="row">
+                                                    <div style="height: 15px"></div>
+                                                    <div class="col-md-3 col-lg-3">
+                                                        <label>Prepared By</label><br />
+                                                        <label id="PreparedByName"></label>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-4">
+                                                        <label>Email-Id</label><br />
+                                                        <label id="PreparedByEmail" style="font-weight: normal"></label>
+                                                    </div>
+                                                    <div class="col-md-3 col-lg-3">
+                                                        <label>Contact No.</label><br />
+                                                        <label id="PreparedByContact" style="font-weight: normal"></label>
+                                                    </div>
+                                                    @{
+                    string preparetimeid = DateTime.Now.ToShortTimeString();
+                                                    }
+                                                    <div class="col-md-2 col-lg-2">
+                                                        <label>Prepare Time</label><br />
+                                                        <label style="font-weight: normal">@preparetimeid</label>
+                                                    </div>
+                                                    <div style="height: 70px"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div style="height: 10px"></div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12" style="text-align: center">
+                                    <button type="button" class="btn btn-success" id="save" disabled="disabled">Save</button>
+                                    <button type="submit" class="btn btn-success" id="submit" style="display: none;">Submit</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End: Main -->
+
+
+
+

@@ -16,7 +16,7 @@ using MvcRetailApp.Filters;
 
 namespace MvcRetailApp.Controllers
 {
-    [NoDirectAccess]
+    //[NoDirectAccess]
     [SessionExpireFilter]
     public class ClientLeadController : Controller
     {
@@ -107,7 +107,7 @@ namespace MvcRetailApp.Controllers
             {
                 ClientLeads = new ClientLead()
             };
-            var ClientLeadDetails = _ClientLeadService.GetLastInsertedClientLead();
+            //var ClientLeadDetails = _ClientLeadService.GetLastInsertedClientLead();
            
             model.ClientLeads.Date =System.DateTime.Now;
             model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
@@ -131,14 +131,16 @@ namespace MvcRetailApp.Controllers
            
 
             ClientLead obj = new ClientLead();
-                obj.ClientName = model.ClientLeads.ClientName;
-              obj.ContactNo1 = model.ClientLeads.ContactNo1;
-              obj.ContactNo2 = model.ClientLeads.ContactNo2;
-              obj.Address = model.ClientLeads.Address;
-              obj.Requriment = model.ClientLeads.Requriment;
-              obj.Date = System.DateTime.Now;
+            obj.ClientName = model.ClientLeads.ClientName;
+            obj.ContactNo1 = model.ClientLeads.ContactNo1;
+            obj.ContactNo2 = model.ClientLeads.ContactNo2;
+            obj.Address = model.ClientLeads.Address;
+            obj.Requriment = model.ClientLeads.Requriment;
+            obj.Date = System.DateTime.Now;
             obj.ScheduleDate = model.ClientLeads.ScheduleDate;
             obj.Remark = model.ClientLeads.Remark;
+          
+               
 
 
 
@@ -203,6 +205,7 @@ namespace MvcRetailApp.Controllers
             return Json("Empty", JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
         public ActionResult EditPartial(int id)
         {
             MainApplication model = new MainApplication();
@@ -254,7 +257,7 @@ namespace MvcRetailApp.Controllers
             // _ClientLeadService.CreateClientLead(obj);
             _ClientMasterService.CreateClient(cm);
             // _ClientMasterService.
-            return View(model);
+            return RedirectToAction("Edit");
           
         }
 
@@ -288,5 +291,53 @@ namespace MvcRetailApp.Controllers
 
 
 
+
+        [HttpPost]
+        public ActionResult EditPartial(ClientLead clnt)
+        {
+            _ClientLeadService.UpdateClientLead(clnt);
+             return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
+           // return RedirectToAction("EditPartial");
+        }
+
+        public ActionResult ResultClientLead(int id)
+        {
+            MainApplication model = new MainApplication();
+            model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
+            TempData["ClientLeadList"] = _ClientLeadService.GetAllClients();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Delete()
+        {
+            MainApplication model = new MainApplication();
+            model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
+            model.modulelist = _iIModuleService.getAllModules();
+            model.CompanyCode = CompanyCode;
+            model.CompanyName = CompanyName;
+            model.FinancialYear = FinancialYear;
+            TempData["ViewType"] = "Delete";
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult DeletePartial(int id)
+        {
+            MainApplication model = new MainApplication();
+            model.ClientLeads = _ClientLeadService.getClientById(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePartial(ClientLead clnt)
+        {
+            _ClientLeadService.DeleteClientLead(clnt);
+            return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
+            // return View();
+        }
+
+       
     }
 }

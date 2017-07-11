@@ -1,0 +1,116 @@
+﻿@model CodeFirstEntities.MainApplication
+@{
+    ViewBag.Title = "GetProductionByDate";
+}
+
+<script type="text/javascript">
+    function GetInwardNo(rowid) {
+
+        var outwardno = "OutwardNo" + rowid;
+        var inwardno = "InwardNo" + rowid;
+        var outwardcode = document.getElementById(outwardno).value;
+
+        $.getJSON("/Production/GetReadyReceivedGoods", { OutwardCode: outwardcode },
+                             function (data) {
+                                 document.getElementById(inwardno).innerHTML = data.InwardCode;
+                             });
+    }
+</script>
+
+@if (Model.OutwardForProductionList != null && Model.OutwardForProductionList.Any())
+{
+    <table class="tablesorter table" style="background-color:white; border-color: #d2d2d2; border: outset">
+        <thead>
+            <tr style="background-color:#eee">
+                <th style="text-align: center">Sr.<br />No.</th>
+                <th style="text-align: center">Outward No</th>
+                <th style="text-align: center">Outward Date</th>
+                <th style="text-align: center">Emp<br />Name</th>
+                <th style="text-align: center">Production<br />Status</th>
+                <th style="text-align: center">Received<br />Goods No</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+    int rowid = 1;
+            }
+            @foreach (var data in Model.OutwardForProductionList)
+            {
+                string outwardno = "OutwardNo" + rowid;
+                string inwardno = "InwardNo" + rowid;
+                
+                <tr>
+                    @{
+                var date = Convert.ToDateTime(data.Date).ToString("dd/MM/yyyy");
+                    }
+                    <td style="text-align: center">@rowid</td>
+                    <td style="text-align: center">@data.OutwardCode<input type="hidden" id="@outwardno" name="@outwardno" value="@data.OutwardCode"/></td>
+                    <td style="text-align: center">@date</td>
+                    <td style="text-align: center">@data.EmpName</td>
+                    <td style="text-align: center">
+                        @{
+                            if(@data.Status=="InActive")
+                        {
+                        <label style="color:green">Received</label>
+                        }
+                        else
+                        {
+                        <label style="color:red">Pending Receive Goods</label>
+                        }
+                        }
+                    </td>
+                    <td style="text-align: center">
+                        @{
+                            if(@data.Status=="InActive")
+                        {
+                         <script>
+                             GetInwardNo(@rowid);
+                         </script>
+                            <label id="@inwardno"></label>
+                        }
+                        else
+                        {
+                        <label style="color:red">-----</label>
+                        }
+                        }
+                    </td>
+                       
+                    @{
+                rowid += 1;
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script>
+        document.getElementById("printbtn").style.display = 'inline';
+        document.getElementById("pager").style.display = 'inline';
+    </script>
+}
+else
+{
+    <label style="color: red; text-align: center; font-weight: bolder; width: 100%">Record Not Found..</label>
+    <script>
+        document.getElementById("printbtn").style.display = 'none';
+        document.getElementById("pager").style.display = 'none';
+    </script>
+}
+<div id="pager" style="display: none; text-align: center; width: 100px">
+    <form>
+        <img src="../Images/first.png" class="first" />
+        <img src="../Images/prev.png" class="prev" />
+        <input type="text" class="pagedisplay" id="pagertextbox" style="width: 170px" />
+        <img src="../Images/next.png" class="next" />
+        <img src="../Images/last.png" class="last" />
+        <select class="pagesize" id="pagerdropdown">
+            <option selected="selected" value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+        </select>
+    </form>
+</div>
+
+
+
