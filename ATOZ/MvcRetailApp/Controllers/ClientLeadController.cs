@@ -256,9 +256,6 @@ namespace MvcRetailApp.Controllers
             // return View();
         }
 
-        public ActionResult test(ClientLead clnt)
-        {
-             return View();
-        }
+       
     }
 }
