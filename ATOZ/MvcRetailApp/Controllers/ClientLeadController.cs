@@ -107,8 +107,6 @@ namespace MvcRetailApp.Controllers
             {
                 ClientLeads = new ClientLead()
             };
-            //var ClientLeadDetails = _ClientLeadService.GetLastInsertedClientLead();
-           
             model.ClientLeads.Date =System.DateTime.Now;
             model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
             model.modulelist = _iIModuleService.getAllModules();
@@ -118,18 +116,9 @@ namespace MvcRetailApp.Controllers
            
             return View(model);
         }
-
-
-
-
-
         [HttpPost]
         public ActionResult Create(MainApplication model)
         {
-          
-          //  var ClientLeadDetails = _ClientLeadService.GetLastInsertedClientLead();
-           
-
             ClientLead obj = new ClientLead();
             obj.ClientName = model.ClientLeads.ClientName;
             obj.ContactNo1 = model.ClientLeads.ContactNo1;
@@ -139,31 +128,10 @@ namespace MvcRetailApp.Controllers
             obj.Date = System.DateTime.Now;
             obj.ScheduleDate = model.ClientLeads.ScheduleDate;
             obj.Remark = model.ClientLeads.Remark;
-          
-               
-
-
-
-
-            //  _ClientLeadService.CreateClientLead(model.ClientLeadDetails);
               _ClientLeadService.CreateClientLead(obj);
-
-            //var client_id = obj.ClientLeadId;
-
-
-            //  _ClientMasterService.CreateClient(model.ClientDetails);
-
-            //ClientLead  c = _ClientLeadService.getClientById(client_id);
-
-
             Response.Write("<script>alert('you did it')</script>");
-
-        
             return RedirectToAction("ClientLeadDetails/" + obj.ClientLeadId, "ClientLead");
         }
-
-
-
 
         [HttpGet]
         public ActionResult Edit()
@@ -213,38 +181,27 @@ namespace MvcRetailApp.Controllers
             return View(model);
         }
 
-
         [HttpGet]
         public ActionResult ClientLeadDetails(int id)
         {
             MainApplication model = new MainApplication()
             {
-                // ClientDetails = new ClientMaster(),
-                //ClientBankDetails = new ClientBankDetail(),
                ClientLeads = new ClientLead(),
-
             };
-            //int Id = Decode(id);
             model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
-            //model.ClientBankDetailList = _ClientBankDetailService.GetDetailsFromBank(model.ClientDetails.ClientCode);
             model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
             model.modulelist = _iIModuleService.getAllModules();
             model.CompanyCode = CompanyCode;
             model.CompanyName = CompanyName;
             model.FinancialYear = FinancialYear;
-
            // string previousclient = TempData["clientcode"].ToString();
             //if (previousclient != model.ClientDetails.ClientCode)
             //{
             //    ViewData["clientchanged"] = previousclient + " is replaced with " + model.ClientDetails.ClientCode + " because " + previousclient + " is acquired by another person";
             //}
             //TempData["clientcode"] = previousclient;
-
             return View(model);
         }
-
-
-
         public ActionResult AcceptClientLead(MainApplication model,int id)
         {
            model.ClientLeadDetails= _ClientLeadService.GetClientLeadById(id);
@@ -258,40 +215,7 @@ namespace MvcRetailApp.Controllers
             _ClientMasterService.CreateClient(cm);
             // _ClientMasterService.
             return RedirectToAction("Edit");
-          
         }
-
-
-        public ActionResult tp()
-        {
-            return View();
-        }
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [HttpPost]
         public ActionResult EditPartial(ClientLead clnt)
         {
@@ -335,9 +259,7 @@ namespace MvcRetailApp.Controllers
         {
             _ClientLeadService.DeleteClientLead(clnt);
             return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
-            // return View();
         }
-
-       
     }
 }
+ 
