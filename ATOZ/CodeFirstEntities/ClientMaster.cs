@@ -14,48 +14,48 @@ namespace CodeFirstEntities
         [Key]
         public int ClientId { get; set; }
        // [Required]
-     //   [Display(Name = "Membershipcard")]
+       [Display(Name = "Membershipcard")]
         public string TypeOfMembershipCard { get; set; }
-       // [Required]
-      //  [Display(Name = "Name")]
+        [Required]
+        [Display(Name = "Name")]
         public string ClientName { get; set; }
-       // [Required]
-       // [Display(Name = "Address")]
+        [Required]
+        [Display(Name = "Address")]
         public string Address { get; set; }
-        //[Range(100000,99999999,ErrorMessage= "Pincode should be between 6 and 8")]
-       // [Display(Name = "Pincode")]
+       [Range(100000,99999999,ErrorMessage= "Pincode should be between 6 and 8")]
+        [Display(Name = "Pincode")]
         public int? Pincode { get; set; }
-       // [Required]
-      //  [Range(1000000, 99999999999999, ErrorMessage = "Contact No 1 should be between 7 and 14")]
-     //   [Display(Name = "Contact No")]
+        [Required]
+        [Range(1000000, 99999999999999, ErrorMessage = "Contact No 1 should be between 7 and 14")]
+        [Display(Name = "Contact No")]
         public string ContactNo1 { get; set; }
-      //  [Range(1000000, 99999999999999, ErrorMessage = "Contact No 2 should be between 7 and 14")]
+       [Range(1000000, 99999999999999, ErrorMessage = "Contact No 2 should be between 7 and 14")]
         public string ContactNo2 { get; set; }
-     //   [Range(1000000, 99999999999999, ErrorMessage = "Contact No 3 should be between 7 and 14")]
+        [Range(1000000, 99999999999999, ErrorMessage = "Contact No 3 should be between 7 and 14")]
         public string ContactNo3 { get; set; }
-      //  [Display(Name = "Email")]
-     //   [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9_\\+-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessage = "Please enter correct email")]
+        [Display(Name = "Email")]
+       // [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9_\\+-]+(\\.[a-z0-9-]+)*\\.([a-z]{2,4})$", ErrorMessage = "Please enter correct email")]
         public string Email { get; set; }
-      //  [Display(Name = "Website")]
+        [Display(Name = "Website")]
         public string Website { get; set; }
-     //   [Display(Name = "Sales Tax No")]
+        [Display(Name = "Sales Tax No")]
         public string STNo { get; set; }
-     //   [Display(Name = "Vat No")]
-     //   [StringLength(12,MinimumLength=12,ErrorMessage="Vat No Must Be 12 Characters Long")]
+        [Display(Name = "Vat No")]
+       // [StringLength(12,MinimumLength=12,ErrorMessage="Vat No Must Be 12 Characters Long")]
         public string VTNo { get; set; }
-       // [Display(Name = "TDSNo")]
+        [Display(Name = "TDSNo")]
         public string TDSNo { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public string Status { get; set; }
-       // [Display(Name = "Pancard")]
+        [Display(Name = "Pancard")]
         public string PanCard { get; set; }
-      //  [Required]
+        [Required]
         public string Country { get; set; }
-     //   [Required]
+        [Required]
         public string State { get; set; }
-      //  [Required]
+        [Required]
         public string District { get; set; }
-       // [Required]
+        [Required]
         public string City { get; set; }
         public string ClientCode { get; set; }
         public string OtherTax { get; set; }
@@ -66,6 +66,18 @@ namespace CodeFirstEntities
         public string checkState { get; set; }
         public string ClientType { get; set; }
         public string ConsumeResell { get; set; }
+        [Required]
+        [Display(Name = "Requriment")]
+        public string Requriment { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime? ScheduleDate { get; set; }
+       
+        public string Remark { get; set; }
+
+
         public IEnumerable<Country> CountryList { get; set; }
         public IEnumerable<State> StateList { get; set; }
         public IEnumerable<District> DistrictList { get; set; }

@@ -78,30 +78,127 @@
 <link href="~/Content/customAlerts.css" rel="stylesheet" />
 <script src="~/Scripts/bootbox.js"></script>
 
- <script>
-  $( function() {
-    $( "#datepicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true
-    });
-  } );
-  </script>
+
 @*<script type="text/javascript">
     $(document).ready(function () {
-        var data = new JsDatePick({
-            useMode: 2,
-            target: "ClientLeads_ScheduleDate",
-            dateFormat: "%d/%M/%Y"
-        });
-
-        data.addOnSelectedDelegate(function () {
-
-            var today = new Date();
-            var date = document.getElementById("ClientLeads_ScheduleDate").value;
-            //var birthDate = new Date(birth);
-        });
+        var dob = document.getElementById("ClientLeads_ScheduleDate").value;
+        var dat = new Date(dob);
+        var month = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        var data = dat.getDate() + "/" + month[dat.getMonth()] + "/" + dat.getFullYear();
+        document.getElementById('ClientLeads_ScheduleDate').value = data;
     });
 </script>*@
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlcountry").val("India").attr('selected', 'selected');
+        $("#ddlcountry").change(function () {
+            var idmodel = $(this).val();
+            $.getJSON("/Client/LoadStateByCountry", { countryname: idmodel },
+            function (Data) {
+                var select = $("#ddlstate");
+                select.empty();
+                select.append($('<option/>', {
+                    value: "",
+                    text: "Select State"
+                }));
+
+                $.each(Data, function (index, itemData) {
+
+                    select.append($('<option/>', {
+                        value: itemData.Value,
+                        text: itemData.Text
+                    }));
+                });
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlstate").change(function () {
+            var idmodel = $(this).val();
+            //if (idmodel == "Maharashtra") {
+            //    $("#Local").attr('checked', true);
+            //    document.getElementById("ClientDetails_checkState").value = "Local";
+            //    document.getElementById("YesRadioButton").disabled = true;
+            //    document.getElementById("NoRadioButton").disabled = true;
+            //    $("#NoRadioButton").attr("checked", true);
+            //    document.getElementById("formtypeid").style.display = "none";
+            //    $("#ddlformtypes").val("").attr("selected", true);
+            //}
+            //else {
+            //    $("#OMS").attr('checked', true);
+            //    document.getElementById("ClientDetails_checkState").value = "OMS";
+            //}
+            $.getJSON("/ClientLead/LoadDistrictByState", { statename: idmodel },
+            function (Data) {
+                var select = $("#ddldistrict");
+                select.empty();
+                select.append($('<option/>', {
+                    value: "",
+                    text: "Select District"
+                }));
+
+                $.each(Data, function (index, itemData) {
+
+                    select.append($('<option/>', {
+                        value: itemData.Value,
+                        text: itemData.Text
+                    }));
+                });
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    var data = new JsDatePick({
+    //        useMode: 2,
+    //        target: "ClientLeads_ScheduleDate",
+    //        dateFormat: "%d/%M/%Y"
+    //    });
+
+    //    data.addOnSelectedDelegate(function() {
+    //        var today = new Date();
+    //        var birth = document.getElementById("ClientLeads_ScheduleDate").value;
+    //        var birthDate = new Date(birth);
+    //     //   $("#EmployeeDetails_DateOfBirth").val("");
+    //        var age = today.getFullYear() - birthDate.getFullYear();
+    //        var m = today.getMonth() - birthDate.getMonth();
+    //        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //            age--;
+    //        }
+    //    });
+    //});
+
+   
+    window.onload = function () {
+        var cal_start = new JsDatePick({
+            useMode: 2,
+            target: "ClientLeads_ScheduleDate",
+            dateFormat: "%m/%d/%Y"
+        });
+        cal_start.addOnSelectedDelegate(function () {
+            document.getElementById('ClientLeads_ScheduleDate').value = cal_start.getSelectedDayFormatted();
+            cal_end.showCalendar();
+        });
+    };
+
+    //$.getJSON("/ClientLead/LoadDistrictByState", { statename: idmodel },
+    //      function (Data) {
+    //          var select = $("#ddldistrict");
+    //          select.empty();
+    //          select.append($('<option/>', {
+    //              value: "",
+    //              text: "Select District"
+    //          }));
+    //      });
+</script>
 
 <!-- Start: Header -->
 @Html.Partial("../Shared/Header")
@@ -117,6 +214,9 @@
         @using(Html.BeginForm("Create","ClientLead",FormMethod.Post,new{enctype = "multipart/form-data", @id = "myform", @name = "myform" }))
         {
             @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(model => model.ClientLeads.ClientLeadCode)
+
              <audio id="audio" muted="true" preload="auto" style="display: none" controls="controls" autoplay="false">
                 <source src="" type="audio/ogg" />
             </audio>
@@ -152,34 +252,49 @@
                                         @Html.ValidationMessageFor(model=>model.ClientLeads.Address,null,new {style= "Address", @id = "address" })
                                         <label id="errorname" class="error" style="display: none"></label>
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputCountry">Country<i style="color: red">*</i></label>
+                                        @Html.DropDownListFor(model => model.ClientLeads.Country, new SelectList(Model.ClientLeads.CountryList, "countryName", "countryName"), "Select Country", new { id = "ddlcountry", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ClientLeads.Country, null, new { style = "color:red", @id = "country" })
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputState">State<i style="color: red">*</i></label>
+                                        @Html.DropDownListFor(model => model.ClientLeads.State, new SelectList(Model.ClientLeads.StateList, "StateName", "StateName"), "Select State", new { id = "ddlstate", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ClientLeads.State, null, new { style = "color:red", @id = "state" })
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-lg-6">
                                 <div class="col-md-12 col-lg-12">
-                                     <div class="form-group row">
+                                    <div class="form-group row">
+                                        <label for="exampleInputDistrict">District<i style="color: red">*</i></label>
+                                        @Html.DropDownListFor(model => model.ClientLeads.District, Enumerable.Empty<SelectListItem>(), "Select District", new { id = "ddldistrict", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ClientLeads.District, null, new { style = "color:red", @id = "district" })
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleInputCity">City<i style="color: red">*</i></label>
+                                        @Html.TextBoxFor(model => model.ClientLeads.City, new { @placeholder = "City", @class = "form-control", @autocomplete = "off" })
+                                        @Html.ValidationMessageFor(model => model.ClientLeads.City, null, new { style = "color:red", @id = "city" })
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="exampleInputname">Requriment<i style="color: red">*</i></label>
-                                        @Html.TextBoxFor(model => model.ClientLeads.Requriment, new {@placeholder="Requriment",@class="form-control" })
-                                        @Html.ValidationMessageFor(model=>model.ClientLeads.Requriment,null,new {style= "color:red", @id = "requriment" })
+                                        @Html.TextBoxFor(model => model.ClientLeads.Requriment, new { @placeholder = "Requriment", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ClientLeads.Requriment, null, new { style = "color:red", @id = "requriment" })
                                         <label id="errorname" class="error" style="display: none"></label>
                                     </div>
-                                     <div class="form-group row">
+                                    <div class="form-group row">
                                         <label for="exampleInputname">Date<i style="color: red">*</i></label>
-                                        @Html.TextBoxFor(model => model.ClientLeads.Date, new {@placeholder="Date",@class="form-control",@value= System.DateTime.Now,@readonly="Readonly" })
-                                        @Html.ValidationMessageFor(model=>model.ClientLeads.Date,null,new {style= "color:red", @id = "date" })
+                                        @Html.TextBoxFor(model => model.ClientLeads.Date, new { @placeholder = "Date", @class = "form-control", @value = System.DateTime.Now, @readonly = "Readonly" })
+                                        @Html.ValidationMessageFor(model => model.ClientLeads.Date, null, new { style = "color:red", @id = "date" })
                                         <label id="errorname" class="error" style="display: none"></label>
                                     </div>
                                      <div class="form-group row">
                                         <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>
-                                        @Html.TextBoxFor(model => model.ClientLeads.ScheduleDate, new {@placeholder="ScheduleDate",@class="form-control",@onkeypress = "return false", @autocomplete = "off" ,@type= "date" })
-                                        
-                                        @Html.ValidationMessageFor(model=>model.ClientLeads.ScheduleDate,null,new {style= "color:red", @id = "datepicker" })
-                                        <label id="errorname" class="error" style="display: none"></label>
+                                        @Html.TextBoxFor(model => model.ClientLeads.ScheduleDate, new {@class="form-control",@placeholder = "Schedule Date", @onkeypress = "return false", @autocomplete = "off", @id= "ClientLeads_ScheduleDate" })
+                                        @Html.ValidationMessageFor(model=>model.ClientLeads.ScheduleDate,null,new {style= "color:red", @id = "scheduledate" })
+                                        @*<label id="errorname" class="error" style="display: none"></label>*@
                                     </div>
-                                    @*<div class="form-group row">
-                                        <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>`
-                                        @Html.TextBox("ScheduleDate", Model.ClientLeads.ScheduleDate, new { @class = "datepicker form-control", @type = "date", @onkeypress = "return false", @autocomplete = "off" })
-                                    </div>*@
                                         <div class="form-group row">
                                             <label for="exampleInputname">Remark<i style="color: red">*</i></label>
                                             @Html.TextBoxFor(model => model.ClientLeads.Remark, new { @placeholder = "Remark", @class = "form-control" })

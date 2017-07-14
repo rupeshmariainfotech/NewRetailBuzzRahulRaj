@@ -22,5 +22,7 @@ namespace CodeFirstServices.Interfaces
         IEnumerable<ClientLead> GetAllClients();
 
         ClientLead getClientById(int id);
+
+        ClientLead GetLastInsertedClient();
     }
 }

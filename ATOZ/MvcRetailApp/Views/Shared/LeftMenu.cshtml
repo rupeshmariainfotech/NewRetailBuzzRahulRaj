@@ -957,40 +957,41 @@
             <a href="#"><i class="glyphicons glyphicons-justify"></i><span>MIS Reports</span><span class="fa arrow"></span></a>
             @{ string[] links7 = new string[100];
 
-               links7[0] = "/MisReports/EmployeeReport";
-               links7[1] = "/MisReports/SupplierReport";
-               links7[2] = "/MisReports/ClientReport";
-               links7[3] = "/MisReports/ItemWiseReport";
-               links7[4] = "/MisReports/ItemTaxReport";
-               links7[5] = "/MisReports/OpeningStockReport";
-               links7[6] = "/MisReports/PurchaseOrderReport";
-               links7[7] = "/MisReports/InwardsWithPOReports";
-               links7[8] = "/MisReports/InwardsWithoutPOReports";
-               links7[9] = "/MisReports/InwardToGodown";
-               links7[10] = "/MisReports/InwardToShop";
-               links7[11] = "/MisReports/InwardFromShopToGodownReports";
-               links7[12] = "/MisReports/InwardInterShopReport";
-               links7[13] = "/MisReports/InwardInterGodownReport";
-               links7[14] = "/MisReports/EntryStockReport";
-               links7[15] = "/MisReports/StockDistributionReport";
-               links7[16] = "/MisReports/ShopStockReport";
-               links7[17] = "/MisReports/GodownStockReport";
-               links7[18] = "/MisReports/OutwardToClientReports";
-               links7[19] = "/MisReports/OutwardToShopReports";
-               links7[20] = "/MisReports/OutwardFromShopToGodownReports";
-               links7[21] = "/MisReports/OutwardInterShopReports";
-               links7[22] = "/MisReports/OutwardInterGodownReports";
-               links7[23] = "/MisReports/BillingReports";
-               links7[24] = "/MisReports/PendingBillReports";
-               links7[25] = "/MisReports/CashierReports";
-               links7[26] = "/MisReports/DebitCreditNoteReports";
-               links7[27] = "/MisReports/StartingBlankPageForSalesReport";
-               links7[28] = "/MisReports/CommissionReport";
-               links7[29] = "/MisReports/CommissionReleaseReport";
-               links7[30] = "/MisReports/StockReport";
-               links7[31] = "/MisReports/RetailBillReport";
+                links7[0] = "/MisReports/EmployeeReport";
+                links7[1] = "/MisReports/SupplierReport";
+                links7[2] =  "/MisReports/ClientLeadReport";
+                links7[3] = "/MisReports/ClientReport";
+                links7[4] = "/MisReports/ItemWiseReport";
+                links7[5] = "/MisReports/ItemTaxReport";
+                links7[6] = "/MisReports/OpeningStockReport";
+                links7[7] = "/MisReports/PurchaseOrderReport";
+                links7[8] = "/MisReports/InwardsWithPOReports";
+                links7[9] = "/MisReports/InwardsWithoutPOReports";
+                links7[10] = "/MisReports/InwardToGodown";
+                links7[11] = "/MisReports/InwardToShop";
+                links7[12] = "/MisReports/InwardFromShopToGodownReports";
+                links7[13] = "/MisReports/InwardInterShopReport";
+                links7[14] = "/MisReports/InwardInterGodownReport";
+                links7[15] = "/MisReports/EntryStockReport";
+                links7[16] = "/MisReports/StockDistributionReport";
+                links7[17] = "/MisReports/ShopStockReport";
+                links7[18] = "/MisReports/GodownStockReport";
+                links7[19] = "/MisReports/OutwardToClientReports";
+                links7[20] = "/MisReports/OutwardToShopReports";
+                links7[21] = "/MisReports/OutwardFromShopToGodownReports";
+                links7[22] = "/MisReports/OutwardInterShopReports";
+                links7[23] = "/MisReports/OutwardInterGodownReports";
+                links7[24] = "/MisReports/BillingReports";
+                links7[25] = "/MisReports/PendingBillReports";
+                links7[26] = "/MisReports/CashierReports";
+                links7[27] = "/MisReports/DebitCreditNoteReports";
+                links7[28] = "/MisReports/StartingBlankPageForSalesReport";
+                links7[29] = "/MisReports/CommissionReport";
+                links7[30] = "/MisReports/CommissionReleaseReport";
+                links7[31] = "/MisReports/StockReport";
+                links7[32] = "/MisReports/RetailBillReport";
 
-               count = 0;
+                count = 0;
                 <ul class="nav nav-third-level">
                     @if (Model.userCredentialList != null && Model.userCredentialList.Any())
                     {
@@ -1011,183 +1012,189 @@
                             <a href="@links7[1]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Client Report")
-                                {
-                        <li>
-                            <a href="@links7[2]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
-                        </li>
+                                if(item.Modules=="Client Lead Report")
+                                { 
+                         <li>
+                             <a href="@links7[2]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
+                         </li>
                                 }
-                                if (item.Modules == "Item Wise Report")
+                                if (item.Modules == "Client Report")
                                 {
                         <li>
                             <a href="@links7[3]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "ItemTax Report")
+                                if (item.Modules == "Item Wise Report")
                                 {
                         <li>
                             <a href="@links7[4]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
-                                } if (item.Modules == "Opening Stock Report")
+                                }
+                                if (item.Modules == "ItemTax Report")
                                 {
                         <li>
                             <a href="@links7[5]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
-                                }
-                                if (item.Modules == "Purchase Order Report")
+                                } if (item.Modules == "Opening Stock Report")
                                 {
                         <li>
                             <a href="@links7[6]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Inward With PO Report")
+                                if (item.Modules == "Purchase Order Report")
                                 {
                         <li>
                             <a href="@links7[7]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Inward Without PO Report")
+                                if (item.Modules == "Inward With PO Report")
                                 {
                         <li>
                             <a href="@links7[8]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Inward Stock Distribution Report")
+                                if (item.Modules == "Inward Without PO Report")
                                 {
                         <li>
                             <a href="@links7[9]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Inward To Shop Report")
+                                if (item.Modules == "Inward Stock Distribution Report")
                                 {
                         <li>
                             <a href="@links7[10]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Inward To Godown Report")
+                                if (item.Modules == "Inward To Shop Report")
                                 {
                         <li>
                             <a href="@links7[11]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Inward Inter Shop Report")
+                                if (item.Modules == "Inward To Godown Report")
                                 {
                         <li>
                             <a href="@links7[12]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Inward Inter Godown Report")
+                                if (item.Modules == "Inward Inter Shop Report")
                                 {
                         <li>
                             <a href="@links7[13]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Entry Stock Report")
+                                if (item.Modules == "Inward Inter Godown Report")
                                 {
                         <li>
                             <a href="@links7[14]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Stock Distribution Report")
+                                if (item.Modules == "Entry Stock Report")
                                 {
                         <li>
                             <a href="@links7[15]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Shop Stock Report")
+                                if (item.Modules == "Stock Distribution Report")
                                 {
                         <li>
                             <a href="@links7[16]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Godown Stock Report")
+                                if (item.Modules == "Shop Stock Report")
                                 {
                         <li>
                             <a href="@links7[17]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Outward To Client Report")
+                                if (item.Modules == "Godown Stock Report")
                                 {
                         <li>
                             <a href="@links7[18]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Outward To Shop Report")
+                                if (item.Modules == "Outward To Client Report")
                                 {
                         <li>
                             <a href="@links7[19]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Outward To Godown Report")
+                                if (item.Modules == "Outward To Shop Report")
                                 {
                         <li>
                             <a href="@links7[20]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Outward Inter Shop Report")
+                                if (item.Modules == "Outward To Godown Report")
                                 {
                         <li>
                             <a href="@links7[21]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Outward Inter Godown Report")
+                                if (item.Modules == "Outward Inter Shop Report")
                                 {
                         <li>
                             <a href="@links7[22]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Billing Reports")
+                                if (item.Modules == "Outward Inter Godown Report")
                                 {
                         <li>
                             <a href="@links7[23]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Pending Bills Reports")
+                                if (item.Modules == "Billing Reports")
                                 {
                         <li>
                             <a href="@links7[24]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Cashier Reports")
+                                if (item.Modules == "Pending Bills Reports")
                                 {
                         <li>
                             <a href="@links7[25]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Credit/Debit Note Report")
+                                if (item.Modules == "Cashier Reports")
                                 {
                         <li>
                             <a href="@links7[26]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Daily & Montly Sales Report")
+                                if (item.Modules == "Credit/Debit Note Report")
                                 {
                         <li>
                             <a href="@links7[27]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Commission Report")
+                                if (item.Modules == "Daily & Montly Sales Report")
                                 {
                         <li>
                             <a href="@links7[28]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Commission Release Report")
+                                if (item.Modules == "Commission Report")
                                 {
                         <li>
                             <a href="@links7[29]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Stock Report")
+                                if (item.Modules == "Commission Release Report")
                                 {
                         <li>
                             <a href="@links7[30]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
-                                if (item.Modules == "Retail Bill Report")
+                                if (item.Modules == "Stock Report")
                                 {
                         <li>
                             <a href="@links7[31]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
+                        </li>
+                                }
+                                if (item.Modules == "Retail Bill Report")
+                                {
+                        <li>
+                            <a href="@links7[32]"><i class="fa fa-file-text"></i><span>@item.Modules</span></a>
                         </li>
                                 }
                             }

@@ -87,6 +87,13 @@ namespace CodeFirstServices.Services
         //    return client;
         //}
 
+
+        public ClientLead GetLastInsertedClient()
+        {
+            var client = _ClientLeadRepository.GetAll().LastOrDefault();
+            return client;
+
+        }
     }
 }
 

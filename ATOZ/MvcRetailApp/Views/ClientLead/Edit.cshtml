@@ -249,9 +249,10 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
     function UpdateClientLead() {
     var count = 0;
     //this if conditions is for check required fields
-    if($("#ClientLeads_Address").val() == "" || $("#ClientLeads_ClientName").val()=="" ||
+    if ($("#ClientLeads_ClientLeadId").val() == "" || $("#ClientLeads_Address").val() == "" || $("#ClientLeads_ClientName").val() == "" ||
         $("#ClientLeads_ContactNo1").val()=="" || $("#ClientLeads_Requriment").val()=="" ||
-        $("#ClientLeads_ScheduleDate").val() == "" || $("#ClientLeads_Remark").val() == "") {
+        $("#ClientLeads_ScheduleDate").val() == "" || $("#ClientLeads_Remark").val() == ""||
+        $("#ddlcountry").val() == "" || $("#ddldistrict").val() == "" || $("#ddlstate").val() == "" || $("#ClientLeads_City").val() == "") {
         return false;
     }
         //if the above if condition is false check their other validations eg: length,number.(for required fields)
@@ -278,6 +279,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
 
         var clnt = {
             ClientLeadId: $("#ClientLeads_ClientLeadId").val(),
+            ClientCode: $("#ClientLeads_ClientLeadCode").val(),
             ClientName: $("#ClientLeads_ClientName").val(),
             ContactNo1: $("#ClientLeads_ContactNo1").val(),
             ContactNo2: $("#ClientLeads_ContactNo2").val(),
@@ -285,7 +287,11 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
             Requriment: $("#ClientLeads_Requriment").val(),
             Date: $("#ClientLeads_Date").val(),
             ScheduleDate: $("#ClientLeads_ScheduleDate").val(),
-            Remark: $("#ClientLeads_Remark").val()
+            Remark: $("#ClientLeads_Remark").val(),
+            Country: $("#ddlcountry").val(),
+            State: $("#ddlstate").val(),
+            District: $("#ddldistrict").val(),
+            City: $("#ClientLeads_City").val(),
         };
 
         $.ajax({

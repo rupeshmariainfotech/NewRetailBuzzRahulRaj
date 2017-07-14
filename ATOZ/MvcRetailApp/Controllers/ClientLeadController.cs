@@ -107,6 +107,30 @@ namespace MvcRetailApp.Controllers
             {
                 ClientLeads = new ClientLead()
             };
+
+            var ClientLeads = _ClientLeadService.GetLastInsertedClient();
+            int lastid = 0;
+            int length = 0;
+            if (ClientLeads != null)
+            {
+                lastid = ClientLeads.ClientLeadId;
+                lastid = lastid + 1;
+                length = lastid.ToString().Length;
+            }
+            else
+            {
+                lastid = 1;
+                length = 1;
+            }
+            string catCode = _UtilityService.getName("CL", length, lastid);
+            model.ClientLeads.ClientLeadCode = catCode;
+            TempData["clientleadcode"] = catCode;
+
+            //var codelist = _ClientBankDetailService.GetDetailsFromBank(catCode);
+            model.ClientLeads.StateList = _StateService.GetStateByCountry(1);
+
+            Session["ClientLeadCode"] = catCode;
+            model.ClientLeads.CountryList = _CountryService.getallcountries();
             model.ClientLeads.Date =System.DateTime.Now;
             model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
             model.modulelist = _iIModuleService.getAllModules();
@@ -119,6 +143,29 @@ namespace MvcRetailApp.Controllers
         [HttpPost]
         public ActionResult Create(MainApplication model)
         {
+            var ClientLeads = _ClientLeadService.GetLastInsertedClient();
+            int lastid = 0;
+            int length = 0;
+            if (ClientLeads != null)
+            {
+                lastid = ClientLeads.ClientLeadId;
+                lastid = lastid + 1;
+                length = lastid.ToString().Length;
+            }
+            else
+            {
+                lastid = 1;
+                length = 1;
+            }
+            string catCode = _UtilityService.getName("CL", length, lastid);
+
+            string LogedinUSerName = HttpContext.Session["UserName"].ToString();
+
+            int did = Convert.ToInt32(model.ClientLeads.District);
+            model.ClientLeads.District = _DistrictService.GetDistrictNamebyId(did);
+            string Clientname = model.ClientLeads.ClientName;
+            model.ClientLeads.ClientName = Clientname.First().ToString().ToUpper() + Clientname.Substring(1);
+
             ClientLead obj = new ClientLead();
             obj.ClientName = model.ClientLeads.ClientName;
             obj.ContactNo1 = model.ClientLeads.ContactNo1;
@@ -128,6 +175,11 @@ namespace MvcRetailApp.Controllers
             obj.Date = System.DateTime.Now;
             obj.ScheduleDate = model.ClientLeads.ScheduleDate;
             obj.Remark = model.ClientLeads.Remark;
+            obj.Country = model.ClientLeads.Country;
+            obj.District = model.ClientLeads.District;
+            obj.State = model.ClientLeads.State;
+            obj.City = model.ClientLeads.City;
+            obj.ClientLeadCode = model.ClientLeads.ClientLeadCode;
               _ClientLeadService.CreateClientLead(obj);
             Response.Write("<script>alert('you did it')</script>");
             return RedirectToAction("ClientLeadDetails/" + obj.ClientLeadId, "ClientLead");
@@ -178,6 +230,11 @@ namespace MvcRetailApp.Controllers
         {
             MainApplication model = new MainApplication();
             model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
+            model.ClientLeads.CountryList = _CountryService.getallcountries();
+            var countryData = _CountryService.getidbyname(model.ClientLeads.Country);
+            model.ClientLeads.StateList = _StateService.GetStateByCountry(countryData);
+            int stateid = _StateService.GetStateIdByName(model.ClientLeads.State);
+            model.ClientLeads.DistrictList = _DistrictService.getDistrictbyState(stateid);
             return View(model);
         }
 
@@ -188,18 +245,19 @@ namespace MvcRetailApp.Controllers
             {
                ClientLeads = new ClientLead(),
             };
+           // int Id = Decode(id.ToString());
             model.ClientLeads = _ClientLeadService.GetClientLeadById(id);
             model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
             model.modulelist = _iIModuleService.getAllModules();
             model.CompanyCode = CompanyCode;
             model.CompanyName = CompanyName;
             model.FinancialYear = FinancialYear;
-           // string previousclient = TempData["clientcode"].ToString();
-            //if (previousclient != model.ClientDetails.ClientCode)
-            //{
-            //    ViewData["clientchanged"] = previousclient + " is replaced with " + model.ClientDetails.ClientCode + " because " + previousclient + " is acquired by another person";
-            //}
-            //TempData["clientcode"] = previousclient;
+            string previousclient = TempData["clientleadcode"].ToString();
+            if (previousclient != model.ClientLeads.ClientLeadCode)
+            {
+                ViewData["clientchanged"] = previousclient + " is replaced with " + model.ClientLeads.ClientLeadCode + " because " + previousclient + " is acquired by another person";
+            }
+            TempData["clientleadcode"] = previousclient;
             return View(model);
         }
         public ActionResult AcceptClientLead(MainApplication model,int id)
@@ -207,10 +265,20 @@ namespace MvcRetailApp.Controllers
            model.ClientLeadDetails= _ClientLeadService.GetClientLeadById(id);
             ClientMaster cm = new ClientMaster();
          cm.Address = model.ClientLeadDetails.Address;
-           cm.ClientId = model.ClientLeadDetails.ClientId;
+           cm.ClientId = id;
           cm.ClientName = model.ClientLeadDetails.ClientName;
            cm.ContactNo1 = model.ClientLeadDetails.ContactNo1;
            cm.ContactNo2 = model.ClientLeadDetails.ContactNo2;
+            cm.Address = model.ClientLeadDetails.Address;
+            cm.Country = model.ClientLeadDetails.Country;
+            cm.State = model.ClientLeadDetails.State;
+            cm.District = model.ClientLeadDetails.District;
+            cm.City = model.ClientLeadDetails.City;
+            cm.Requriment = model.ClientLeadDetails.Requriment;
+            cm.Remark = model.ClientLeadDetails.Remark;
+            cm.Date = model.ClientLeadDetails.Date;
+            cm.ScheduleDate = model.ClientLeadDetails.ScheduleDate;
+            cm.ClientCode = model.ClientLeadDetails.ClientLeadCode;
             // _ClientLeadService.CreateClientLead(obj);
             _ClientMasterService.CreateClient(cm);
             // _ClientMasterService.
@@ -259,6 +327,52 @@ namespace MvcRetailApp.Controllers
         {
             _ClientLeadService.DeleteClientLead(clnt);
             return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
+        }
+        [HttpGet]
+        public JsonResult LoadDistrictByState(string statename)
+        {
+            if (!string.IsNullOrEmpty(statename))
+            {
+                int stateid = _StateService.GetStateIdByName(statename);
+               ClientLead clientlead = new ClientLead();
+                clientlead.DistrictList = _DistrictService.getDistrictbyState(stateid);
+                var modelData = clientlead.DistrictList.Select(m => new SelectListItem()
+                {
+                    Text = m.DistrictName,
+                    Value = m.DistrictId.ToString()
+                });
+                return Json(modelData, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                var modelData = string.Empty;
+                return Json(modelData, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        [HttpGet]
+        public JsonResult LoadStateByCountry(string countryname)
+        {
+            if (!string.IsNullOrEmpty(countryname))
+            {
+                int countryid = _CountryService.getidbyname(countryname);
+                ClientLead clientlead = new ClientLead();
+                clientlead.StateList = _StateService.GetStateByCountry(countryid);
+                var modelData = clientlead.StateList.Select(m => new SelectListItem()
+                {
+                    Text = m.StateName,
+                    Value = m.StateName
+                });
+                return Json(modelData, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                var modelData = string.Empty;
+                return Json(modelData, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

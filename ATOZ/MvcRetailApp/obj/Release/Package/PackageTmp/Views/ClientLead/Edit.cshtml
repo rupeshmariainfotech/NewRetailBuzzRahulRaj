@@ -161,7 +161,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
         $("#SearchButton").click(function () {
             var searchData = document.getElementById("SearchText").value;
             $.ajax({
-                url: '/ClientLead/ClienLeadList',
+                url: '/ClientLead/ClientLeadList',
                 data: { name: searchData },
                 type: "GET",
                 success: function (data) {
@@ -194,7 +194,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                         document.getElementById("SearchNames").style.display = "none";
                         document.getElementById("list").innerHTML = "";
                         document.getElementById("EmptyList").style.display = "inline";
-                        document.getElementById("ResultClientMaster").innerHTML = "";
+                        document.getElementById("ResultClientLead").innerHTML = "";
                         //document.getElementById("downarrow").style.display = "none"
                         document.getElementById("uparrow").style.display = "none"
                     }
@@ -245,6 +245,78 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
     }
 </script>
 
+<script  type="text/javascript">
+    function UpdateClientLead() {
+    var count = 0;
+    //this if conditions is for check required fields
+    if ($("#ClientLeads_ClientLeadId").val() == "" || $("#ClientLeads_Address").val() == "" || $("#ClientLeads_ClientName").val() == "" ||
+        $("#ClientLeads_ContactNo1").val()=="" || $("#ClientLeads_Requriment").val()=="" ||
+        $("#ClientLeads_ScheduleDate").val() == "" || $("#ClientLeads_Remark").val() == ""||
+        $("#ddlcountry").val() == "" || $("#ddldistrict").val() == "" || $("#ddlstate").val() == "" || $("#ClientLeads_City").val() == "") {
+        return false;
+    }
+        //if the above if condition is false check their other validations eg: length,number.(for required fields)
+    else if ($("#ClientLeads_ContactNo1").val().length < 7 || $("#ClientLeads_ContactNo1").val().length > 14) {
+        return false;
+    }
+    else {
+        if ($("#ClientLeads_ContactNo2").val() != "") {
+            if ($("#ClientLeads_ContactNo2").val().length > 14 || $("#ClientLeads_ContactNo2").val().length < 7) {
+                errorcount++;
+                return false;
+            }
+        }
+    }
+    if (count == 0) {
+        //this code is used for show changes in list
+        var count = document.getElementById("ClientRowValue").value;
+        var clientname = "clientname" + count;
+        //this code is used for to Show first lettr capital
+        var txt = document.getElementById("ClientLeads_ClientName").value;
+        txt = txt.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+        document.getElementById(clientname).innerHTML = txt;
+        document.getElementById("ClientLeads_ClientName").value = txt;
+
+        var clnt = {
+            ClientLeadId: $("#ClientLeads_ClientLeadId").val(),
+            ClientCode: $("#ClientLeads_ClientLeadCode").val(),
+            ClientName: $("#ClientLeads_ClientName").val(),
+            ContactNo1: $("#ClientLeads_ContactNo1").val(),
+            ContactNo2: $("#ClientLeads_ContactNo2").val(),
+            Address: $("#ClientLeads_Address").val(),
+            Requriment: $("#ClientLeads_Requriment").val(),
+            Date: $("#ClientLeads_Date").val(),
+            ScheduleDate: $("#ClientLeads_ScheduleDate").val(),
+            Remark: $("#ClientLeads_Remark").val(),
+            Country: $("#ddlcountry").val(),
+            State: $("#ddlstate").val(),
+            District: $("#ddldistrict").val(),
+            City: $("#ClientLeads_City").val(),
+        };
+
+        $.ajax({
+            url: '/ClientLead/EditPartial',
+            contentType: "application/json; charset=utf-8",
+            type: "POST",
+            data: JSON.stringify(clnt),
+            datatype: "json",
+            success: function (data) {
+                document.getElementById("LoadPartialView").style.display = "none";
+                document.getElementById("ResultClientLead").style.display = "inline";
+                $("#ResultClientLead").html(data);
+            }
+        });
+
+        document.getElementById("SearchText").disabled = false;
+        document.getElementById("SearchButton").disabled = false;
+        document.getElementById("pagertextbox").disabled = false;
+        document.getElementById("pagerdropdown").disabled = false;
+        document.getElementById("pager").style.display = "inline";
+        document.getElementById("rowId" + count).className = "searchTableBg";/*.style.background = "#F1DDE7";*/
+
+    }
+    }
+</script>
 
 <!-- Start: Header -->
 @Html.Partial("../Shared/Header")
@@ -272,7 +344,7 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                                 <div class="row">
                                     <div class="row">
 
-                                        <div class="row" id="SearchNames">
+                                        <div class="row" id="SearchNames" style="display: none">
                                             <div class="row">
                                                 <div class="form-group col-md-12 col-lg-12">
                                                     @Html.Label("Search")

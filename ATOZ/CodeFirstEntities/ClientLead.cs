@@ -30,12 +30,26 @@ namespace CodeFirstEntities
         [Required]
         [DataType(DataType.Date)]
         public DateTime? ScheduleDate { get; set; }
-      //  public DateTime? ScheduleDate { get; set; }
+        //public DateTime? ScheduleDate { get; set; }
 
         public string Remark { get; set; }
 
 
         public int ClientId { get; set; }
+
+        public string Country { get; set; }
+           [Required]
+        public string State { get; set; }
+          [Required]
+        public string District { get; set; }
+         [Required]
+        public string City { get; set; }
+        public string ClientLeadCode { get; set; }
+
+
+        public IEnumerable<Country> CountryList { get; set; }
+        public IEnumerable<State> StateList { get; set; }
+        public IEnumerable<District> DistrictList { get; set; }
 
     }
 }

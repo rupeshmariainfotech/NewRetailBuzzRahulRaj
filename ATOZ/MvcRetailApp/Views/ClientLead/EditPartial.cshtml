@@ -128,16 +128,80 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
     });
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlcountry").change(function () {
+            var idmodel = $(this).val()
+
+            $.getJSON("/ClientLead/LoadStateByCountry", { countryname: idmodel },
+            function (Data) {
+                var select = $("#ddlstate");
+                select.empty();
+                select.append($('<option/>', {
+                    value: "",
+                    text: "Select State"
+                }));
+                $.each(Data, function (index, itemData) {
+                    select.append($('<option/>', {
+                        value: itemData.Value,
+                        text: itemData.Text
+                    }));
+                });
+            });
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ddlstate").change(function () {
+            var idmodel = $(this).val();
+            //if (idmodel == "Maharashtra") {
+            //    $("#Local").attr('checked', true);
+            //    document.getElementById("ClientDetails_checkState").value = "Local";
+            //    document.getElementById("YesRadioButton").disabled = true;
+            //    document.getElementById("NoRadioButton").disabled = true;
+            //    document.getElementById("NoRadioButton").checked = true;
+            //    document.getElementById("displayformtype").style.display = "none";
+            //}
+            //else {
+            //    $("#OMS").attr('checked', true);
+            //    document.getElementById("ClientDetails_checkState").value = "OMS";
+            //}
+            $.getJSON("/Client/LoadDistrictByState", { statename: idmodel },
+            function (Data) {
+                var select = $("#ddldistrict");
+                select.empty();
+                select.append($('<option/>', {
+                    value: "",
+                    text: "Select District"
+                }));
+
+                $.each(Data, function (index, itemData) {
+
+                    select.append($('<option/>', {
+                        value: itemData.Value,
+                        text: itemData.Text
+                    }));
+                });
+            });
+        });
+    });
+</script>
+
 <div class="col-md-12 col-lg-12">
     @using (Html.BeginForm())
     {
         @Html.HiddenFor(model => model.ClientLeads.ClientLeadId)
+        @Html.HiddenFor(model => model.ClientLeads.ClientLeadCode)
 
         <div class="row">
             <div class="row">
                 <h2>
                     Client Lead Details
                 </h2>
+           </div>
                 <div class="row">
                     <div class="col-md-4 col-lg-4">
                         <label>Client Lead Id</label>
@@ -148,44 +212,64 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                     <div class="col-md-6 col-lg-6">
                         <div class="col-md-12 col-lg-12">
                             <div class="form-group row">
-                                <label for="exampleInputname">Client Name<i style="color: red">*</i></label>
+                                <label for="exampleInputname">Client Name<i style= "color: red" ></i></label>
                                 @Html.TextBoxFor(model => model.ClientLeads.ClientName, new { @placeholder = "Client Name", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.ClientLeads.ClientName, null, new { style = "color:red", @id = "name" })
-                                <label id="errorname" class="error" style="display: none"></label>
+                                <label id = "errorname" class="error" style="display: none"></label>
                             </div>
                             <div class="form-group row">
-                                <label for="exampleInputname">Contac No.1<i style="color: red">*</i></label>
+                                <label for="exampleInputname">Contac No.1<i style = "color: red" > *</i ></label >
                                 @Html.TextBoxFor(model => model.ClientLeads.ContactNo1, new { @placeholder = "Contac No.1", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.ClientLeads.ContactNo1, null, new { style = "color:red", @id = "contact1" })
-                                <label id="errorname" class="error" style="display: none"></label>
+                                <label id = "errorname" class="error" style="display: none"></label>
                             </div>
                             <div class="form-group row">
-                                <label for="exampleInputname">Contact No.1<i style="color: red">*</i></label>
+                                <label for="exampleInputname">Contact No.1<i style = "color: red" > *</i ></label >
                                 @Html.TextBoxFor(model => model.ClientLeads.ContactNo2, new { @placeholder = "Contact No.1", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.ClientLeads.ContactNo2, null, new { style = "color:red", @id = "contact2" })
-                                <label id="errorname" class="error" style="display: none"></label>
+                                <label id = "errorname" class="error" style="display: none"></label>
                             </div>
                             <div class="form-group row">
                                 <label for="exampleInputname">Address<i style="color: red">*</i></label>
                                 @Html.TextAreaFor(model => model.ClientLeads.Address, new { @placeholder = "Address", @class = "form-control", @rows = 1 })
                                 @Html.ValidationMessageFor(model => model.ClientLeads.Address, null, new { style = "Address", @id = "address" })
-                                <label id="errorname" class="error" style="display: none"></label>
+                                <label id = "errorname" class="error" style="display: none"></label>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputCountry">Country<i style="color: red">*</i></label>
+                                @Html.DropDownListFor(model => model.ClientLeads.Country, new SelectList(Model.ClientLeads.CountryList, "countryName", "countryName", Model.ClientLeads.Country), "Select Country", new { id = "ddlcountry", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.Country, null, new { style = "color:red" })
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputState">State<i style="color: red">*</i></label>
+                                @Html.DropDownListFor(model => model.ClientLeads.State, new SelectList(Model.ClientLeads.StateList, "StateName", "StateName"), "Select State", new { id = "ddlstate", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.State, null, new { style = "color:red", @id = "state" })
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6">
                         <div class="col-md-12 col-lg-12">
                             <div class="form-group row">
+                                <label for="exampleInputDistrict">District<i style="color: red">*</i></label>
+                                @Html.DropDownListFor(model => model.ClientLeads.District, new SelectList(Model.ClientLeads.DistrictList, "DistrictName", "DistrictName", Model.ClientLeads.District), "Select District", new { id = "ddldistrict", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.District, null, new { style = "color:red" })
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputCity">City<i style="color: red">*</i></label>
+                                @Html.TextBoxFor(model => model.ClientLeads.City, new { @placeholder = "City", @class = "form-control", @autocomplete = "off" })
+                                @Html.ValidationMessageFor(model => model.ClientLeads.City, null, new { style = "color:red", @id = "city" })
+                            </div>
+                            <div class="form-group row">
                                 <label for="exampleInputname">Requriment<i style="color: red">*</i></label>
                                 @Html.TextBoxFor(model => model.ClientLeads.Requriment, new { @placeholder = "Requriment", @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.ClientLeads.Requriment, null, new { style = "color:red", @id = "requriment" })
-                                <label id="errorname" class="error" style="display: none"></label>
+                                <label id = "errorname" class="error" style="display: none"></label>
                             </div>
                             <div class="form-group row">
                                 <label for="exampleInputname">Date<i style="color: red">*</i></label>
                                 @Html.TextBoxFor(model => model.ClientLeads.Date, new { @placeholder = "Date", @class = "form-control", @value = System.DateTime.Now, @readonly = "Readonly" })
                                 @Html.ValidationMessageFor(model => model.ClientLeads.Date, null, new { style = "color:red", @id = "date" })
-                                <label id="errorname" class="error" style="display: none"></label>
+                                <label id = "errorname" class="error" style="display: none"></label>
                             </div>
                             <div class="form-group row">
                                 <label for="exampleInputname">Schedule Date<i style="color: red">*</i></label>
@@ -220,10 +304,8 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                            
                         </div>
                     </div>
-                </div>
-
+              </div>
             </div>
-
-        </div>
     }
+
 </div>
