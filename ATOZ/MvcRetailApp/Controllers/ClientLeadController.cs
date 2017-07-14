@@ -328,6 +328,20 @@ namespace MvcRetailApp.Controllers
             _ClientLeadService.DeleteClientLead(clnt);
             return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
         }
+
+
+       
+        public ActionResult tp(ClientLead clnt)
+        {
+            _ClientLeadService.DeleteClientLead(clnt);
+            return RedirectToAction("ResultClientLead/" + clnt.ClientLeadId, "ClientLead");
+        }
+
+
+
+
+
+
         [HttpGet]
         public JsonResult LoadDistrictByState(string statename)
         {
