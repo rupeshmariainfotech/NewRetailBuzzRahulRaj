@@ -77,6 +77,7 @@ namespace MvcRetailApp.Controllers
         private readonly IUserCredentialService _IUserCredentialService;
         private readonly IModuleService _iIModuleService;
         private readonly IClientMasterService _ClientMasterService;
+        private readonly IClientLeadService _ClientLeadService;
         private readonly IClientBankDetailService _ClientBankService;
         private readonly IQuotationService _QuotationService;
         private readonly IQuotationItemService _QuotationItemService;
@@ -119,10 +120,12 @@ namespace MvcRetailApp.Controllers
         private readonly ISalesBillCreditNoteItemService _SalesBillCreditNoteItemService;
         private readonly ISalesReturnService _SalesReturnService;
         private readonly IInventoryTaxService _InventoryTaxService;
+       
+
 
         public MisReportsController(IOpeningStockService openingstockservice, IItemCategoryService itemcategoryservice, IEntryStockService entrystockservice, IEntryStockItemService entrystockitemservice, IPurchaseOrderDetailService purchaseorderdetailservice, IPurchaseItemDetailService purchaseitemdetailservice, ISuppliersMasterService suppliermasterservice, IGodownService godownservice, IStockItemDistributionService stockitemdistributionservice, IInwardFromSupplierService performainvoiceservice, IInwardItemFromSupplierService performainvoiceitemservice,
                                     IInwardFromGodownService InwardFromGodownService, IInwardItemFromGodownService InwardItemFromGodownService, IInwardFromStkDistService InwardFromStkDistService, IInwardItemFromStockDistributionService InwardItemFromStkDistService, IOutwardToShopService outwardfromgodowntoshopservice, IOutwardItemToShopService outwarditemfromgodowntoshopservice, IOutwardInterGodownService OutwardInterGodownService, IOutwardItemInterGodownService OutwardItemInterGodownService, IOutwardToClientService OutwardToClientService,
-                                    IOutwardItemToClientService OutwardItemToClientService, IUserCredentialService usercredentialservice, IModuleService iIModuleService, IClientMasterService ClientMasterService, IQuotationService QuotationService, IQuotationItemService QuotationItemService, ICashierReceivableService CashierReceivableService, ISalesOrderService SalesOrderService, IDeliveryChallanService DeliveryChallanSevice, ISalesBillService SalesBillService, ISalesBillItemService SalesBillItemService, IRetailBillService RetailInvoiceMasterService, IGodownStockService GodownStockService,
+                                    IOutwardItemToClientService OutwardItemToClientService, IUserCredentialService usercredentialservice, IModuleService iIModuleService, IClientMasterService ClientMasterService, IClientLeadService ClientLeadService, IQuotationService QuotationService, IQuotationItemService QuotationItemService, ICashierReceivableService CashierReceivableService, ISalesOrderService SalesOrderService, IDeliveryChallanService DeliveryChallanSevice, ISalesBillService SalesBillService, ISalesBillItemService SalesBillItemService, IRetailBillService RetailInvoiceMasterService, IGodownStockService GodownStockService,
                                     IShopStockService ShopStockService, IShopService ShopSevice, IEmployeeMasterService EmployeeMasterService, IRetailBillItemService RetailBilltemService, IOutwardShopToGodownService OutwardShopToGodownService, IInwardFromShopToGodownService InwardFromShopToGodownService, IUnitService UnitService, ICommissionService CommissionService, ICommissionProductService CommissionProductService, IInwardInterGodownService InwardInterGodowService, IInwardInterShopService InwardInterShopService, IOutwardInterShopService OutwardInterShopService,
                                     IClientBankDetailService ClientBankService, ISupplierBankDetailService SupplierBankDetailService, IItemTaxService ItemTaxService, IDepartmentService DepartmentService, IItemService ItemService, ICashierSalesOrderService CashierSalesOrderService, ICashierRetailBillService CashierRetailBillService, ICashierSalesBillService CashierSalesBillService, ICashierTemporaryCashMemoService CashierTemporaryCashMemoService, ICashierRefundOrderService CashierRefundOrderService, ICashHandoverService CashHandoverService,
                                     ICardChequeHandoverService CardChequeHandoverService, IIncomeExpenseVoucherService IncomeExchangeVoucherService, ITemporaryCashMemoService TemporaryCashMemoService, IItemSubCategoryService ItemSubCategoryService, IRetailBillCreditNoteService RetailBillCreditNoteService, ISalesBillCreditNoteService SalesBillCreditNoteService, IDebitNoteService DebitNoteService, IDeliveryChallanItemService DeliveryChallanItemService, ISalesOrderItemService SalesOrderItemService, ITemporaryCashMemoItemService TemporaryCashMemoItemService,IInventoryTaxService InventoryTaxService,
@@ -163,6 +166,7 @@ namespace MvcRetailApp.Controllers
             this._IUserCredentialService = usercredentialservice;
             this._iIModuleService = iIModuleService;
             this._ClientMasterService = ClientMasterService;
+            this._ClientLeadService = ClientLeadService;
             this._QuotationService = QuotationService;
             this._QuotationItemService = QuotationItemService;
             this._CashierReceivableService = CashierReceivableService;
@@ -1797,6 +1801,20 @@ namespace MvcRetailApp.Controllers
             model.ClientList = _ClientMasterService.GetAllClients();
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult ClientLeadReport()
+        {
+            MainApplication model = new MainApplication();
+            model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
+            model.modulelist = _iIModuleService.getAllModules();
+            model.CompanyCode = CompanyCode;
+            model.CompanyName = CompanyName;
+            model.FinancialYear = FinancialYear;
+            model.ClientLeadList = _ClientLeadService.GetAllClients();
+            return View(model);
+        }
+
 
         [HttpGet]
         public ActionResult ClientBankDetails(string Code)

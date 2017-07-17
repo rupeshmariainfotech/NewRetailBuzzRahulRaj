@@ -89,9 +89,16 @@ namespace CodeFirstServices.Services
 
         public ShopMaster GetShopDetailsByName(string name)
         {
-            var details = _shopRepository.Get(s =>s.ShopName == name);
+            var details = _shopRepository.Get(s => s.ShopName == name);
+
             return details;
         }
+        //public ShopMaster GetShopDetailsById(int id)
+        //{
+        //    var details = _shopRepository.GetById(id);
+        //    return details;
+        //}
+
 
         public IEnumerable<ShopMaster> GetShopList(string name)
         {

@@ -23,7 +23,7 @@ namespace CodeFirstEntities
         public string costprice { get; set; }
         [Required]
         public string typeOfMaterial { get; set; }
-        [Required]
+       // [Required]
         public string colorCode { get; set; }
         public string designCode { get; set; }
         [Required]

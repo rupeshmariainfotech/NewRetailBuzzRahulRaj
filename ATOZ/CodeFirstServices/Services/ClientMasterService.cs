@@ -83,6 +83,8 @@ namespace CodeFirstServices.Services
             return list;
         }
 
+
+
         public IEnumerable<ClientMaster> GetActiveAndMaharashtraClients(string name)
         {
             var list = _clientMasterRepository.GetMany(cl => cl.ClientName.ToLower().StartsWith(name.ToLower()) && cl.State == "Maharashtra" && cl.Status == "Active");

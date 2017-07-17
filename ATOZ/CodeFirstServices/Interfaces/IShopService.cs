@@ -25,5 +25,7 @@ namespace CodeFirstServices.Interfaces
         ShopMaster GetAddressByArea(string area);
         IEnumerable<ShopMaster> GetAddressList(string GdCode);
         ShopMaster CheckShortCode(string Code);
+
+        //ShopMaster GetShopDetailsById(int id);
     }
 }

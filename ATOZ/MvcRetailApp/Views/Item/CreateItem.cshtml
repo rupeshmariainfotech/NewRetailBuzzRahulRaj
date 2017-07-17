@@ -138,8 +138,8 @@ $(this).parents('form:eq(0),body').find();
             var rowId = document.getElementById("hdnRowCount").value;
 
             var typeOfMaterial = "materialType" + rowId;
-            var colorCode = "colorCodeData" + rowId;
-            var designCode = "designCodeData" + rowId;
+            //var colorCode = "colorCodeData" + rowId;
+            //var designCode = "designCodeData" + rowId;
             var description = "itemDescription" + rowId;
             var size = "Size" + rowId;
             var unit = "Unit" + rowId;
@@ -167,14 +167,14 @@ $(this).parents('form:eq(0),body').find();
                         alertbox("Please Select The Type Of Material");
                         return false;
                     }
-                    else if ($("#" + colorCode).val() == "") {
-                        alertbox("Please Select The Color Code");
-                        return false;
-                    }
-                    else if ($("#" + designCode).val() == "") {
-                        alertbox("Please Select The Design Code");
-                        return false;
-                    }
+                    //else if ($("#" + colorCode).val() == "") {
+                    //    alertbox("Please Select The Color Code");
+                    //    return false;
+                    //}
+                    //else if ($("#" + designCode).val() == "") {
+                    //    alertbox("Please Select The Design Code");
+                    //    return false;
+                    //}
                     else if ($("#" + brand).val() == "") {
                         alertbox("Please Select The Brand Name");
                         return false;
@@ -481,12 +481,12 @@ $(this).parents('form:eq(0),body').find();
                 "<div class='form-group col-md-3 col-lg-3'><label>Description</label><textarea rows='1' placeholder='Item Description' class='form-control' name='itemDescription" + rowId + "' id='itemDescription" + rowId + "' autocomplete='off'/></div>" +
                 "<div class='form-group col-md-3 col-lg-3'><label>Unit<i style='color:red'>*</i></label><div id='" + selectunit + "' name='" + selectunit + "' onchange='GetUnitDecimalType(" + rowId + ")'><input type='hidden' id='" + unitnumbertype + "' name='" + unitnumbertype + "'/></div></div>" +
                 "<div class='form-group col-md-3 col-lg-3'><label>Size<i style='color:red'>*</i></label><input type='text' placeholder='Size' class='form-control' name='Size" + rowId + "' id='Size" + rowId + "' onkeypress='return DontAllowWhiteSpace(event)' autocomplete='off'/></div>" +
-                "<div class=' form-group col-md-3 col-lg-3'><label>Design<i style='color:red'>*</i></label><select id='" + designCode + "' name='" + designCode + "' class='form-control'><option value=''>Select Design</option></select><input type='hidden' id='" + designname + "' name='" + designname + "'></input></div>" +
+                "<div class=' form-group col-md-3 col-lg-3'><label>Design<i style='color:red'></i></label><select id='" + designCode + "' name='" + designCode + "' class='form-control'><option value=''>Select Design</option></select><input type='hidden' id='" + designname + "' name='" + designname + "'></input></div>" +
                 "</div></div>" +
 
                 "<div class='row'><div class='col-md-12 col-lg-12'>" +
                 "<div class='form-group col-md-2 col-lg-2' id='" + select + "'><label>Type Of Material<i style='color:red'>*</i></label></div>" +
-                "<div class='form-group col-md-2 col-lg-2' id='" + colorCodeSelect + "'><label>Color Code<i style='color:red'>*</i></label></div>" +
+                "<div class='form-group col-md-2 col-lg-2' id='" + colorCodeSelect + "'><label>Color Code<i style='color:red'></i></label></div>" +
                 "<div class='form-group col-md-2 col-lg-2'><label>Brand<i style='color:red'>*</i></label><div id='" + selectbrand + "' name='" + selectbrand + "' ></div></div>" +
                 "<div class='form-group col-md-2 col-lg-2'><label>Cost Price<i style='color:red'>*</i></label><input type='text' placeholder='Cost Price' class='form-control' name='CostPrice" + rowId + "' id='CostPrice" + rowId + "' onkeypress='return AllowNumbers(event)' autocomplete='off'/></div>" +
                 "<div class='form-group col-md-2 col-lg-2'><label>Selling Price<i style='color:red'>*</i></label><input type='text' placeholder='Selling Price' class='form-control' name='SellingPrice" + rowId + "' id='SellingPrice" + rowId + "' onchange='CalcMRP(" + rowId + ");' onkeypress='return AllowNumbers(event)' autocomplete='off'/></div>" +
@@ -550,8 +550,8 @@ $(this).parents('form:eq(0),body').find();
                 //CHECK ALL DATA IS FILL OR NOT
                 var row = "row" + rowId;
                 var typeOfMaterial = "materialType" + rowId;
-                var colorCode = "colorCodeData" + rowId;
-                var designCode = "designCodeData" + rowId;
+               // var colorCode = "colorCodeData" + rowId;
+               // var designCode = "designCodeData" + rowId;
                 var designname = "designName" + rowId;
                 var description = "itemDescription" + rowId;
                 var size = "Size" + rowId;
@@ -580,14 +580,14 @@ $(this).parents('form:eq(0),body').find();
                             alertbox("Please Select The Type Of Material");
                             return false;
                         }
-                        else if ($("#" + colorCode).val() == "") {
-                            alertbox("Please Select The Color Code");
-                            return false;
-                        }
-                        else if ($("#" + designCode).val() == "") {
-                            alertbox("Please Select The Design Code");
-                            return false;
-                        }
+                        //else if ($("#" + colorCode).val() == "") {
+                        //    alertbox("Please Select The Color Code");
+                        //    return false;
+                        //}
+                        //else if ($("#" + designCode).val() == "") {
+                        //    alertbox("Please Select The Design Code");
+                        //    return false;
+                        //}
                         else if ($("#" + brand).val() == "") {
                             alertbox("Please Select The Brand Name");
                             return false;
@@ -887,12 +887,12 @@ $(this).parents('form:eq(0),body').find();
         "<div class='form-group col-md-3 col-lg-3'><label>Description</label><textarea rows='1' placeholder='Item Description' class='form-control' name='itemDescription" + rowId + "' id='itemDescription" + rowId + "' autocomplete='off'/></div>" +
         "<div class='form-group col-md-3 col-lg-3'><label>Unit<i style='color:red'>*</i></label><div id='" + selectunit + "' name='" + selectunit + "' onchange='GetUnitDecimalType(" + rowId + ")'><input type='hidden' id='" + unitnumbertype + "' name='" + unitnumbertype + "'/></div></div>" +
         "<div class='form-group col-md-3 col-lg-3'><label>Size<i style='color:red'>*</i></label><input type='text' placeholder='Size' class='form-control' name='Size" + rowId + "' id='Size" + rowId + "' onkeypress='return DontAllowWhiteSpace(event)' autocomplete='off'/></div>" +
-        "<div class=' form-group col-md-3 col-lg-3'><label>Design<i style='color:red'>*</i></label><select id='" + designCode + "' name='" + designCode + "' class='form-control'><option value=''>Select Design</option></select><input type='hidden' id='" + designname + "' name='" + designname + "'></input></div>" +
+        "<div class=' form-group col-md-3 col-lg-3'><label>Design<i style='color:red'></i></label><select id='" + designCode + "' name='" + designCode + "' class='form-control'><option value=''>Select Design</option></select><input type='hidden' id='" + designname + "' name='" + designname + "'></input></div>" +
         "</div></div>" +
 
         "<div class='row'><div class='col-md-12 col-lg-12'>" +
         "<div class='form-group col-md-2 col-lg-2' id='" + select + "'><label>Type Of Material<i style='color:red'>*</i></label></div>" +
-        "<div class='form-group col-md-2 col-lg-2' id='" + colorCodeSelect + "'><label>Color Code<i style='color:red'>*</i></label></div>" +
+        "<div class='form-group col-md-2 col-lg-2' id='" + colorCodeSelect + "'><label>Color Code<i style='color:red'></i></label></div>" +
         "<div class='form-group col-md-2 col-lg-2'><label>Brand<i style='color:red'>*</i></label><div id='" + selectbrand + "' name='" + selectbrand + "' ></div></div>" +
         "<div class='form-group col-md-2 col-lg-2'><label>Cost Price<i style='color:red'>*</i></label><input type='text' placeholder='Cost Price' class='form-control' name='CostPrice" + rowId + "' id='CostPrice" + rowId + "' onkeypress='return AllowNumbers(event)' autocomplete='off'/></div>" +
         "<div class='form-group col-md-2 col-lg-2'><label>Selling Price<i style='color:red'>*</i></label><input type='text' placeholder='Selling Price' class='form-control' name='SellingPrice" + rowId + "' id='SellingPrice" + rowId + "' onchange='CalcMRP(" + rowId + ");' onkeypress='return AllowNumbers(event)' autocomplete='off'/></div>" +

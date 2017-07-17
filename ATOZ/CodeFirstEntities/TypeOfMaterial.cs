@@ -14,9 +14,9 @@ namespace CodeFirstEntities
         public int MaterialId { get; set; }
         [Required]
         public string MaterialName { get; set; }
-        [Required]
+       // [Required]
         public string MaterialShortName { get; set; }
-        [Required]
+       // [Required]
         public string MaterialDescription { get; set; }
         public DateTime ModifiedOn { get; set; }
         public string Status { get; set; }

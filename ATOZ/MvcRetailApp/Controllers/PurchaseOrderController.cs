@@ -158,6 +158,7 @@ namespace MvcRetailApp.Controllers
                     {
                         Session["LOGINSHOPGODOWNCODE"] = assigndetails.AssignRightsCode;
                         Session["SHOPGODOWNNAME"] = assigndetails.Modules;
+                      // var test =assigndetails.AssignRightsCode;
                         break;
                     }
                 }
@@ -195,6 +196,8 @@ namespace MvcRetailApp.Controllers
                 if (godownshopcode.Contains("SH"))
                 {
                     ShortCode = _ShopService.GetShopDetailsByName(godownshopname).ShortCode;
+                  //  ShortCode = _ShopService.GetShopDetailsById(1).ShortCode;
+                  
                 }
                 else
                 {

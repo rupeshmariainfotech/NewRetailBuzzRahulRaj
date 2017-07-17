@@ -264,13 +264,13 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
     function UpdatePartial() {
         var count = 0;
         //this if conditions is for check required fields
-        if ($("#BankDetails_address").val() == "" || $("#BankDetails_IFSC").val() == "" ||
-            $("#BankDetails_Branch").val() == "" || $("#BankDetails_ContactNo1").val() == "" ||
-            $("#BankDetails_bankName").val() == "" || $("#BankDetails_IFSC").val() == "" || $("#BankDetails_email").val() == "") {
+        if ($("#BankDetails_IFSC").val() == "" ||
+            $("#BankDetails_Branch").val() == ""  ||
+            $("#BankDetails_bankName").val() == "" || $("#BankDetails_IFSC").val() == "" ) {
             return false;
         }
             //if the above if condition is false check their other validations eg: length,number.(for required fields)
-        else if ($("#BankDetails_ContactNo1").val().length < 7 || $("#BankDetails_ContactNo1").val().length > 14) {
+        else if ($("#BankDetails_Branch").val() == "") {
             return false;
         }
             //this condition is for non-required fields.
@@ -289,6 +289,14 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                     }
                 });
             }
+
+            if ($("#BankDetails_ContactNo1").val() != "") {
+                if ($("#BankDetails_ContactNo1").val().length < 7 || $("#BankDetails_ContactNo1").val().length > 14) {
+                    count++;
+                    return false;
+                }
+            }
+
 
             if ($("#BankDetails_ContactNo2").val() != "") {
                 if ($("#BankDetails_ContactNo2").val().length < 7 || $("#BankDetails_ContactNo2").val().length > 14) {

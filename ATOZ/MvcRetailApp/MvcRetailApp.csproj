@@ -2304,6 +2304,7 @@
     <Content Include="Views\ClientLead\Delete.cshtml" />
     <Content Include="Views\ClientLead\DeletePartial.cshtml" />
     <Content Include="Views\ClientLead\ClientLeadDetails.cshtml" />
+    <Content Include="Views\MisReports\ClientLeadReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ReportEngine\RetailBillLetterHeadWithMRP.rdlc">
