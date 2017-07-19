@@ -10,3 +10,9 @@ C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Debu
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Debug\SetupHelper.csprojResolveAssemblyReference.cache
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Debug\SetupHelper.dll
 C:\Users\developer2\Source\Repos\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Debug\SetupHelper.pdb
+C:\Users\Designer1\Desktop\retailbuzz\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Debug\SetupHelper.dll
+C:\Users\Designer1\Desktop\retailbuzz\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Debug\SetupHelper.pdb
+C:\Users\Designer1\Desktop\retailbuzz\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\bin\Debug\Microsoft.Web.Administration.dll
+C:\Users\Designer1\Desktop\retailbuzz\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Debug\SetupHelper.csprojResolveAssemblyReference.cache
+C:\Users\Designer1\Desktop\retailbuzz\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Debug\SetupHelper.dll
+C:\Users\Designer1\Desktop\retailbuzz\NewRetailBuzzRahulRaj\ATOZ\SetupHelper\obj\Debug\SetupHelper.pdb

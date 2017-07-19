@@ -94,6 +94,15 @@ namespace CodeFirstServices.Services
             return client;
 
         }
+        public IEnumerable<ClientLead> GetClientByReminder()
+        {
+            var dateCriteria = DateTime.Today.Date;
+            var list = _ClientLeadRepository.GetMany(k => k.ScheduleDate == dateCriteria);
+            return list;
+        }
+
+
+
     }
 }
 
