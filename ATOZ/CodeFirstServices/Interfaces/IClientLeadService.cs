@@ -20,6 +20,7 @@ namespace CodeFirstServices.Interfaces
         ClientLead GetClientLeadById(int id);
 
         IEnumerable<ClientLead> GetAllClients();
+        IEnumerable<ClientLead> GetClientByReminder();
 
         ClientLead getClientById(int id);
 

@@ -51,6 +51,24 @@
     <script type="text/javascript" src="~/vendor/plugins/metisMenu/metisMenu.min.js"></script>
 
     <!-- PENDING POES PER DATE -->
+   
+
+    <script type="text/javascript">
+        //$(document).ready(function () {
+
+        //    
+        //});
+
+        $(window).on('load', function test() {
+            //window.location.assign("/Dashboard/GetReminder","_blank", "height=600,width=900");
+            window.open("/Dashboard/GetReminder", "_blank", "height=600,width=1000");
+            //alert("Window Loaded");
+
+          
+        });
+    </script>
+
+
     <script type="text/javascript">
         function pendingApprovalPOList() {
             window.open("/Dashboard/GetPendingApprovalPo/", "_blank", "height=600,width=900");
@@ -587,6 +605,17 @@
                         }
 
                     </div>
+
+                    @*@if(TempData["UserName"]!=null)
+                    {
+                        <span>
+                            @TempData["UserName"] 
+                        </span>
+                    }*@
+                    @Html.Raw(TempData["UserName"])
+
+
+
                     @{
                         if (Session["LOGINSHOPGODOWNCODE"] != null && HttpContext.Current.Session["UserName"].ToString() != "SuperAdmin")
                         {

@@ -79,13 +79,14 @@ namespace MvcRetailApp.Controllers
         private readonly ICashHandoverService _CashHandoverService;
         private readonly ICardChequeHandoverService _CardChequeHandoverService;
         private readonly IIncomeExpenseVoucherService _IncomeExchangeVoucherService;
+        private readonly IClientLeadService _ClientLeadService;
 
         public DashboardController(IUtilityService utilityservice, IUserCredentialService usercredentialservice, IModuleService iIModuleService, IPurchaseOrderDetailService IPurchaseOrderDetailService, IOutwardToShopService OutwardToShopService, IOutwardToClientService IOutwardToClientService, IShopStockService IShopStockService,
             IGodownStockService GodownStockService, IStockItemDistributionService IStockItemDistributionService, IRetailBillService IRetailInvoiceMasterService, ISalesBillService ISalesBillService, IEmployeeMasterService EmployeeMasterService, IEntryStockItemService EntryStockItemService,
             IQuotationService QuotationService, ISalesOrderService SalesOrderService, IDeliveryChallanService DeliveryChallanService, IInwardFromGodownService InwardFromGodownService, IInwardFromShopToGodownService InwardFromShopToGodownService, IInwardInterGodownService InwardInterGodownService, IInwardInterShopService InwardInterShopService,
             IRequisitionForShopService RequisitionForShopService, IRequisitionForGodownService RequisitionForGodownService, IOutwardShopToGodownService OutwardShopToGodownService, IOutwardInterGodownService OutwardInterGodownService, IOutwardInterShopService OutwardInterShopService, ISalesReturnService SalesReturnService,
             IPurchaseReturnService PurchaseReturnService, IInwardFromSupplierService InwardFromSupplierService, ICashierSalesOrderService CashierSalesOrderService, ICashierRetailBillService CashierRetailBillService, ICashierTemporaryCashMemoService CashierTemporaryCashMemoService, ICashierSalesBillService CashierSalesBillService,
-            ICashierRefundOrderService CashierRefundOrderService, ICashHandoverService CashHandoverService, ICardChequeHandoverService CardChequeHandoverService, IIncomeExpenseVoucherService IncomeExchangeVoucherService)
+            ICashierRefundOrderService CashierRefundOrderService, ICashHandoverService CashHandoverService, ICardChequeHandoverService CardChequeHandoverService, IIncomeExpenseVoucherService IncomeExchangeVoucherService, IClientLeadService ClientLeadService)
         {
             this._IUserCredentialService = usercredentialservice;
             this._iIModuleService = iIModuleService;
@@ -122,6 +123,7 @@ namespace MvcRetailApp.Controllers
             this._CashHandoverService = CashHandoverService;
             this._CardChequeHandoverService = CardChequeHandoverService;
             this._IncomeExchangeVoucherService = IncomeExchangeVoucherService;
+            this._ClientLeadService = ClientLeadService;
         }
 
         [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
@@ -144,6 +146,7 @@ namespace MvcRetailApp.Controllers
         {
             //GET LOGIN SHOP DETAILS
             var username = HttpContext.Session["UserName"].ToString();
+          
             // IF EXCEPT SUPERADMIN LOGIN THEN SHOW SHOP OR GODOWN
             if (username != "SuperAdmin")
             {
@@ -640,6 +643,34 @@ namespace MvcRetailApp.Controllers
             TempData["Requisitionssuperadmin1"] = model.Requisitionforgodownlist;
             return View(model);
         }
+
+
+       // ***************** For Reminder *****************//
+        [HttpGet]
+        public ActionResult GetReminder()
+        {
+            var username = HttpContext.Session["UserName"].ToString();
+
+            MainApplication model = new MainApplication()
+            {
+                ClientLeads = new ClientLead(),
+            };
+            // int Id = Decode(id.ToString());
+            var clientList = _ClientLeadService.GetClientByReminder();
+            
+            
+            //model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
+            //model.modulelist = _iIModuleService.getAllModules();
+            //model.CompanyCode = CompanyCode;
+            //model.CompanyName = CompanyName;
+            //model.FinancialYear = FinancialYear;
+
+            return View(clientList);
+
+        }
+
+
+
 
     }
 }
