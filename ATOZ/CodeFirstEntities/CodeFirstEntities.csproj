@@ -73,6 +73,7 @@
     <Compile Include="CommissionMaster.cs" />
     <Compile Include="CommissionProduct.cs" />
     <Compile Include="CostCodeCreation.cs" />
+    <Compile Include="IncomeExchangeVoucher.cs" />
     <Compile Include="ItemName.cs" />
     <Compile Include="OutwardForProduction.cs" />
     <Compile Include="OutwardForProductionExpectedInward.cs" />

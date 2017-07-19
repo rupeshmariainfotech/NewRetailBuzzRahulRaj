@@ -159,6 +159,7 @@ namespace MvcRetailApp.Controllers
                 _ClientBankDetailService.ExecuteProcedure(catCode);
             }
             Session["ClientCode"] = catCode;
+            model.ClientDetails.Date = System.DateTime.Now;
             model.ClientDetails.CountryList = _CountryService.getallcountries();
             model.userCredentialList = _IUserCredentialService.GetUserCredentialsByEmail(UserEmail);
             model.modulelist = _iIModuleService.getAllModules();

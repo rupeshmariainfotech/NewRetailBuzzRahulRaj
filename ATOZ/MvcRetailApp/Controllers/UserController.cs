@@ -308,7 +308,8 @@ namespace MvcRetailApp.Controllers
             string pass = CreateRandomPassword();
             string encryptPass = _iutilityservice.Encryptdata(pass);
             string password = _iutilityservice.Decryptdata(encryptPass);
-            SmtpClient client = new SmtpClient("180.149.243.22");
+            //  SmtpClient client = new SmtpClient("180.149.243.22");
+            SmtpClient client = new SmtpClient("45.114.143.100");
             client.Port = 587;
             client.EnableSsl = false;
             client.UseDefaultCredentials = false;

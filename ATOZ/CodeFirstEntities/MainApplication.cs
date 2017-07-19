@@ -408,6 +408,10 @@ namespace CodeFirstEntities
         public IncomeExpenseVoucher IncomeExpenseVoucherDetails { get; set; }
         public IEnumerable<IncomeExpenseVoucher> IncomeExpenseVoucherList { get; set; }
 
+
+        public IncomeExchangeVoucher IncomeExchangeVoucherDetails { get; set; }
+        public IEnumerable<IncomeExchangeVoucher> IncomeExchangeVoucherList { get; set; }
+
         public PhysicalStockTaking PhysicalStockTakingDetails { get; set; }
         public IEnumerable<PhysicalStockTaking> PhysicalStockTakingList { get; set; }
 

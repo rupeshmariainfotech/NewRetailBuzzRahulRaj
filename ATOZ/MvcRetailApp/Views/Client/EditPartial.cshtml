@@ -2,6 +2,63 @@
 @{
     ViewBag.Title = "EditPartial";
 }
+
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/themes/base/jsDatePick_ltr.css")" />
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/themes/base/jsDatePick_ltr.min.css")" />
+<script type="text/javascript" src="@Url.Content("~/Scripts/jsDatePick.min.1.3.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jsDatePick.jquery.min.1.3.js")"></script>
+
+<link href="~/Content/customAlerts.css" rel="stylesheet" />
+<script src="~/Scripts/bootbox.js"></script>
+
+
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    var data = new JsDatePick({
+    //        useMode: 2,
+    //        target: "ClientLeads_ScheduleDate",
+    //        dateFormat: "%d/%M/%Y"
+    //    });
+
+    //    data.addOnSelectedDelegate(function() {
+    //        var today = new Date();
+    //        var birth = document.getElementById("ClientLeads_ScheduleDate").value;
+    //        var birthDate = new Date(birth);
+    //     //   $("#EmployeeDetails_DateOfBirth").val("");
+    //        var age = today.getFullYear() - birthDate.getFullYear();
+    //        var m = today.getMonth() - birthDate.getMonth();
+    //        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //            age--;
+    //        }
+    //    });
+    //});
+
+
+    window.onload = function () {
+        var cal_start = new JsDatePick({
+            useMode: 2,
+            target: "ClientDetails_ScheduleDate",
+            dateFormat: "%m/%d/%Y"
+        });
+        cal_start.addOnSelectedDelegate(function () {
+            document.getElementById('ClientDetails_ScheduleDate').value = cal_start.getSelectedDayFormatted();
+            cal_end.showCalendar();
+        });
+    };
+
+    //$.getJSON("/ClientLead/LoadDistrictByState", { statename: idmodel },
+    //      function (Data) {
+    //          var select = $("#ddldistrict");
+    //          select.empty();
+    //          select.append($('<option/>', {
+    //              value: "",
+    //              text: "Select District"
+    //          }));
+    //      });
+</script>
+
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("input").not($(":button")).keypress(function (evt) {
@@ -393,11 +450,11 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
                             @Html.TextBoxFor(model => model.ClientDetails.Remark, new { @placeholder = "Remark", @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ClientDetails.Remark, null, new { style = "color:red" })
                         </div>
-                        <div class="form-group row">
+                        @*<div class="form-group row">
                             <label for="exampleInputPANNo">ScheduleDate</label>
                             @Html.TextBoxFor(model => model.ClientDetails.ScheduleDate, new { @placeholder = "ScheduleDate", @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.ClientDetails.ScheduleDate)
-                        </div>
+                        </div>*@
 
                     </div>
                 </div>
@@ -484,6 +541,11 @@ $(this).parents('form:eq(0),body').find('button,input,textarea,select');
 
                 <div class="col-md-3 col-lg-3">
                     <div class="col-md-12 col-lg-12">
+                        <div class="form-group row">
+                            <label for="exampleInputTDS">Schedule Date</label>
+                            @Html.TextBoxFor(model => model.ClientDetails.ScheduleDate, new { @placeholder = "Schedule Date", @class = "form-control", @autocomplete = "off", @id = "ClientDetails_ScheduleDate" })
+                            @Html.ValidationMessageFor(model => model.ClientDetails.ScheduleDate, null, new { style = "color:red", @id = "scheduledate" })
+                        </div>
                         <div class="form-group row">
                             <label for="exampleInputSalesTax">Dealer</label><br />
                             <input type="radio" id="Local" name="LocalOMS" onclick="CheckState('local')" />
